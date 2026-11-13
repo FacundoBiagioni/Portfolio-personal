@@ -173,7 +173,9 @@
   .k1::before { background: radial-gradient(70% 60% at 50% 70%, rgba(255,100,54,.45), transparent), linear-gradient(#2a3b2c, #121a13); }
   .k2::before { background: linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.7)), linear-gradient(160deg, #b9b2a6, #4b463f); }
   .k3::before { background: linear-gradient(180deg, rgba(0,0,0,.2), rgba(0,0,0,.6)), conic-gradient(from 30deg at 40% 60%, #d94f2b, #f2c14e, #3a6ea5, #141414, #d94f2b); }
-  .k4::before { background: linear-gradient(180deg, rgba(0,0,0,.1), rgba(0,0,0,.6)), repeating-linear-gradient(135deg, #1e1e1e 0 14px, #262626 14px 28px); }
+  .k4::before { background: linear-gradient(180deg, rgba(0,0,0,.88), rgba(0,0,0,.45) 42%, rgba(0,0,0,.45) 68%, rgba(0,0,0,.9)); z-index: -1; }
+  .cap video { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; filter: saturate(.85); transition: transform 1s var(--ease); }
+  .cap:hover video { transform: scale(1.06); }
   .cap .tag { position: absolute; left: 24px; bottom: 24px; font-size: 12px; color: rgba(255,255,255,.7); }
 
   /* earth chapter: about */
@@ -290,7 +292,7 @@
         <a class="cap k1" href="#"><h3>Agent Village</h3><p>Agentes de IA que encuentran negocios sin web, preparan una demo y esperan mi aprobación. Casa 3D low poly con HUD.</p><span class="tag">Next.js · Agent SDK · Three.js</span><span class="go" aria-hidden="true">→</span></a>
         <a class="cap k2" href="#"><h3>Estudio B+G</h3><p>Sitio institucional y portfolio de obras para un estudio de arquitectura de La Plata.</p><span class="tag">Next.js 16 · Tailwind v4</span><span class="go" aria-hidden="true">→</span></a>
         <a class="cap k3" href="#"><h3>Alejandra Filgueira</h3><p>Portfolio bilingüe para una artista de arte abstracto.</p><span class="tag">Next.js · next-intl</span><span class="go" aria-hidden="true">→</span></a>
-        <a class="cap k4" href="#"><h3>Can i 100% it?</h3><p>App web propia en desarrollo. Descripción a completar.</p><span class="tag">Next.js 16 · Bun</span><span class="go" aria-hidden="true">→</span></a>
+        <a class="cap k4" href="can-i-100-it.html"><video src="../assets/proyectos/can-i-100-it/hero.webm" poster="../assets/proyectos/can-i-100-it/poster.webp" muted loop playsinline preload="none" aria-hidden="true"></video><h3>Can i 100% it?</h3><p>Una sola búsqueda para saber si todavía se puede conseguir el 100% de los logros de un juego de Steam.</p><span class="tag">Next.js 16 · Gemini · PostgreSQL</span><span class="go" aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -365,6 +367,9 @@
       });
     }, 5200);
   }
+
+  // Project cards with a recording play only while on screen
+  if (!reduce) document.querySelectorAll('.cap video').forEach(v => new IntersectionObserver(([e]) => { e.isIntersecting ? v.play().catch(() => {}) : v.pause(); }, { threshold: 0.4 }).observe(v));
 
   // Closing: slowly rotating particle sphere, brightness by depth
   const cv = document.getElementById('sphere');

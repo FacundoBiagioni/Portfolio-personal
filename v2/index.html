@@ -93,8 +93,9 @@
   .c2 { background: linear-gradient(90deg, #ece9e4 0 62%, #2c2b29 62%); color: var(--onyx) !important; }
   .c2::before { content: 'B+G'; position: absolute; left: 16px; top: 8px; font: 800 96px/1 var(--display); color: #2c2b29; }
   .c3 { background: conic-gradient(from 40deg at 40% 55%, #d94f2b, #f2c14e, #3a6ea5, #1e1e1e, #d94f2b); filter: saturate(.9); }
-  .c4 { background: repeating-linear-gradient(90deg, #161616 0 18px, #222 18px 36px); }
-  .c4::before { content: '100%'; position: absolute; inset: 0; display: grid; place-items: center; font: 900 120px/1 var(--display); color: var(--ember); }
+  .c4 { background: #0b0b0b; padding: 0 !important; }
+  .c4 video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .c4 .mono { z-index: 1; text-shadow: 0 1px 6px #000; }
   @media (hover: none) { .preview { display: none; } }
 
   /* about */
@@ -177,10 +178,10 @@
           <div><h3>A. Filgueira</h3><p>Portfolio bilingüe para una artista de arte abstracto: la obra manda.</p></div>
           <div class="tags"><span class="tag">Next.js</span><span class="tag">next-intl</span></div>
         </a></li>
-        <li class="reveal"><a href="#" data-card="c4">
+        <li class="reveal"><a href="can-i-100-it.html" data-card="c4">
           <span class="n mono">(04)</span>
-          <div><h3>Can i 100% it?</h3><p>App web propia en desarrollo. Descripción a completar.</p></div>
-          <div class="tags"><span class="tag">Next.js 16</span><span class="tag">Bun</span></div>
+          <div><h3>Can i 100% it?</h3><p>Una sola búsqueda para saber si todavía se puede conseguir el 100% de los logros de un juego de Steam.</p></div>
+          <div class="tags"><span class="tag">Next.js 16</span><span class="tag">Gemini</span><span class="tag">PostgreSQL</span></div>
         </a></li>
       </ul>
     </div>
@@ -225,7 +226,7 @@
   <div class="card c1"><span class="mono">Agent Village · 2026</span></div>
   <div class="card c2"><span class="mono">Estudio B+G · 2026</span></div>
   <div class="card c3"><span class="mono">A. Filgueira · 2025</span></div>
-  <div class="card c4"><span class="mono">Can i 100% it? · 2026</span></div>
+  <div class="card c4"><video src="../assets/proyectos/can-i-100-it/hero.webm" poster="../assets/proyectos/can-i-100-it/poster.webp" muted loop playsinline preload="none"></video><span class="mono">Can i 100% it? · 2026</span></div>
 </div>
 
 <script>
@@ -257,7 +258,7 @@
     loop();
     document.querySelectorAll('.work a').forEach(a => {
       a.addEventListener('pointerenter', () => {
-        pv.querySelectorAll('.card').forEach(c => c.classList.toggle('show', c.classList.contains(a.dataset.card)));
+        pv.querySelectorAll('.card').forEach(c => { const on = c.classList.contains(a.dataset.card); c.classList.toggle('show', on); const v = c.querySelector('video'); if (v) on ? v.play().catch(() => {}) : v.pause(); });
         pv.classList.add('on');
       });
       a.addEventListener('pointerleave', () => pv.classList.remove('on'));
