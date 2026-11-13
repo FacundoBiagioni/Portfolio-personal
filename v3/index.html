@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Facundo Biagioni · Desarrollador frontend</title>
+<meta name="description" content="Facundo Biagioni, desarrollador frontend en La Plata. Interfaces con detalle y sistemas de agentes de IA con aprobación humana.">
+<meta property="og:title" content="Facundo Biagioni · Desarrollador frontend">
+<meta property="og:description" content="Interfaces que se sienten vivas y sistemas que trabajan solos.">
+<meta property="og:image" content="../assets/foto.jpg">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000;
+    --white: #fff;
+    --card: #2f2f2f;
+    --edge: #5a5a5a;
+    --muted: #9a9a9a;
+    --rule: #dddddd;
+    --umber: #34281d;
+    --earth: #352b24;
+    --copper: #6e3822;
+    --sans: 'Inter', Helvetica, sans-serif;
+    --serif: 'Instrument Serif', 'Bodoni Moda', Georgia, serif;
+    --ease: cubic-bezier(0.23, 1, 0.32, 1);
+    --ui: cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--black); color: var(--white); font: 400 15px/1.4 var(--sans); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  :focus-visible { outline: 2px solid #4aa3df; outline-offset: 3px; }
+  .skip { position: absolute; left: -999px; }
+  .skip:focus { left: 16px; top: 16px; z-index: 30; background: var(--white); color: var(--black); padding: 8px 12px; }
+  .wrap { max-width: 1360px; margin: 0 auto; padding: 0 clamp(16px, 3vw, 40px); }
+  .serif { font-family: var(--serif); font-weight: 400; font-style: italic; letter-spacing: -0.02em; }
+
+  /* nav */
+  nav { position: fixed; inset: 0 0 auto; z-index: 20; height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 clamp(16px, 3vw, 40px); background: rgba(0,0,0,.52); backdrop-filter: blur(14px); }
+  .brand { font-size: 17px; letter-spacing: -0.03em; }
+  .brand .serif { font-size: 20px; }
+  nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; font: 500 13px/1 var(--sans); text-transform: uppercase; }
+  @media (max-width: 760px) { nav ul { display: none; } }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 52px; padding: 0 24px; border-radius: 4px; font: 500 13px/1 var(--sans); text-transform: uppercase; background: var(--white); color: var(--black); transition: background-color .2s var(--ui); }
+  .btn:hover { background: var(--rule); }
+  .btn .arr { transition: transform .3s var(--ease); }
+  .btn:hover .arr { transform: translateX(4px); }
+  .btn.ghost { background: transparent; color: var(--white); box-shadow: inset 0 0 0 2px rgba(255,255,255,.22); }
+  .btn.ghost:hover { box-shadow: inset 0 0 0 2px rgba(255,255,255,.7); background: transparent; }
+  nav .btn { height: 40px; padding: 0 16px; }
+
+  /* hero stage */
+  .stage { position: relative; min-height: 100svh; padding-top: 180px; overflow: hidden; background:
+      radial-gradient(60% 50% at 50% 18%, rgba(110,56,34,.55), transparent 70%),
+      radial-gradient(40% 40% at 85% 60%, rgba(52,40,29,.8), transparent 70%),
+      var(--black); }
+  .promise { position: relative; z-index: 2; text-align: center; padding: 0 16px; }
+  .eyebrow { display: inline-block; margin-bottom: 22px; font-size: 13px; color: var(--rule); }
+  .eyebrow b { font-weight: 400; background: linear-gradient(90deg, #fff 29%, #88bcd8 40%, #f3ffc1 61%, #fff 72%); background-size: 300% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: sheen 6s linear infinite; }
+  @keyframes sheen { to { background-position: -300% 0; } }
+  h1 { margin: 0 auto; max-width: 15ch; font-weight: 300; font-size: clamp(44px, 6.2vw, 92px); line-height: 1.02; letter-spacing: -0.06em; }
+  h1 .serif { font-size: 1.08em; }
+  .promise .lede { margin: 26px auto 34px; max-width: 46ch; color: var(--rule); font-size: 16px; }
+  .promise .row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .promise .note { margin-top: 18px; font-size: 13px; font-weight: 500; color: var(--muted); }
+
+  /* floating output panels */
+  .panels { position: relative; z-index: 1; height: clamp(300px, 34vw, 470px); margin-top: 72px; perspective: 1600px; }
+  .panel { position: absolute; top: 0; left: 50%; width: min(660px, 84vw); aspect-ratio: 16 / 10; border-radius: 8px; overflow: hidden; background: #111; box-shadow: 0 40px 80px rgba(0,0,0,.6); transform-origin: center; transition: transform 1.3s var(--ease), opacity 1.3s var(--ease); }
+  .panel.mid { transform: translate(-50%, 40px); z-index: 2; }
+  .panel.l { width: min(593px, 70vw); transform: translate(-118%, 90px) rotateY(18deg) scale(.92); opacity: .55; }
+  .panel.r { width: min(593px, 70vw); transform: translate(18%, 90px) rotateY(-18deg) scale(.92); opacity: .55; }
+  .ready .panel.mid { transform: translate(-50%, 0); }
+  .ready .panel.l { transform: translate(-112%, 60px) rotateY(18deg) scale(.92); }
+  .ready .panel.r { transform: translate(12%, 60px) rotateY(-18deg) scale(.92); }
+  .stage::after { content: ''; position: absolute; inset: auto 0 0; height: 40%; background: linear-gradient(transparent, #000); z-index: 3; pointer-events: none; }
+
+  /* panel contents: mini UIs drawn in CSS */
+  .bar { display: flex; gap: 6px; align-items: center; height: 28px; padding: 0 12px; background: #1b1b1b; }
+  .bar i { width: 8px; height: 8px; border-radius: 50%; background: #444; }
+  .bar span { margin-left: 10px; font-size: 11px; color: #888; }
+  .ui-village { position: relative; height: calc(100% - 28px); background: linear-gradient(#2a3b2c, #1a261c); }
+  .ui-village .house { position: absolute; left: 50%; top: 52%; width: 34%; aspect-ratio: 1.25; transform: translate(-50%, -50%); background: #e8d9bf; clip-path: polygon(0 42%, 50% 0, 100% 42%, 100% 100%, 0 100%); }
+  .ui-village .house::after { content: ''; position: absolute; left: 40%; bottom: 0; width: 20%; height: 38%; background: #6e3822; }
+  .ui-village .hud { position: absolute; left: 12px; right: 12px; bottom: 12px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+  .ui-village .hud b { height: 26px; border-radius: 6px; background: rgba(0,0,0,.45); border: 1px solid rgba(255,255,255,.12); }
+  .ui-village .hud b:nth-child(4) { background: rgba(255,100,54,.6); }
+  .ui-village .toast { position: absolute; right: 12px; top: 12px; padding: 8px 10px; border-radius: 6px; background: rgba(255,255,255,.92); color: #111; font-size: 11px; }
+  .ui-arch { height: calc(100% - 28px); display: grid; grid-template-columns: 1.4fr 1fr; background: #ece9e4; color: #222; }
+  .ui-arch .img { background: linear-gradient(160deg, #b9b2a6, #5d5850); }
+  .ui-arch .txt { padding: 18px; font-size: 11px; }
+  .ui-arch .txt b { display: block; font: 300 30px/1 var(--sans); letter-spacing: -0.05em; margin-bottom: 10px; }
+  .ui-art { height: calc(100% - 28px); background: conic-gradient(from 30deg at 35% 60%, #d94f2b, #f2c14e, #3a6ea5, #141414, #d94f2b); }
+
+  /* proof numerals */
+  .proof { text-align: center; padding: 40px 0 120px; }
+  .proof > p { margin: 0 auto 64px; max-width: 40ch; font-size: 20px; color: var(--rule); letter-spacing: -0.02em; }
+  .stats { display: flex; justify-content: center; gap: clamp(40px, 9vw, 120px); flex-wrap: wrap; }
+  .stats div b { display: block; font-weight: 300; font-size: clamp(48px, 5vw, 72px); line-height: 1; letter-spacing: -0.06em; }
+  .stats div span { display: block; margin-top: 14px; font-size: 12px; color: var(--muted); }
+
+  /* white gallery chapter */
+  .gallery { background: var(--white); color: var(--black); padding: 120px 0; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; margin-bottom: 80px; }
+  .pair h2 { margin: 0; font-weight: 400; font-size: clamp(32px, 3vw, 44px); line-height: 1.08; letter-spacing: -0.04em; max-width: 14ch; }
+  .pair p { margin: 0 0 24px; max-width: 46ch; color: #444; }
+  .gallery .btn.ghost { color: var(--black); box-shadow: inset 0 0 0 2px rgba(0,0,0,.18); }
+  .gallery .btn.ghost:hover { box-shadow: inset 0 0 0 2px rgba(0,0,0,.6); }
+  @media (max-width: 800px) { .pair { grid-template-columns: 1fr; } }
+  .rail { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, 310px); gap: clamp(16px, 3vw, 40px); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 16px; scrollbar-width: thin; }
+  .cap { position: relative; scroll-snap-align: start; height: 420px; padding: 24px; border-radius: 8px; overflow: hidden; color: var(--white); background: var(--card); display: flex; flex-direction: column; isolation: isolate; }
+  .cap::before { content: ''; position: absolute; inset: 0; z-index: -1; transition: transform 1s var(--ease); }
+  .cap:hover::before { transform: scale(1.06); }
+  .cap h3 { margin: 0 0 8px; font-size: 20px; font-weight: 500; letter-spacing: -0.01em; }
+  .cap p { margin: 0; font-size: 12px; color: rgba(255,255,255,.78); max-width: 30ch; }
+  .cap .go { margin-top: auto; align-self: flex-end; font-size: 22px; transition: transform .3s var(--ease); }
+  .cap:hover .go { transform: translateX(4px); }
+  .k1::before { background: radial-gradient(70% 60% at 50% 70%, rgba(255,100,54,.45), transparent), linear-gradient(#2a3b2c, #121a13); }
+  .k2::before { background: linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.7)), linear-gradient(160deg, #b9b2a6, #4b463f); }
+  .k3::before { background: linear-gradient(180deg, rgba(0,0,0,.2), rgba(0,0,0,.6)), conic-gradient(from 30deg at 40% 60%, #d94f2b, #f2c14e, #3a6ea5, #141414, #d94f2b); }
+  .k4::before { background: linear-gradient(180deg, rgba(0,0,0,.1), rgba(0,0,0,.6)), repeating-linear-gradient(135deg, #1e1e1e 0 14px, #262626 14px 28px); }
+  .cap .tag { position: absolute; left: 24px; bottom: 24px; font-size: 12px; color: rgba(255,255,255,.7); }
+
+  /* earth chapter: about */
+  .earth { background: var(--earth); padding: 120px 0; }
+  .bento { display: grid; grid-template-columns: minmax(0, 845fr) minmax(0, 475fr); gap: 40px; }
+  @media (max-width: 900px) { .bento { grid-template-columns: 1fr; } }
+  .portrait { position: relative; border-radius: 8px; overflow: hidden; min-height: 560px; background: #1c1612; }
+  .portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; filter: sepia(.35) saturate(.85) contrast(1.05) brightness(.92); transform: scale(1.04); transition: transform 1.6s var(--ease); }
+  .portrait:hover img { transform: scale(1); }
+  .portrait::after { content: ''; position: absolute; inset: 0; background: linear-gradient(transparent 55%, rgba(0,0,0,.65)); }
+  .portrait .cap-note { position: absolute; z-index: 1; left: 24px; bottom: 22px; font-size: 12px; color: rgba(255,255,255,.75); }
+  .side { display: grid; gap: 40px; align-content: start; }
+  .side h2 { margin: 0 0 20px; font-weight: 400; font-size: clamp(32px, 3vw, 44px); line-height: 1.08; letter-spacing: -0.04em; }
+  .side p { margin: 0 0 14px; color: rgba(255,255,255,.82); max-width: 44ch; }
+  .tile { padding: 30px; border-radius: 8px; border: 1px solid rgba(255,255,255,.16); }
+  .tile h3 { margin: 0 0 14px; font-weight: 400; font-size: 22px; letter-spacing: -0.02em; }
+  .tile ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .tile li { font-size: 13px; padding: 6px 10px; border-radius: 4px; background: rgba(255,255,255,.07); }
+
+  /* closing with particle sphere */
+  .closing { position: relative; min-height: 860px; display: grid; place-items: center; text-align: center; overflow: hidden; }
+  #sphere { position: absolute; left: 50%; top: 50%; width: min(760px, 110vw); aspect-ratio: 1; transform: translate(-50%, -50%); }
+  .closing .inner { position: relative; max-width: 660px; padding: 0 16px; }
+  .closing h2 { margin: 0 0 24px; font-weight: 300; font-size: clamp(48px, 0.125rem + 3.75vw, 74px); line-height: 1.04; letter-spacing: -0.05em; }
+  .closing p { margin: 0 0 40px; font-weight: 500; color: var(--rule); }
+  .closing .row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  footer { border-top: 1px solid rgba(255,255,255,.1); padding: 56px 0 28px; color: var(--muted); font-size: 13px; }
+  .dir { display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 40px; }
+  @media (max-width: 760px) { .dir { grid-template-columns: 1fr 1fr; } .dir > div:first-child { grid-column: 1 / -1; } }
+  .dir h4 { margin: 0 0 16px; color: var(--white); font-weight: 400; font-size: 13px; }
+  .dir ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .dir a:hover { color: var(--white); }
+  .dir .tag { color: var(--white); font-size: 26px; letter-spacing: -0.02em; line-height: 1.08; max-width: 16ch; margin: 0; }
+  .legal { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 56px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.1); }
+
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 1.1s var(--ease), transform 1.1s var(--ease); }
+  .reveal.on { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<nav aria-label="Principal">
+  <a class="brand" href="#">Facundo <span class="serif">Biagioni</span></a>
+  <ul>
+    <li><a href="#trabajos">Trabajos</a></li>
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a class="btn" href="https://wa.me/5492213584349" target="_blank" rel="noopener">Escribime</a>
+</nav>
+
+<header class="stage">
+  <div class="promise">
+    <span class="eyebrow">Desarrollador frontend · <b>agentes de IA</b></span>
+    <h1>Interfaces que se sienten <span class="serif">vivas</span></h1>
+    <p class="lede">Soy Facundo Biagioni. Diseño y programo productos web con detalle de estudio, y sistemas de agentes que trabajan solos, pero nunca sin permiso.</p>
+    <div class="row">
+      <a class="btn" href="#trabajos">Ver trabajos <span class="arr" aria-hidden="true">→</span></a>
+      <a class="btn ghost" href="https://github.com/FacundoBiagioni" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p class="note">La Plata, Argentina. Disponible para proyectos.</p>
+  </div>
+
+  <div class="panels" aria-hidden="true">
+    <div class="panel l"><div class="bar"><i></i><i></i><i></i><span>estudio-bg.com.ar</span></div><div class="ui-arch"><div class="img"></div><div class="txt"><b>Obras</b>15 proyectos · La Plata</div></div></div>
+    <div class="panel r"><div class="bar"><i></i><i></i><i></i><span>alejandrafilgueira.art</span></div><div class="ui-art"></div></div>
+    <div class="panel mid"><div class="bar"><i></i><i></i><i></i><span>agent-village · panel</span></div>
+      <div class="ui-village"><div class="house"></div><div class="toast">Demo lista · esperando tu aprobación</div><div class="hud"><b></b><b></b><b></b><b></b><b></b><b></b></div></div>
+    </div>
+  </div>
+</header>
+
+<main id="contenido">
+  <section class="proof wrap reveal">
+    <p>Cada proyecto empieza por una pregunta simple: qué tiene que sentir la persona que lo usa.</p>
+    <div class="stats">
+      <div><b>6</b><span>agentes en Agent Village</span></div>
+      <div><b>15</b><span>obras en el portfolio de B+G</span></div>
+      <div><b>1</b><span>clic para aprobar todo</span></div>
+    </div>
+  </section>
+
+  <section class="gallery" id="trabajos">
+    <div class="wrap">
+      <div class="pair reveal">
+        <h2>Trabajo seleccionado</h2>
+        <div>
+          <p>Sitios para estudios y artistas, y un producto propio con agentes de IA. Cada uno con su propio lenguaje visual, ninguno hecho con plantilla.</p>
+          <a class="btn ghost" href="https://github.com/FacundoBiagioni" target="_blank" rel="noopener">Todo en GitHub</a>
+        </div>
+      </div>
+      <div class="rail reveal" tabindex="0" aria-label="Proyectos, desplazable">
+        <a class="cap k1" href="#"><h3>Agent Village</h3><p>Agentes de IA que encuentran negocios sin web, preparan una demo y esperan mi aprobación. Casa 3D low poly con HUD.</p><span class="tag">Next.js · Agent SDK · Three.js</span><span class="go" aria-hidden="true">→</span></a>
+        <a class="cap k2" href="#"><h3>Estudio B+G</h3><p>Sitio institucional y portfolio de obras para un estudio de arquitectura de La Plata.</p><span class="tag">Next.js 16 · Tailwind v4</span><span class="go" aria-hidden="true">→</span></a>
+        <a class="cap k3" href="#"><h3>Alejandra Filgueira</h3><p>Portfolio bilingüe para una artista de arte abstracto.</p><span class="tag">Next.js · next-intl</span><span class="go" aria-hidden="true">→</span></a>
+        <a class="cap k4" href="#"><h3>Can i 100% it?</h3><p>App web propia en desarrollo. Descripción a completar.</p><span class="tag">Next.js 16 · Bun</span><span class="go" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="earth" id="sobre-mi">
+    <div class="wrap bento">
+      <div class="portrait reveal">
+        <img src="../assets/foto.webp" alt="Retrato de Facundo Biagioni" width="900" height="1197" loading="lazy">
+        <span class="cap-note">Facundo Biagioni · La Plata</span>
+      </div>
+      <div class="side reveal">
+        <div>
+          <h2>Detalle de <span class="serif">estudio</span>, criterio de producto</h2>
+          <p>Me obsesionan los detalles que casi nadie nota pero todos sienten: el peso de una tipografía, el ritmo de una animación, que la página cargue rápido en un celular viejo.</p>
+          <p>Hoy los combino con agentes de IA que buscan, diseñan y redactan solos, y que nunca hacen nada hacia afuera sin que una persona lo apruebe.</p>
+        </div>
+        <div class="tile"><h3>Con qué trabajo</h3><ul><li>TypeScript</li><li>React</li><li>Next.js</li><li>Tailwind</li><li>Framer Motion</li><li>Three.js</li><li>PostgreSQL</li><li>Claude Agent SDK</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing" id="contacto">
+    <canvas id="sphere" aria-hidden="true"></canvas>
+    <div class="inner reveal">
+      <h2>Hagamos algo que se <span class="serif">note</span></h2>
+      <p>Respondo en el día. Sin formularios.</p>
+      <div class="row">
+        <a class="btn" href="https://wa.me/5492213584349" target="_blank" rel="noopener">WhatsApp <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn ghost" href="mailto:facundobiagioni@gmail.com">Mail</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="dir">
+      <div><p class="tag">Interfaces que se sienten <span class="serif">vivas</span>.</p></div>
+      <div><h4>Sitio</h4><ul><li><a href="#trabajos">Trabajos</a></li><li><a href="#sobre-mi">Sobre mí</a></li><li><a href="#contacto">Contacto</a></li></ul></div>
+      <div><h4>Redes</h4><ul><li><a href="https://github.com/FacundoBiagioni" target="_blank" rel="noopener">GitHub</a></li><li><a href="https://www.linkedin.com/in/facundobiagioni/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.instagram.com/facu.biagio" target="_blank" rel="noopener">Instagram</a></li></ul></div>
+      <div><h4>Contacto</h4><ul><li><a href="https://wa.me/5492213584349" target="_blank" rel="noopener">WhatsApp</a></li><li><a href="mailto:facundobiagioni@gmail.com">Mail</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Facundo Biagioni</span><span>La Plata, Argentina</span></div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  requestAnimationFrame(() => document.body.classList.add('ready'));
+
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Hero panels drift apart slightly with scroll
+  const mid = document.querySelector('.panel.mid');
+  if (!reduce) addEventListener('scroll', () => {
+    const p = Math.min(1, scrollY / innerHeight);
+    mid.style.translate = `0 ${p * -40}px`;
+  }, { passive: true });
+
+  // Closing: slowly rotating particle sphere, brightness by depth
+  const cv = document.getElementById('sphere');
+  const ctx = cv.getContext('2d');
+  const N = 1400, pts = [];
+  for (let i = 0; i < N; i++) {
+    // Fibonacci sphere with a little jitter so it reads as a cloud, not a grid
+    const y = 1 - (i / (N - 1)) * 2, r = Math.sqrt(1 - y * y), th = i * 2.399963;
+    const j = 1 + (Math.random() - 0.5) * 0.08;
+    pts.push([Math.cos(th) * r * j, y * j, Math.sin(th) * r * j, 0.5 + Math.random()]);
+  }
+  let S, a = 0, running = false;
+  function size() { const d = Math.min(devicePixelRatio || 1, 2); S = cv.clientWidth; cv.width = cv.height = S * d; ctx.setTransform(d, 0, 0, d, 0, 0); }
+  function draw() {
+    ctx.clearRect(0, 0, S, S);
+    const c = Math.cos(a), s = Math.sin(a), R = S * 0.46;
+    for (const [x, y, z, w] of pts) {
+      const rx = x * c - z * s, rz = x * s + z * c;
+      const depth = (rz + 1) / 2;
+      ctx.globalAlpha = 0.12 + depth * 0.7;
+      ctx.fillStyle = '#fff';
+      ctx.beginPath();
+      ctx.arc(S / 2 + rx * R, S / 2 + y * R, w * (0.5 + depth * 0.6), 0, 6.283);
+      ctx.fill();
+    }
+    a += 0.0016;
+    if (running && !reduce) requestAnimationFrame(draw);
+  }
+  size(); draw();
+  addEventListener('resize', () => { size(); draw(); });
+  // only animate while visible
+  new IntersectionObserver(([e]) => { const was = running; running = e.isIntersecting; if (running && !was) draw(); }).observe(cv);
+})();
+</script>
+</body>
+</html>
