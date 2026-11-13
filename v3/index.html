@@ -53,10 +53,28 @@
   nav .btn { height: 40px; padding: 0 16px; }
 
   /* hero stage */
-  .stage { position: relative; min-height: 100svh; padding-top: 180px; overflow: hidden; background:
-      radial-gradient(60% 50% at 50% 18%, rgba(110,56,34,.55), transparent 70%),
-      radial-gradient(40% 40% at 85% 60%, rgba(52,40,29,.8), transparent 70%),
-      var(--black); }
+  .stage { position: relative; min-height: 100svh; padding-top: 180px; overflow: hidden; background: var(--black); }
+
+  /* moving background: slow drifting light, grain, and a faint horizon grid */
+  .aurora { position: absolute; inset: -20%; z-index: 0; pointer-events: none; filter: blur(90px); }
+  .aurora i { position: absolute; border-radius: 50%; opacity: .75; will-change: transform; }
+  .aurora i:nth-child(1) { width: 52vw; height: 40vw; left: 26%; top: 4%; background: #6e3822; animation: drift1 22s ease-in-out infinite alternate; }
+  .aurora i:nth-child(2) { width: 38vw; height: 34vw; left: 62%; top: 30%; background: #34281d; opacity: .9; animation: drift2 28s ease-in-out infinite alternate; }
+  .aurora i:nth-child(3) { width: 30vw; height: 26vw; left: 8%; top: 36%; background: #2a3b2c; opacity: .55; animation: drift3 25s ease-in-out infinite alternate; }
+  .aurora i:nth-child(4) { width: 18vw; height: 14vw; left: 44%; top: 20%; background: #b5643a; opacity: .35; animation: drift2 18s ease-in-out infinite alternate-reverse; }
+  @keyframes drift1 { to { transform: translate(-14vw, 8vw) scale(1.15); } }
+  @keyframes drift2 { to { transform: translate(-18vw, -6vw) scale(.9); } }
+  @keyframes drift3 { to { transform: translate(16vw, -4vw) scale(1.2); } }
+  .grain { position: absolute; inset: 0; z-index: 4; pointer-events: none; opacity: .09; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: grain 1.2s steps(4) infinite; }
+  @keyframes grain { 25% { transform: translate(-3%, 2%); } 50% { transform: translate(2%, -3%); } 75% { transform: translate(-2%, -1%); } }
+  .horizon { position: absolute; left: -10%; right: -10%; bottom: 0; height: 46%; z-index: 0; pointer-events: none; opacity: .22;
+    background-image: linear-gradient(rgba(255,255,255,.35) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.35) 1px, transparent 1px);
+    background-size: 64px 64px; transform: perspective(500px) rotateX(62deg); transform-origin: bottom;
+    mask-image: linear-gradient(transparent, #000 40%, transparent 95%); -webkit-mask-image: linear-gradient(transparent, #000 40%, transparent 95%);
+    animation: grid 6s linear infinite; }
+  @keyframes grid { to { background-position: 0 64px; } }
   .promise { position: relative; z-index: 2; text-align: center; padding: 0 16px; }
   .eyebrow { display: inline-block; margin-bottom: 22px; font-size: 13px; color: var(--rule); }
   .eyebrow b { font-weight: 400; background: linear-gradient(90deg, #fff 29%, #88bcd8 40%, #f3ffc1 61%, #fff 72%); background-size: 300% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: sheen 6s linear infinite; }
@@ -69,13 +87,23 @@
 
   /* floating output panels */
   .panels { position: relative; z-index: 1; height: clamp(300px, 34vw, 470px); margin-top: 72px; perspective: 1600px; }
-  .panel { position: absolute; top: 0; left: 50%; width: min(660px, 84vw); aspect-ratio: 16 / 10; border-radius: 8px; overflow: hidden; background: #111; box-shadow: 0 40px 80px rgba(0,0,0,.6); transform-origin: center; transition: transform 1.3s var(--ease), opacity 1.3s var(--ease); }
-  .panel.mid { transform: translate(-50%, 40px); z-index: 2; }
-  .panel.l { width: min(593px, 70vw); transform: translate(-118%, 90px) rotateY(18deg) scale(.92); opacity: .55; }
-  .panel.r { width: min(593px, 70vw); transform: translate(18%, 90px) rotateY(-18deg) scale(.92); opacity: .55; }
-  .ready .panel.mid { transform: translate(-50%, 0); }
-  .ready .panel.l { transform: translate(-112%, 60px) rotateY(18deg) scale(.92); }
-  .ready .panel.r { transform: translate(12%, 60px) rotateY(-18deg) scale(.92); }
+  /* the whole set tilts toward the pointer and lifts with scroll */
+  .tilt { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .9s var(--ease);
+    transform: translateY(calc(var(--sy, 0) * -48px)) rotateX(calc(var(--my, 0) * -4deg)) rotateY(calc(var(--mx, 0) * 5deg)); }
+  .panel { position: absolute; top: 0; left: 50%; width: min(593px, 70vw); aspect-ratio: 16 / 10; border-radius: 8px; overflow: hidden; background: #111; box-shadow: 0 40px 80px rgba(0,0,0,.6); transform-origin: center;
+    transition: transform 1.4s var(--ease), opacity 1.4s var(--ease), width 1.4s var(--ease), filter 1.4s var(--ease);
+    animation: float 8s ease-in-out infinite; }
+  .panel:nth-child(2) { animation-duration: 9.5s; animation-delay: -3s; }
+  .panel:nth-child(3) { animation-duration: 7s; animation-delay: -5s; }
+  @keyframes float { 50% { translate: 0 -14px; } }
+  .panel.mid { width: min(660px, 84vw); transform: translate(-50%, 40px) translateZ(60px); z-index: 2; }
+  .panel.l { transform: translateZ(-90px) translate(-118%, 90px) rotateY(18deg) scale(.92); opacity: .55; filter: brightness(.7); z-index: 1; }
+  .panel.r { transform: translateZ(-90px) translate(18%, 90px) rotateY(-18deg) scale(.92); opacity: .55; filter: brightness(.7); z-index: 1; }
+  .ready .panel.mid { transform: translate(-50%, 0) translateZ(60px); }
+  .ready .panel.l { transform: translateZ(-90px) translate(-112%, 60px) rotateY(18deg) scale(.92); }
+  .ready .panel.r { transform: translateZ(-90px) translate(12%, 60px) rotateY(-18deg) scale(.92); }
+  .panel::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.08) 50%, transparent 65%); background-size: 250% 100%; animation: glare 7s ease-in-out infinite; }
+  @keyframes glare { 0%, 60% { background-position: 120% 0; } 100% { background-position: -120% 0; } }
   .stage::after { content: ''; position: absolute; inset: auto 0 0; height: 40%; background: linear-gradient(transparent, #000); z-index: 3; pointer-events: none; }
 
   /* panel contents: mini UIs drawn in CSS */
@@ -88,12 +116,36 @@
   .ui-village .hud { position: absolute; left: 12px; right: 12px; bottom: 12px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
   .ui-village .hud b { height: 26px; border-radius: 6px; background: rgba(0,0,0,.45); border: 1px solid rgba(255,255,255,.12); }
   .ui-village .hud b:nth-child(4) { background: rgba(255,100,54,.6); }
-  .ui-village .toast { position: absolute; right: 12px; top: 12px; padding: 8px 10px; border-radius: 6px; background: rgba(255,255,255,.92); color: #111; font-size: 11px; }
-  .ui-arch { height: calc(100% - 28px); display: grid; grid-template-columns: 1.4fr 1fr; background: #ece9e4; color: #222; }
+  .ui-village .toast { position: absolute; right: 12px; top: 12px; padding: 8px 10px; border-radius: 6px; background: rgba(255,255,255,.92); color: #111; font-size: 11px; animation: toast 6s var(--ease) infinite; }
+  @keyframes toast { 0%, 8% { opacity: 0; transform: translateY(-8px); } 14%, 80% { opacity: 1; transform: none; } 90%, 100% { opacity: 0; transform: translateY(-8px); } }
+  .ui-village .hud b:nth-child(4) { animation: hud 2.4s ease-in-out infinite; }
+  @keyframes hud { 50% { background: rgba(255,100,54,.25); } }
+  /* little agents walking around the house */
+  .ui-village .ag { position: absolute; width: 8px; height: 8px; border-radius: 50%; top: 66%; left: 20%; animation: walk 9s ease-in-out infinite; }
+  .ui-village .ag:nth-of-type(2) { background: #f2c14e; animation-duration: 11s; animation-delay: -4s; top: 72%; }
+  .ui-village .ag:nth-of-type(3) { background: #63b3ed; animation-duration: 13s; animation-delay: -7s; top: 62%; }
+  .ui-village .ag:nth-of-type(1) { background: #ff6436; }
+  @keyframes walk { 0% { left: 14%; } 45% { left: 30%; } 55% { left: 66%; } 100% { left: 82%; } }
+  /* inner pages scroll on their own, like a live screen recording */
+  .scroller { height: calc(100% - 28px); overflow: hidden; }
+  .scroller > div { animation: autoscroll 16s cubic-bezier(.65, 0, .35, 1) infinite; }
+  @keyframes autoscroll { 0%, 12% { transform: translateY(0); } 45%, 57% { transform: translateY(-50%); } 90%, 100% { transform: translateY(0); } }
+  .ui-arch { background: #ece9e4; color: #222; }
+  .ui-arch .hero-a { display: grid; grid-template-columns: 1.4fr 1fr; height: 230px; }
   .ui-arch .img { background: linear-gradient(160deg, #b9b2a6, #5d5850); }
   .ui-arch .txt { padding: 18px; font-size: 11px; }
   .ui-arch .txt b { display: block; font: 300 30px/1 var(--sans); letter-spacing: -0.05em; margin-bottom: 10px; }
-  .ui-art { height: calc(100% - 28px); background: conic-gradient(from 30deg at 35% 60%, #d94f2b, #f2c14e, #3a6ea5, #141414, #d94f2b); }
+  .ui-arch .grid-a { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 12px; }
+  .ui-arch .grid-a i { aspect-ratio: 4 / 3; background: linear-gradient(160deg, #cfc8bc, #7d776d); }
+  .ui-arch .grid-a i:nth-child(2n) { background: linear-gradient(200deg, #a39b8e, #4b463f); }
+  .ui-art { background: #f4f1ea; padding: 12px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .ui-art i { aspect-ratio: 1; }
+  .ui-art i:nth-child(1) { background: conic-gradient(from 30deg at 35% 60%, #d94f2b, #f2c14e, #3a6ea5, #141414, #d94f2b); }
+  .ui-art i:nth-child(2) { background: radial-gradient(circle at 60% 40%, #f2c14e 0 20%, #3a6ea5 21% 45%, #141414 46%); }
+  .ui-art i:nth-child(3) { background: linear-gradient(135deg, #141414 0 40%, #d94f2b 40% 60%, #e8e2d6 60%); }
+  .ui-art i:nth-child(4) { background: repeating-linear-gradient(45deg, #3a6ea5 0 10px, #f2c14e 10px 20px); }
+  .ui-art i:nth-child(5) { background: conic-gradient(from 200deg, #141414, #d94f2b, #e8e2d6, #141414); }
+  .ui-art i:nth-child(6) { background: radial-gradient(circle at 30% 70%, #d94f2b 0 30%, #141414 31%); }
 
   /* proof numerals */
   .proof { text-align: center; padding: 40px 0 120px; }
@@ -193,11 +245,24 @@
     <p class="note">La Plata, Argentina. Disponible para proyectos.</p>
   </div>
 
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="horizon" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
   <div class="panels" aria-hidden="true">
-    <div class="panel l"><div class="bar"><i></i><i></i><i></i><span>estudio-bg.com.ar</span></div><div class="ui-arch"><div class="img"></div><div class="txt"><b>Obras</b>15 proyectos · La Plata</div></div></div>
-    <div class="panel r"><div class="bar"><i></i><i></i><i></i><span>alejandrafilgueira.art</span></div><div class="ui-art"></div></div>
-    <div class="panel mid"><div class="bar"><i></i><i></i><i></i><span>agent-village · panel</span></div>
-      <div class="ui-village"><div class="house"></div><div class="toast">Demo lista · esperando tu aprobación</div><div class="hud"><b></b><b></b><b></b><b></b><b></b><b></b></div></div>
+    <div class="tilt">
+      <div class="panel l"><div class="bar"><i></i><i></i><i></i><span>estudio-bg.com.ar</span></div>
+        <div class="scroller"><div class="ui-arch">
+          <div class="hero-a"><div class="img"></div><div class="txt"><b>Obras</b>15 proyectos · La Plata</div></div>
+          <div class="grid-a"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div></div>
+      </div>
+      <div class="panel mid"><div class="bar"><i></i><i></i><i></i><span>agent-village · panel</span></div>
+        <div class="ui-village"><div class="house"></div><span class="ag"></span><span class="ag"></span><span class="ag"></span><div class="toast">Demo lista · esperando tu aprobación</div><div class="hud"><b></b><b></b><b></b><b></b><b></b><b></b></div></div>
+      </div>
+      <div class="panel r"><div class="bar"><i></i><i></i><i></i><span>alejandrafilgueira.art</span></div>
+        <div class="scroller"><div class="ui-art"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+      </div>
     </div>
   </div>
 </header>
@@ -280,12 +345,26 @@
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // Hero panels drift apart slightly with scroll
-  const mid = document.querySelector('.panel.mid');
-  if (!reduce) addEventListener('scroll', () => {
-    const p = Math.min(1, scrollY / innerHeight);
-    mid.style.translate = `0 ${p * -40}px`;
-  }, { passive: true });
+  // Hero panels: tilt toward the pointer, lift with scroll, and rotate places every few seconds
+  const panels = document.querySelector('.panels');
+  if (!reduce) {
+    addEventListener('scroll', () => panels.style.setProperty('--sy', Math.min(1, scrollY / innerHeight).toFixed(3)), { passive: true });
+    if (matchMedia('(hover: hover)').matches) addEventListener('pointermove', e => {
+      panels.style.setProperty('--mx', (e.clientX / innerWidth - 0.5).toFixed(3));
+      panels.style.setProperty('--my', (e.clientY / innerHeight - 0.5).toFixed(3));
+    }, { passive: true });
+    const cards = [...panels.querySelectorAll('.panel')];
+    const slots = ['l', 'mid', 'r'];
+    let turn = 0;
+    setInterval(() => {
+      if (document.hidden) return;
+      turn++;
+      cards.forEach((c, i) => {
+        c.classList.remove('l', 'mid', 'r');
+        c.classList.add(slots[(i + turn) % 3]);
+      });
+    }, 5200);
+  }
 
   // Closing: slowly rotating particle sphere, brightness by depth
   const cv = document.getElementById('sphere');
