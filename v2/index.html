@@ -10,6 +10,7 @@
 <meta property="og:description" content="Interfaces that feel alive and systems that work on their own.">
 <meta property="og:image" content="../assets/foto.jpg">
 <meta name="theme-color" content="#161616">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100..900&family=Inter+Tight:wght@500&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -123,6 +124,7 @@
   /* contact */
   .contact { background: var(--onyx); color: var(--fog); padding: 96px 0 32px; }
   .contact .big { display: block; font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(64px, 14vw, 220px); line-height: .78; letter-spacing: -0.01em; transition: color .4s var(--in); }
+  .contact .big.mail { font-size: clamp(40px, 11.5vw, 190px); text-transform: lowercase; line-height: .86; }
   .contact .big:hover, .contact .big:focus-visible { color: var(--ember); }
   .contact .row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 40px; }
   .contact .pillnav { border-color: rgba(255,255,255,.25); }
@@ -136,6 +138,27 @@
     *, *::before, *::after { animation: none !important; transition: none !important; }
     h1 .line span, .reveal { transform: none; opacity: 1; }
   }
+  /* hero variants under review: ?hero=a|b|c (default shows the name) */
+  .hero[data-hero] .role-lead { display: none; }
+  h1.va { font-size: clamp(64px, 20.5vw, 330px); }
+  h1.va .line.sm { font-size: .3em; line-height: .9; margin-top: .25em; }
+  h1.va .line.sm span { background: none; color: var(--ember); }
+  h1.vb { display: grid; grid-template-columns: auto auto; justify-content: space-between; align-items: end; gap: 0 4vw; font-size: clamp(40px, 10.5vw, 170px); }
+  h1.vb > span:last-child { text-align: right; }
+  h1.vc { font-size: clamp(56px, 18vw, 290px); }
+  h1.vc .line.sm { font-size: .28em; line-height: 1; }
+  h1.vc .line.sm span { background: none; color: var(--fog); }
+  h1.vc .line.sm em { font-style: normal; color: var(--ember); }
+  .hero h1[hidden] { display: none; }
+  /* background-clip:text ignores child transforms, so each word carries its own gradient */
+  h1 .line .rot { display: grid; background: none; }
+  .rot > b { grid-area: 1 / 1; font-weight: inherit; background: linear-gradient(#000 0%, #6e6c70 22%, #b9b7bb 48%, #dcd6d6 72%, #f1f1f1 100%); -webkit-background-clip: text; background-clip: text; color: transparent; transform: translateY(105%); transition: transform .8s var(--in); }
+  h1 .line .rot span { display: inline; transform: none; background: none; color: inherit; }
+  .rot > b.cur { transform: none; }
+  .rot > b.out { transform: translateY(-105%); }
+  .rot > b:not(.cur):not(.out) { transition: none; } /* parked words jump back below without crossing the view */
+  @media (prefers-reduced-motion: reduce) { .rot > b { transition: none; } }
+  @media (max-width: 640px) { h1.vb { grid-template-columns: 1fr; font-size: 19vw; } h1.vb > span:last-child { text-align: left; margin-top: .15em; } }
 </style>
 </head>
 <body>
@@ -162,8 +185,21 @@
     <span class="line"><span>Facundo</span></span>
     <span class="line"><span>Biagioni</span></span>
   </h1>
+  <h1 class="va" hidden aria-label="Fullstack developer, Facundo Biagioni">
+    <span class="line"><span>Fullstack</span></span>
+    <span class="line"><span>Developer</span></span>
+    <span class="line sm"><span>Facundo Biagioni</span></span>
+  </h1>
+  <h1 class="vb" hidden aria-label="Facundo Biagioni, fullstack developer">
+    <span><span class="line"><span>Facundo</span></span><span class="line"><span>Biagioni</span></span></span>
+    <span><span class="line"><span>Fullstack</span></span><span class="line"><span>Developer</span></span></span>
+  </h1>
+  <h1 class="vc" hidden aria-label="Facundo Biagioni builds interfaces, agents and products">
+    <span class="line sm"><span>Facundo Biagioni <em>/</em> <span lang="en">builds</span><span lang="es">construye</span></span></span>
+    <span class="line"><span class="rot"><b class="cur">Interfaces</b><b><span lang="en">Agents</span><span lang="es">Agentes</span></b><b><span lang="en">Products</span><span lang="es">Productos</span></b><b>Fullstack</b></span></span>
+  </h1>
   <div class="hero-foot">
-    <p><span lang="en">Frontend developer. I build interfaces that feel alive and agent systems that work on their own, but never without permission.</span><span lang="es">Desarrollador frontend. Construyo interfaces que se sienten vivas y sistemas de agentes que trabajan solos, pero nunca sin permiso.</span></p>
+    <p><span lang="en"><span class="role-lead">Frontend developer. </span>I build interfaces that feel alive and agent systems that work on their own, but never without permission.</span><span lang="es"><span class="role-lead">Desarrollador frontend. </span>Construyo interfaces que se sienten vivas y sistemas de agentes que trabajan solos, pero nunca sin permiso.</span></p>
     <span class="mono">Frontend · Motion · <span lang="en">AI agents</span><span lang="es">Agentes de IA</span><br><span lang="en">Index</span><span lang="es">Índice</span> ↓</span>
   </div>
 </header>
@@ -223,12 +259,11 @@
 <footer class="contact" id="contacto">
   <div class="wrap">
     <span class="mono" style="color: rgba(255,255,255,.55)"><span lang="en">Let's build something. Write to me</span><span lang="es">¿Armamos algo? Escribime</span></span>
-    <a class="big" style="margin-top: 28px" href="mailto:facundobiagioni@gmail.com"><span lang="en">Hello@</span><span lang="es">Hola@</span><br>Facundo</a>
+    <a class="big mail" style="margin-top: 28px" href="mailto:facundobiagioni@gmail.com">facundobiagioni<br>@gmail.com</a>
     <div class="row">
       <a class="pillnav" href="https://wa.me/5492213584349" target="_blank" rel="noopener">+ WhatsApp</a>
       <a class="pillnav" href="https://www.linkedin.com/in/facundobiagioni/" target="_blank" rel="noopener">+ LinkedIn</a>
       <a class="pillnav" href="https://github.com/FacundoBiagioni" target="_blank" rel="noopener">+ GitHub</a>
-      <a class="pillnav" href="https://www.instagram.com/facu.biagio" target="_blank" rel="noopener">+ Instagram</a>
       <a class="pillnav" href="../assets/cv/cv-facundo-biagioni-es.pdf" download data-cv>+ CV</a>
     </div>
     <div class="foot mono"><span>© 2026 Facundo Biagioni</span><span>facundobiagioni@gmail.com</span></div>
@@ -245,6 +280,12 @@
 <script>
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // hero variant preview: ?hero=a|b|c
+  const hv = new URLSearchParams(location.search).get('hero');
+  if (/^[abc]$/.test(hv)) {
+    document.querySelector('.hero').dataset.hero = hv;
+    document.querySelectorAll('.hero h1').forEach(h => h.hidden = !h.classList.contains('v' + hv));
+  }
   requestAnimationFrame(() => document.body.classList.add('ready'));
 
   // La Plata local time
@@ -253,11 +294,23 @@
   tick(); setInterval(tick, 30000); addEventListener('langchange', tick);
 
   // Hero name: weight follows scroll, thinning as it leaves
-  const h1 = document.querySelector('h1');
+  const h1 = document.querySelector('.hero h1:not([hidden])');
   if (!reduce) addEventListener('scroll', () => {
     const p = Math.min(1, scrollY / innerHeight);
     h1.style.fontWeight = Math.round(800 - p * 650);
   }, { passive: true });
+
+  // variant c: rotating word
+  const rot = h1.querySelectorAll('.rot > b');
+  if (rot.length && !reduce) {
+    let i = 0;
+    setInterval(() => {
+      const prev = rot[i]; i = (i + 1) % rot.length;
+      prev.classList.replace('cur', 'out');
+      rot[i].classList.remove('out'); rot[i].classList.add('cur');
+      setTimeout(() => prev.classList.remove('out'), 800);
+    }, 2400);
+  }
 
   // Reveal
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });

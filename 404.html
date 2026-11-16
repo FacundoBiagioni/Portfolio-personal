@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<script>document.documentElement.lang = (function () { try { return localStorage.getItem('fb-lang') === 'es' ? 'es' : 'en'; } catch (e) { return 'en'; } })();</script>
+<title data-en="Page not found · Facundo Biagioni" data-es="Página no encontrada · Facundo Biagioni">Page not found · Facundo Biagioni</title>
+<meta name="theme-color" content="#161616">
+<!-- Cloudflare Pages serves this for any missing path, so every URL here is absolute -->
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800&family=Inter+Tight:wght@500&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  html[lang="en"] [lang="es"], html[lang="es"] [lang="en"] { display: none !important; }
+  :root { --ember: #ff6436; --onyx: #161616; --fog: #f1f1f1; --white: #fff; --in: cubic-bezier(0.32, 0.72, 0, 1); }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100svh; background: var(--onyx); color: var(--fog); font: 500 17px/1.3 'Inter Tight', ui-sans-serif, system-ui, sans-serif; display: flex; flex-direction: column; justify-content: space-between; padding: 18px clamp(16px, 4vw, 48px) 28px; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  :focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; }
+  .mono { font: 500 12px/1.3 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace; text-transform: uppercase; color: rgba(255,255,255,.62); }
+  .top { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .pill { display: inline-flex; align-items: center; min-height: 36px; padding: 7px 14px; border-radius: 9999px; border: 1px solid rgba(255,255,255,.35); font: 500 13px/1 'IBM Plex Mono', ui-monospace, monospace; text-transform: uppercase; color: var(--fog); background: transparent; cursor: pointer; transition: background-color .3s var(--in), color .3s var(--in); }
+  .pill:hover { background: var(--white); color: var(--onyx); }
+  h1 { margin: 0; font: 800 clamp(120px, 42vw, 640px)/.78 'Big Shoulders Display', Impact, sans-serif; letter-spacing: -0.02em; background: linear-gradient(#000 0%, #6e6c70 22%, #b9b7bb 48%, #dcd6d6 72%, #f1f1f1 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .foot { display: grid; grid-template-columns: minmax(0, 1.2fr) auto; gap: 24px; align-items: end; margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.12); }
+  .foot p { margin: 0; max-width: 34ch; font-size: clamp(18px, 2vw, 22px); line-height: 1.15; letter-spacing: -0.02em; }
+  .home { background: var(--ember); border-color: var(--ember); color: var(--white); }
+  @media (max-width: 640px) { .foot { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="top">
+  <a class="pill" href="/">• F/B</a>
+  <button class="pill lang" type="button" data-lang-toggle>EN/ES</button>
+</div>
+<main>
+  <p class="mono"><span lang="en">Error 404 · this page does not exist</span><span lang="es">Error 404 · esta página no existe</span></p>
+  <h1 aria-label="404">404</h1>
+  <div class="foot">
+    <p><span lang="en">The link may be old or mistyped. Everything I have built is one click away.</span><span lang="es">Puede que el enlace sea viejo o tenga un error. Todo lo que construí está a un clic.</span></p>
+    <a class="pill home" href="/"><span lang="en">Back to home →</span><span lang="es">Volver al inicio →</span></a>
+  </div>
+</main>
+<script src="/assets/i18n.js"></script>
+</body>
+</html>

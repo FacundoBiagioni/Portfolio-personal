@@ -24,6 +24,10 @@ El sitio arranca en inglés y tiene un botón EN/ES. La elección se guarda en e
 
 ## Ver las versiones
 
+Versión elegida: Monumento (`v2/`). La portada tiene 3 variantes en prueba: `v2/index.html?hero=a`, `?hero=b` y `?hero=c` (sin parámetro, la original con el nombre).
+
+`404.html` y `assets/favicon.svg` están en la raíz: Cloudflare Pages sirve `404.html` para cualquier ruta que no exista, por eso usa rutas absolutas.
+
 Abrí `index.html` en el navegador (doble clic) y elegí una.
 
 ## Siguiente paso
