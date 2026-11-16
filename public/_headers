@@ -1,0 +1,16 @@
+# Cloudflare Pages: security headers for every response, then caching per folder.
+# The script hash allows only the inline line that sets the language before the first paint (identical on every page).
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-/3Ni5TLy47P7YfapW7lNLxpu1X11KWsIpQCtaPwBcMI='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+
+# Fonts, images, videos and documents: a week, so a replaced file shows up without renaming it.
+# (One rule only: Cloudflare joins repeated headers from overlapping rules instead of replacing them.)
+/assets/*
+  Cache-Control: public, max-age=604800

@@ -4,16 +4,29 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>document.documentElement.lang = (function () { try { return localStorage.getItem('fb-lang') === 'es' ? 'es' : 'en'; } catch (e) { return 'en'; } })();</script>
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <title data-en="Agent Village · Facundo Biagioni" data-es="Agent Village · Facundo Biagioni">Agent Village · Facundo Biagioni</title>
 <meta name="description" content="Case study: a team of AI agents that finds local businesses without a website, builds a demo and drafts the message, always behind human approval.">
 <meta property="og:title" content="Agent Village · Facundo Biagioni">
 <meta property="og:description" content="A team of AI agents that prepares everything and waits for one click.">
-<meta property="og:image" content="assets/proyectos/agent-village/poster.webp">
+<link rel="canonical" href="https://facundobiagioni.pages.dev/agent-village">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Facundo Biagioni">
+<meta property="og:url" content="https://facundobiagioni.pages.dev/agent-village">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_AR">
+<meta property="og:image" content="https://facundobiagioni.pages.dev/assets/og/agent-village.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Agent Village · Facundo Biagioni">
+<meta name="twitter:description" content="A team of AI agents that prepares everything and waits for one click.">
+<meta name="twitter:image" content="https://facundobiagioni.pages.dev/assets/og/agent-village.jpg">
 <meta name="theme-color" content="#161616">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100..900&family=Inter+Tight:wght@500&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/icons/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/big-shoulders-display-100-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
 <style>
   /* language: both versions live in the HTML; only the active one shows */
   html[lang="en"] [lang="es"], html[lang="es"] [lang="en"] { display: none !important; }
@@ -174,7 +187,7 @@
   .next .big:hover, .next .big:focus-visible { color: var(--ember); }
   .next .big .arr { display: inline-block; transition: transform .6s var(--in); }
   .next .big:hover .arr { transform: translateX(.12em); }
-  .foot { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 72px; color: rgba(255,255,255,.45); }
+  .foot { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 72px; color: rgba(255,255,255,.6); }
   .foot a:hover { color: var(--fog); }
 
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity .75s var(--in), transform .75s var(--in); }
@@ -222,7 +235,7 @@
 <div class="screen">
   <figure>
     <div class="frame" id="frame">
-      <video id="vid" src="assets/proyectos/agent-village/hero.webm" poster="assets/proyectos/agent-village/poster.webp" muted loop playsinline preload="metadata" aria-label="Screen recording of the Agent Village house with its six agents" data-i18n-attr="aria-label" data-en-aria-label="Screen recording of the Agent Village house with its six agents" data-es-aria-label="Grabación de la casa de Agent Village con sus seis agentes"></video>
+      <video id="vid" poster="assets/proyectos/agent-village/poster.webp" muted loop playsinline preload="metadata" aria-label="Screen recording of the Agent Village house with its six agents" data-i18n-attr="aria-label" data-en-aria-label="Screen recording of the Agent Village house with its six agents" data-es-aria-label="Grabación de la casa de Agent Village con sus seis agentes"><source src="assets/proyectos/agent-village/hero.webm" type="video/webm"></video>
     </div>
     <figcaption class="mono"><span><span lang="en">The real app, running on my computer</span><span lang="es">La app real, corriendo en mi computadora</span></span><button class="vbtn" id="vbtn" type="button">Pause</button></figcaption>
   </figure>
@@ -341,43 +354,11 @@
   <div class="wrap">
     <span class="mono"><span lang="en">Next project</span><span lang="es">Siguiente proyecto</span></span>
     <a class="big" href="estudio-bg.html">Estudio B+G <span class="arr" aria-hidden="true">→</span></a>
-    <div class="foot mono"><a href="index.html#trabajos">← <span lang="en">Back to work</span><span lang="es">Volver a trabajos</span></a><span>© 2026 Facundo Biagioni</span></div>
+    <div class="foot mono"><a href="index.html#trabajos">← <span lang="en">Back to work</span><span lang="es">Volver a trabajos</span></a><a href="legal.html"><span lang="en">Legal &amp; privacy</span><span lang="es">Legal y privacidad</span></a><span>© 2026 Facundo Biagioni</span></div>
   </div>
 </footer>
 
-<script>
-(() => {
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  requestAnimationFrame(() => document.body.classList.add('ready'));
-
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
-  document.querySelectorAll('.reveal, #frame').forEach(el => io.observe(el));
-
-  // Video: plays only while visible; the button pauses it for good
-  const vid = document.getElementById('vid'), btn = document.getElementById('vbtn');
-  let userPaused = reduce;
-  const es = () => document.documentElement.lang === 'es';
-  const sync = () => btn.textContent = vid.paused ? (es() ? 'Reproducir' : 'Play') : (es() ? 'Pausa' : 'Pause');
-  addEventListener('langchange', sync);
-  vid.addEventListener('play', sync); vid.addEventListener('pause', sync);
-  btn.addEventListener('click', () => { if (vid.paused) { userPaused = false; vid.play(); } else { userPaused = true; vid.pause(); } });
-  new IntersectionObserver(([e]) => { if (e.isIntersecting && !userPaused) vid.play().catch(() => {}); else vid.pause(); }, { threshold: 0.25 }).observe(vid);
-  sync();
-
-  // Count-up numbers
-  const cio = new IntersectionObserver(es => es.forEach(e => {
-    if (!e.isIntersecting) return;
-    cio.unobserve(e.target);
-    if (reduce) return;
-    const el = e.target, end = +el.dataset.count, pre = el.dataset.prefix || '', t0 = performance.now();
-    const step = t => { const k = Math.min(1, (t - t0) / 1400); el.textContent = pre + Math.round(end * (1 - Math.pow(1 - k, 3))).toLocaleString(es() ? 'es-AR' : 'en-US'); if (k < 1) requestAnimationFrame(step); };
-    requestAnimationFrame(step);
-  }), { threshold: 0.6 });
-  document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
-  const fmtAll = () => document.querySelectorAll('[data-count]').forEach(el => el.textContent = (el.dataset.prefix || '') + (+el.dataset.count).toLocaleString(es() ? 'es-AR' : 'en-US'));
-  addEventListener('langchange', fmtAll); fmtAll();
-})();
-</script>
+<script src="assets/js/case.js"></script>
 <script src="assets/i18n.js"></script>
 </body>
 </html>

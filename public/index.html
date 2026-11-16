@@ -8,12 +8,26 @@
 <meta name="description" content="Facundo Biagioni, fullstack developer with a frontend focus in La Plata, Argentina. Detailed interfaces and AI agent systems with human approval.">
 <meta property="og:title" content="Facundo Biagioni · Fullstack developer">
 <meta property="og:description" content="Interfaces that feel alive and systems that work on their own.">
-<meta property="og:image" content="assets/foto.jpg">
+<link rel="canonical" href="https://facundobiagioni.pages.dev/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Facundo Biagioni">
+<meta property="og:url" content="https://facundobiagioni.pages.dev/">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_AR">
+<meta property="og:image" content="https://facundobiagioni.pages.dev/assets/og/home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Facundo Biagioni", "url": "https://facundobiagioni.pages.dev/", "jobTitle": "Fullstack Developer", "image": "https://facundobiagioni.pages.dev/assets/foto.webp", "address": {"@type": "PostalAddress", "addressLocality": "La Plata", "addressRegion": "Buenos Aires", "addressCountry": "AR"}, "knowsLanguage": ["es", "en"], "sameAs": ["https://github.com/FacundoBiagioni", "https://www.linkedin.com/in/facundobiagioni/"], "alumniOf": {"@type": "EducationalOrganization", "name": "Henry"}}</script>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Facundo Biagioni · Fullstack developer">
+<meta name="twitter:description" content="Interfaces that feel alive and systems that work on their own.">
+<meta name="twitter:image" content="https://facundobiagioni.pages.dev/assets/og/home.jpg">
 <meta name="theme-color" content="#161616">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100..900&family=Inter+Tight:wght@500&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/icons/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/big-shoulders-display-100-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
 <style>
   /* language: both versions live in the HTML; only the active one shows */
   html[lang="en"] [lang="es"], html[lang="es"] [lang="en"] { display: none !important; }
@@ -100,7 +114,6 @@
   .preview .card { position: absolute; inset: 0; display: none; padding: 16px; color: var(--white); overflow: hidden; }
   .preview .card.show { display: block; }
   .preview .card .mono { position: absolute; left: 16px; bottom: 14px; opacity: .8; }
-  .c3 { background: conic-gradient(from 40deg at 40% 55%, #d94f2b, #f2c14e, #3a6ea5, #1e1e1e, #d94f2b); filter: saturate(.9); }
   .c4, .vid { background: #0b0b0b; padding: 0 !important; }
   .c4 video, .vid video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .c4 .mono, .vid .mono { z-index: 1; text-shadow: 0 1px 6px #000; }
@@ -126,7 +139,8 @@
   .contact .big:hover, .contact .big:focus-visible { color: var(--ember); }
   .contact .row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 40px; }
   .contact .pillnav { border-color: rgba(255,255,255,.25); }
-  .foot { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 96px; color: rgba(255,255,255,.45); }
+  .foot { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 96px; color: rgba(255,255,255,.6); }
+  .foot a:hover { color: var(--fog); }
 
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity .75s var(--in), transform .75s var(--in); }
   .reveal.on { opacity: 1; transform: none; }
@@ -228,10 +242,10 @@
           <div><h3>Estudio B+G</h3><p><span lang="en">Studio website and a 15-project portfolio for an architecture firm in La Plata.</span><span lang="es">Sitio institucional y portfolio de 15 obras para un estudio de arquitectura de La Plata.</span></p></div>
           <div class="tags"><span class="tag">Next.js 16</span><span class="tag">Tailwind v4</span><span class="tag">Leaflet</span></div>
         </a></li>
-        <li class="reveal"><a href="#" data-card="c3">
+        <li class="reveal"><a href="alejandra-filgueira.html" data-card="c3">
           <span class="n mono">(03)</span>
           <div><h3>A. Filgueira</h3><p><span lang="en">Bilingual portfolio for an abstract artist: the work comes first.</span><span lang="es">Portfolio bilingüe para una artista de arte abstracto: la obra manda.</span></p></div>
-          <div class="tags"><span class="tag">Next.js</span><span class="tag">next-intl</span></div>
+          <div class="tags"><span class="tag">Next.js</span><span class="tag">next-intl</span><span class="tag">Framer Motion</span></div>
         </a></li>
         <li class="reveal"><a href="can-i-100-it.html" data-card="c4">
           <span class="n mono">(04)</span>
@@ -320,58 +334,18 @@
       <a class="pillnav" href="https://github.com/FacundoBiagioni" target="_blank" rel="noopener">+ GitHub</a>
       <a class="pillnav" href="assets/cv/cv-facundo-biagioni-es.pdf" target="_blank" rel="noopener" data-cv>+ CV</a>
     </div>
-    <div class="foot mono"><span>© 2026 Facundo Biagioni</span><span>facundobiagioni@gmail.com</span></div>
+    <div class="foot mono"><span>© 2026 Facundo Biagioni</span><a href="legal.html"><span lang="en">Legal &amp; privacy</span><span lang="es">Legal y privacidad</span></a><span>facundobiagioni@gmail.com</span></div>
   </div>
 </footer>
 
 <div class="preview" aria-hidden="true">
-  <div class="card c1 vid"><video src="assets/proyectos/agent-village/hero.webm" poster="assets/proyectos/agent-village/poster.webp" muted loop playsinline preload="none"></video><span class="mono">Agent Village · 2026</span></div>
-  <div class="card c2 vid"><video src="assets/proyectos/estudio-bg/hero.webm" poster="assets/proyectos/estudio-bg/poster.webp" muted loop playsinline preload="none"></video><span class="mono">Estudio B+G · 2026</span></div>
-  <div class="card c3"><span class="mono">A. Filgueira · 2025</span></div>
-  <div class="card c4"><video src="assets/proyectos/can-i-100-it/hero.webm" poster="assets/proyectos/can-i-100-it/poster.webp" muted loop playsinline preload="none"></video><span class="mono">Can i 100% it? · 2026</span></div>
+  <div class="card c1 vid"><video poster="assets/proyectos/agent-village/poster.webp" muted loop playsinline preload="none"><source src="assets/proyectos/agent-village/hero.webm" type="video/webm"></video><span class="mono">Agent Village · 2026</span></div>
+  <div class="card c2 vid"><video poster="assets/proyectos/estudio-bg/poster.webp" muted loop playsinline preload="none"><source src="assets/proyectos/estudio-bg/hero.webm" type="video/webm"></video><span class="mono">Estudio B+G · 2026</span></div>
+  <div class="card c3 vid"><video poster="assets/proyectos/alejandra-filgueira/poster.webp" muted loop playsinline preload="none"><source src="assets/proyectos/alejandra-filgueira/hero.webm" type="video/webm"></video><span class="mono">A. Filgueira · 2025</span></div>
+  <div class="card c4"><video poster="assets/proyectos/can-i-100-it/poster.webp" muted loop playsinline preload="none"><source src="assets/proyectos/can-i-100-it/hero.webm" type="video/webm"></video><span class="mono">Can i 100% it? · 2026</span></div>
 </div>
 
-<script>
-(() => {
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  requestAnimationFrame(() => document.body.classList.add('ready'));
-
-  // La Plata local time
-  const clock = document.getElementById('clock');
-  const tick = () => clock.textContent = new Intl.DateTimeFormat(document.documentElement.lang === 'es' ? 'es-AR' : 'en-US', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Argentina/Buenos_Aires' }).format(new Date()) + ' ART';
-  tick(); setInterval(tick, 30000); addEventListener('langchange', tick);
-
-  // Hero name: weight follows scroll, thinning as it leaves
-  const h1 = document.querySelector('.hero h1');
-  if (!reduce) addEventListener('scroll', () => {
-    const p = Math.min(1, scrollY / innerHeight);
-    h1.style.fontWeight = Math.round(800 - p * 650);
-  }, { passive: true });
-
-  // Reveal
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  // Cursor-follow preview over the work index (pointer devices only)
-  const pv = document.querySelector('.preview');
-  if (matchMedia('(hover: hover)').matches) {
-    let x = 0, y = 0, tx = 0, ty = 0;
-    const loop = () => { x += (tx - x) * 0.14; y += (ty - y) * 0.14; pv.style.left = x + 'px'; pv.style.top = y + 'px'; requestAnimationFrame(loop); };
-    loop();
-    document.querySelectorAll('.work a').forEach(a => {
-      a.addEventListener('pointerenter', e => {
-        // a hidden preview appears right at the cursor instead of gliding in from its last spot (or the corner)
-        tx = e.clientX + 200; ty = e.clientY;
-        if (!pv.classList.contains('on')) { x = tx; y = ty; }
-        pv.querySelectorAll('.card').forEach(c => { const on = c.classList.contains(a.dataset.card); c.classList.toggle('show', on); const v = c.querySelector('video'); if (v) on ? v.play().catch(() => {}) : v.pause(); });
-        pv.classList.add('on');
-      });
-      a.addEventListener('pointerleave', () => pv.classList.remove('on'));
-      a.addEventListener('pointermove', e => { tx = e.clientX + 200; ty = e.clientY; });
-    });
-  }
-})();
-</script>
+<script src="assets/js/home.js"></script>
 <script src="assets/i18n.js"></script>
 </body>
 </html>
