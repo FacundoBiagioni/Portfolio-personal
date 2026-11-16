@@ -100,8 +100,6 @@
   .preview .card { position: absolute; inset: 0; display: none; padding: 16px; color: var(--white); overflow: hidden; }
   .preview .card.show { display: block; }
   .preview .card .mono { position: absolute; left: 16px; bottom: 14px; opacity: .8; }
-  .c1 { background: radial-gradient(circle at 30% 70%, #ff6436 0 14%, transparent 15%), linear-gradient(135deg, #1b2a1f, #0c120e); }
-  .c1::before { content: ''; position: absolute; left: 22%; top: 30%; width: 46%; height: 40%; background: #e9dcc5; clip-path: polygon(0 40%, 50% 0, 100% 40%, 100% 100%, 0 100%); box-shadow: inset 0 -20px 0 #c9b79a; }
   .c3 { background: conic-gradient(from 40deg at 40% 55%, #d94f2b, #f2c14e, #3a6ea5, #1e1e1e, #d94f2b); filter: saturate(.9); }
   .c4, .vid { background: #0b0b0b; padding: 0 !important; }
   .c4 video, .vid video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -220,7 +218,7 @@
       <p class="ghost" aria-hidden="true"><span lang="en">Work</span><span lang="es">Trabajos</span></p>
       <div class="head"><h2><span lang="en">Selected work</span><span lang="es">Trabajo seleccionado</span></h2><span class="mono">04 <span lang="en">projects</span><span lang="es">proyectos</span></span></div>
       <ul class="work">
-        <li class="reveal"><a href="#" data-card="c1">
+        <li class="reveal"><a href="agent-village.html" data-card="c1">
           <span class="n mono">(01)</span>
           <div><h3>Agent Village</h3><p><span lang="en">A team of AI agents that finds local businesses without a website, prepares a demo and a message, and waits for my one-click approval. A low-poly 3D house with a game HUD.</span><span lang="es">Un equipo de agentes de IA que encuentra negocios sin web, prepara una demo y un mensaje, y espera mi aprobación con un clic. Una casa 3D low poly con HUD de juego.</span></p></div>
           <div class="tags"><span class="tag">Next.js</span><span class="tag">Agent SDK</span><span class="tag">Three.js</span><span class="tag">PostgreSQL</span></div>
@@ -327,7 +325,7 @@
 </footer>
 
 <div class="preview" aria-hidden="true">
-  <div class="card c1"><span class="mono">Agent Village · 2026</span></div>
+  <div class="card c1 vid"><video src="assets/proyectos/agent-village/hero.webm" poster="assets/proyectos/agent-village/poster.webp" muted loop playsinline preload="none"></video><span class="mono">Agent Village · 2026</span></div>
   <div class="card c2 vid"><video src="assets/proyectos/estudio-bg/hero.webm" poster="assets/proyectos/estudio-bg/poster.webp" muted loop playsinline preload="none"></video><span class="mono">Estudio B+G · 2026</span></div>
   <div class="card c3"><span class="mono">A. Filgueira · 2025</span></div>
   <div class="card c4"><video src="assets/proyectos/can-i-100-it/hero.webm" poster="assets/proyectos/can-i-100-it/poster.webp" muted loop playsinline preload="none"></video><span class="mono">Can i 100% it? · 2026</span></div>

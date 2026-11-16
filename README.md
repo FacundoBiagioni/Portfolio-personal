@@ -9,6 +9,7 @@ Versión elegida: Monumento (tipografía brutalista, índice de trabajos con vis
 | Archivo | Qué es |
 |---|---|
 | `index.html` | Inicio: portada, trabajos, sobre mí, contacto |
+| `agent-village.html` | Caso de estudio de Agent Village (enlaza al prototipo público: agent-village-prototipo.vercel.app) |
 | `can-i-100-it.html` | Caso de estudio de Can i 100% it? |
 | `estudio-bg.html` | Caso de estudio de Estudio B+G |
 | `404.html` | Página de error (Cloudflare Pages la sirve para cualquier ruta que no existe; por eso usa rutas absolutas) |
@@ -29,4 +30,4 @@ Abrí `index.html` en el navegador (doble clic). La página 404 solo funciona bi
 
 ## Siguiente paso
 
-Casos de Agent Village y Alejandra Filgueira, sección de certificados y de tecnologías, y publicarla gratis en Cloudflare Pages.
+Caso de Alejandra Filgueira y publicarla gratis en Cloudflare Pages.

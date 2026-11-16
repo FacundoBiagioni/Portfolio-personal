@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.lang = (function () { try { return localStorage.getItem('fb-lang') === 'es' ? 'es' : 'en'; } catch (e) { return 'en'; } })();</script>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<title data-en="Agent Village · Facundo Biagioni" data-es="Agent Village · Facundo Biagioni">Agent Village · Facundo Biagioni</title>
+<meta name="description" content="Case study: a team of AI agents that finds local businesses without a website, builds a demo and drafts the message, always behind human approval.">
+<meta property="og:title" content="Agent Village · Facundo Biagioni">
+<meta property="og:description" content="A team of AI agents that prepares everything and waits for one click.">
+<meta property="og:image" content="assets/proyectos/agent-village/poster.webp">
+<meta name="theme-color" content="#161616">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100..900&family=Inter+Tight:wght@500&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  /* language: both versions live in the HTML; only the active one shows */
+  html[lang="en"] [lang="es"], html[lang="es"] [lang="en"] { display: none !important; }
+  .lang { cursor: pointer; }
+  .lang .l-en, .lang .l-es { opacity: .45; transition: opacity .2s; }
+  html[lang="en"] .lang .l-en, html[lang="es"] .lang .l-es { opacity: 1; }
+  :root {
+    --ember: #ff6436; --onyx: #161616; --graphite: #3c3a3e; --stone: #6e6c70; --ash: #a2a2a2;
+    --mist: #c9c7cc; --fog: #f1f1f1; --paper: #f8f8f8; --white: #ffffff;
+    --ok: #1f9d63; --bad: #d8452f; --warn: #c78a00;
+    --display: 'Big Shoulders Display', 'Anton', Impact, sans-serif;
+    --grotesk: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+    --in: cubic-bezier(0.32, 0.72, 0, 1);
+    --out: cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--paper); color: var(--graphite); font: 500 17px/1.3 var(--grotesk); letter-spacing: -0.01em; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  img, video { display: block; max-width: 100%; }
+  :focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; }
+  ::selection { background: var(--ember); color: var(--white); }
+  .mono { font: 500 12px/1.3 var(--mono); text-transform: uppercase; letter-spacing: -0.01em; }
+  .skip { position: absolute; left: -999px; }
+  .skip:focus { left: 16px; top: 16px; z-index: 20; background: var(--white); padding: 8px 12px; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px); }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 18px clamp(16px, 4vw, 48px); mix-blend-mode: difference; color: var(--white); }
+  nav .links { display: flex; gap: 6px; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 7px 14px; border-radius: 9999px; border: 1px solid rgba(255,255,255,.35); font: 500 13px/1 var(--mono); text-transform: uppercase; white-space: nowrap; transition: background-color .3s var(--in), color .3s var(--in); }
+  .pill:hover { background: var(--white); color: var(--onyx); }
+  button.pill { background: transparent; color: inherit; }
+  @media (max-width: 640px) { nav .links .hide-sm { display: none; } }
+
+  /* hero */
+  .hero { position: relative; background: var(--onyx); color: var(--fog); padding: 120px clamp(16px, 4vw, 48px) 28px; overflow: hidden; }
+  .meta-row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: rgba(255,255,255,.6); margin-bottom: 22px; }
+  .live { display: inline-flex; align-items: center; gap: 8px; }
+  .live i { width: 10px; height: 10px; border-radius: 50%; background: var(--ember); animation: ping 2s var(--in) infinite; }
+  @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(255,100,54,.6); } 70%, 100% { box-shadow: 0 0 0 10px rgba(255,100,54,0); } }
+  h1 { margin: 0; font-family: var(--display); font-weight: 800; text-transform: uppercase; line-height: 0.78; letter-spacing: -0.015em; font-size: clamp(76px, 17.5vw, 290px); }
+  h1 .line { display: block; overflow: hidden; padding-top: 0.05em; }
+  h1 .line span { display: inline-block; background: linear-gradient(#000 0%, #6e6c70 22%, #b9b7bb 48%, #dcd6d6 72%, #f1f1f1 100%); -webkit-background-clip: text; background-clip: text; color: transparent; transform: translateY(105%); transition: transform 1.1s var(--in); }
+  h1 .line:nth-child(2) span { transition-delay: .1s; }
+  h1 .pct { color: var(--ember); -webkit-text-fill-color: var(--ember); }
+  .ready h1 .line span { transform: none; }
+  .hero-foot { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 24px; align-items: end; margin-top: 32px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.12); }
+  .hero-foot p { margin: 0; max-width: 36ch; font-size: clamp(19px, 2vw, 24px); line-height: 1.12; letter-spacing: -0.02em; color: var(--fog); }
+  .hero-foot .acts { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+  .hero-foot .pill { border-color: rgba(255,255,255,.3); }
+  .hero-foot .pill.solid { background: var(--fog); color: var(--onyx); }
+  .hero-foot .pill.solid:hover { background: var(--ember); color: var(--white); }
+  @media (max-width: 760px) { .hero-foot { grid-template-columns: 1fr; } .hero-foot .acts { justify-content: flex-start; } }
+
+  /* full-bleed screen */
+  .screen { background: var(--onyx); padding: 0 clamp(16px, 4vw, 48px) 72px; }
+  .screen figure { margin: 0 auto; position: relative; max-width: 880px; }
+  .screen .frame { position: relative; overflow: hidden; clip-path: inset(6% 6% 6% 6%); transition: clip-path 1.4s var(--in); }
+  .screen .frame.on { clip-path: inset(0 0 0 0); }
+  .screen video { width: 100%; aspect-ratio: 1280 / 672; object-fit: cover; }
+  .screen figcaption { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 14px; color: rgba(255,255,255,.55); }
+  .vbtn { appearance: none; border: 1px solid rgba(255,255,255,.3); background: transparent; color: var(--fog); border-radius: 9999px; padding: 6px 12px; cursor: pointer; font: 500 12px/1 var(--mono); text-transform: uppercase; }
+  .vbtn:hover { background: var(--fog); color: var(--onyx); }
+
+  /* spec table */
+  .spec { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--mist); }
+  .spec div { padding: 16px 16px 20px 0; border-bottom: 1px solid var(--mist); }
+  .spec div + div { padding-left: 16px; border-left: 1px solid var(--mist); }
+  .spec .mono { color: var(--stone); display: block; margin-bottom: 8px; }
+  .spec b { font-weight: 500; font-size: 17px; color: var(--onyx); }
+  @media (max-width: 760px) { .spec { grid-template-columns: 1fr 1fr; } .spec div:nth-child(3) { padding-left: 0; border-left: 0; } }
+
+  section { padding: 96px 0; }
+  .ghost { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: clamp(72px, 15vw, 210px); line-height: .74; color: #e2e0e4; margin: 0 0 -0.12em; user-select: none; }
+  .head { display: flex; justify-content: space-between; align-items: end; gap: 24px; border-bottom: 1px solid var(--mist); padding-bottom: 14px; }
+  h2 { margin: 0; font-size: clamp(34px, 4.6vw, 60px); line-height: 1; letter-spacing: -0.03em; font-weight: 500; color: var(--onyx); }
+  .head .mono { color: var(--stone); }
+  .two { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 4vw, 60px); padding-top: 36px; }
+  .two .lead { font-size: clamp(24px, 2.8vw, 36px); line-height: 1.06; letter-spacing: -0.025em; color: var(--onyx); margin: 0; }
+  .two .lead em { font-style: normal; color: var(--stone); }
+  .two p { margin: 0 0 16px; max-width: 56ch; }
+  @media (max-width: 800px) { .two { grid-template-columns: 1fr; } }
+  .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 18px; }
+  .tag { background: var(--onyx); color: var(--fog); padding: 2px 6px; font: 600 11px/1.5 var(--mono); text-transform: uppercase; }
+
+  /* verdicts as a monumental list */
+  .verd { list-style: none; margin: 40px 0 0; padding: 0; }
+  .verd li { display: grid; grid-template-columns: 56px minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--mist); }
+  .verd .n { color: var(--stone); }
+  .verd b { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(36px, 5.6vw, 76px); line-height: .85; letter-spacing: -0.005em; transition: transform .6s var(--in); }
+  .verd li:hover b { transform: translateX(12px); }
+  .verd b { color: var(--onyx); }
+  .verd .ok b { color: var(--ok); } .verd .bad b { color: var(--bad); } .verd .warn b { color: var(--warn); } .verd .none b { color: var(--ash); }
+  .verd p { margin: 0; color: var(--stone); max-width: 40ch; }
+  @media (max-width: 760px) { .verd li { grid-template-columns: 36px 1fr; } .verd p { grid-column: 2; } }
+
+  /* gallery */
+  .gal { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 12px; padding-top: 36px; }
+  .gal figure { margin: 0; }
+  .gal .a { grid-column: span 12; }
+  .gal .b, .gal .c { grid-column: span 6; }
+  @media (max-width: 760px) { .gal .b, .gal .c { grid-column: span 12; } }
+  .gal .img { overflow: hidden; background: var(--onyx); }
+  .gal img { width: 100%; height: auto; transition: transform 1s var(--out), filter .6s var(--in); filter: grayscale(.25); }
+  .gal figure:hover img { transform: scale(1.025); filter: none; }
+  .gal figcaption { display: grid; grid-template-columns: auto 1fr; gap: 12px; padding-top: 10px; font-size: 15px; color: var(--stone); }
+  .gal figcaption .mono { color: var(--onyx); padding-top: 3px; }
+
+  /* features grid with hairlines */
+  .feat { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 36px; border-top: 1px solid var(--mist); }
+  .feat div { padding: 22px 20px 26px 0; border-bottom: 1px solid var(--mist); }
+  .feat div:not(:nth-child(3n + 1)) { padding-left: 20px; border-left: 1px solid var(--mist); }
+  .feat h3 { margin: 0 0 8px; font-size: 21px; letter-spacing: -0.02em; font-weight: 500; color: var(--onyx); }
+  .feat p { margin: 0; color: var(--stone); font-size: 16px; }
+  @media (max-width: 800px) { .feat { grid-template-columns: 1fr; } .feat div:not(:nth-child(3n + 1)) { padding-left: 0; border-left: 0; } }
+
+  /* pipeline, typographic */
+  .flow { margin-top: 36px; display: grid; grid-template-columns: minmax(0, 1.2fr) 48px minmax(0, 1fr) 48px minmax(0, 1fr); align-items: center; gap: 0; }
+  .flow .col { display: grid; gap: 6px; }
+  .flow .box { border: 1px solid var(--graphite); padding: 10px 12px; font: 500 13px/1.2 var(--mono); text-transform: uppercase; background: var(--white); }
+  .flow .box.key { background: var(--onyx); color: var(--fog); border-color: var(--onyx); font-size: 15px; padding: 18px 14px; text-align: center; }
+  .flow .box.ai { border-style: dashed; color: var(--stone); }
+  .flow .arrow { height: 1px; background: var(--graphite); position: relative; margin: 0 6px; }
+  .flow .arrow::after { content: ''; position: absolute; right: -1px; top: -4px; border: 4px solid transparent; border-left: 7px solid var(--graphite); border-right: 0; }
+  .flow .arrow i { position: absolute; top: -3px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--ember); animation: run 2.2s var(--in) infinite; }
+  @keyframes run { from { left: 0; opacity: 1; } to { left: calc(100% - 7px); opacity: .2; } }
+  .flow .outs { display: grid; gap: 6px; }
+  .flow .outs > span { display: flex; align-items: center; gap: 8px; font: 500 13px/1.2 var(--mono); text-transform: uppercase; padding: 9px 12px; border: 1px solid var(--mist); background: var(--white); }
+  .flow .outs i { width: 9px; height: 9px; border-radius: 50%; }
+  @media (max-width: 860px) { .flow { grid-template-columns: 1fr; gap: 14px; } .flow .arrow { height: 28px; width: 1px; margin: 0 auto; } .flow .arrow::after { right: -4px; top: auto; bottom: -1px; border: 4px solid transparent; border-top: 7px solid var(--graphite); border-bottom: 0; } .flow .arrow i { animation-name: rundown; left: -3px; } @keyframes rundown { from { top: 0; } to { top: calc(100% - 7px); } } }
+
+  /* decisions */
+  .dec { list-style: none; margin: 36px 0 0; padding: 0; counter-reset: d; }
+  .dec li { display: grid; grid-template-columns: 56px minmax(0, 6fr) minmax(0, 4fr); gap: 16px 24px; padding: 30px 0; border-bottom: 1px solid var(--mist); }
+  .dec .n { color: var(--stone); padding-top: 6px; }
+  .dec h3 { margin: 0 0 10px; font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(30px, 3.6vw, 48px); line-height: .9; color: var(--onyx); }
+  .dec p { margin: 0; color: var(--graphite); max-width: 54ch; }
+  .dec .res { border-left: 1px solid var(--mist); padding-left: 20px; align-self: start; }
+  .dec .res b { display: block; font-family: var(--display); font-weight: 900; font-size: clamp(44px, 5vw, 72px); line-height: .8; color: var(--onyx); margin-bottom: 10px; }
+  .dec .res .dot { color: var(--ember); }
+  .dec .res span { color: var(--stone); font-size: 15px; }
+  @media (max-width: 800px) { .dec li { grid-template-columns: 36px 1fr; } .dec .res { grid-column: 2; border-left: 0; padding-left: 0; } }
+
+  /* numbers */
+  .nums { background: var(--onyx); color: var(--fog); padding: 96px 0; }
+  .nums .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid rgba(255,255,255,.14); }
+  .nums .grid div { padding: 22px 20px 0 0; }
+  .nums .grid div + div { padding-left: 20px; border-left: 1px solid rgba(255,255,255,.14); }
+  .nums b { display: block; font-family: var(--display); font-weight: 800; font-size: clamp(80px, 11vw, 170px); line-height: .8; letter-spacing: -0.01em; background: linear-gradient(#f1f1f1 30%, #6e6c70); -webkit-background-clip: text; background-clip: text; color: transparent; font-variant-numeric: tabular-nums; }
+  .nums .mono { display: block; margin-top: 16px; color: rgba(255,255,255,.6); }
+  @media (max-width: 760px) { .nums .grid { grid-template-columns: 1fr; } .nums .grid div + div { padding-left: 0; border-left: 0; border-top: 1px solid rgba(255,255,255,.14); margin-top: 24px; } }
+
+  /* next */
+  .next { background: var(--onyx); color: var(--fog); padding: 40px 0 32px; border-top: 1px solid rgba(255,255,255,.1); }
+  .next .mono { color: rgba(255,255,255,.55); }
+  .next .big { display: block; margin-top: 18px; font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(52px, 11vw, 180px); line-height: .78; white-space: nowrap; transition: color .4s var(--in); }
+  .next .big:hover, .next .big:focus-visible { color: var(--ember); }
+  .next .big .arr { display: inline-block; transition: transform .6s var(--in); }
+  .next .big:hover .arr { transform: translateX(.12em); }
+  .foot { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 72px; color: rgba(255,255,255,.45); }
+  .foot a:hover { color: var(--fog); }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .75s var(--in), transform .75s var(--in); }
+  .reveal.on { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    h1 .line span, .reveal { transform: none; opacity: 1; }
+    .screen .frame { clip-path: none; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido"><span lang="en">Skip to content</span><span lang="es">Saltar al contenido</span></a>
+
+<nav aria-label="Main">
+  <a class="pill" href="index.html">← F/B</a>
+  <div class="links">
+    <a class="pill" href="index.html#trabajos">+ <span lang="en">Work</span><span lang="es">Trabajos</span></a>
+    <a class="pill hide-sm" href="index.html#contacto">+ <span lang="en">Contact</span><span lang="es">Contacto</span></a>
+    <button class="pill lang" type="button" data-lang-toggle><span class="l-en">EN</span>/<span class="l-es">ES</span></button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="meta-row mono">
+    <span class="live"><i aria-hidden="true"></i><span lang="en">In development</span><span lang="es">En desarrollo</span></span>
+    <span><span lang="en">Case (01) · Personal project</span><span lang="es">Caso (01) · Proyecto personal</span></span>
+    <span>2026</span>
+  </div>
+  <h1 aria-label="Agent Village">
+    <span class="line"><span>Agent</span></span>
+    <span class="line"><span>Village<span class="pct">.</span></span></span>
+  </h1>
+  <div class="hero-foot">
+    <p><span lang="en">A team of AI agents that finds local businesses without a website, builds them a demo and writes the first message. Nothing goes out without my click.</span><span lang="es">Un equipo de agentes de IA que encuentra negocios sin página web, les arma una demo y redacta el primer mensaje. Nada sale sin mi clic.</span></p>
+    <div class="acts">
+      <a class="pill solid" href="https://agent-village-prototipo.vercel.app/" target="_blank" rel="noopener">↗ <span lang="en">Try the prototype</span><span lang="es">Ver el prototipo</span></a>
+      <a class="pill" href="https://github.com/FacundoBiagioni/agent-village-prototipo" target="_blank" rel="noopener">+ <span lang="en">Code</span><span lang="es">Código</span></a>
+    </div>
+  </div>
+</header>
+
+<div class="screen">
+  <figure>
+    <div class="frame" id="frame">
+      <video id="vid" src="assets/proyectos/agent-village/hero.webm" poster="assets/proyectos/agent-village/poster.webp" muted loop playsinline preload="metadata" aria-label="Screen recording of the Agent Village house with its six agents" data-i18n-attr="aria-label" data-en-aria-label="Screen recording of the Agent Village house with its six agents" data-es-aria-label="Grabación de la casa de Agent Village con sus seis agentes"></video>
+    </div>
+    <figcaption class="mono"><span><span lang="en">The real app, running on my computer</span><span lang="es">La app real, corriendo en mi computadora</span></span><button class="vbtn" id="vbtn" type="button">Pause</button></figcaption>
+  </figure>
+</div>
+
+<main id="contenido">
+  <section style="padding-top:56px">
+    <div class="wrap">
+      <div class="spec reveal">
+        <div><span class="mono"><span lang="en">Role</span><span lang="es">Rol</span></span><b><span lang="en">Design and development, solo</span><span lang="es">Diseño y desarrollo, solo</span></b></div>
+        <div><span class="mono"><span lang="en">Type</span><span lang="es">Tipo</span></span><b><span lang="en">Personal project, runs locally</span><span lang="es">Proyecto personal, corre en local</span></b></div>
+        <div><span class="mono"><span lang="en">Public version</span><span lang="es">Versión pública</span></span><b><span lang="en">Prototype with made-up data</span><span lang="es">Prototipo con datos inventados</span></b></div>
+        <div><span class="mono">Stack</span><b>Next.js 16 · <span lang="en">Agents</span><span lang="es">Agentes</span> · Three.js</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <p class="ghost" aria-hidden="true"><span lang="en">Problem</span><span lang="es">Problema</span></p>
+      <div class="head"><h2><span lang="en">The problem</span><span lang="es">El problema</span></h2><span class="mono">(01)</span></div>
+      <div class="two reveal">
+        <p class="lead"><span lang="en">Selling websites to local businesses is mostly not design. <em>It is searching, checking and preparing, one by one.</em></span><span lang="es">Vender sitios web a negocios locales casi no es diseñar. <em>Es buscar, revisar y preparar, uno por uno.</em></span></p>
+        <div>
+          <p><span lang="en">Which businesses have no website, or one that is falling apart? What would a good site look like for each of them? How do you write to them without sounding like spam?</span><span lang="es">¿Qué negocios no tienen web, o tienen una que se cae a pedazos? ¿Cómo sería un buen sitio para cada uno? ¿Cómo les escribís sin sonar a spam?</span></p>
+          <p><span lang="en">I built a team of agents that does that groundwork, and kept for myself the one thing that matters: deciding what goes out.</span><span lang="es">Armé un equipo de agentes que hace ese trabajo de base, y me quedé con lo único que importa: decidir qué sale.</span></p>
+          <div class="tags"><span class="tag"><span lang="en">Lead search</span><span lang="es">Búsqueda de clientes</span></span><span class="tag"><span lang="en">Website demos</span><span lang="es">Demos de sitio</span></span><span class="tag"><span lang="en">First message</span><span lang="es">Primer mensaje</span></span><span class="tag"><span lang="en">Human approval</span><span lang="es">Aprobación humana</span></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <p class="ghost" aria-hidden="true"><span lang="en">Team</span><span lang="es">Equipo</span></p>
+      <div class="head"><h2><span lang="en">Six agents, one desk each</span><span lang="es">Seis agentes, un escritorio cada uno</span></h2><span class="mono">(02)</span></div>
+      <ul class="verd">
+        <li class="reveal"><span class="n mono">01</span><b><span lang="en">Analyst</span><span lang="es">Analista</span></b><p><span lang="en">Reads each business, its website and its socials, and writes the copy for its demo.</span><span lang="es">Lee cada negocio, su web y sus redes, y escribe los textos de su demo.</span></p></li>
+        <li class="reveal"><span class="n mono">02</span><b><span lang="en">Designer</span><span lang="es">Diseñador</span></b><p><span lang="en">Designs templates by trade and style, and turns each lead into a ready-to-show demo.</span><span lang="es">Diseña plantillas por rubro y estilo, y convierte cada negocio en una demo lista para mostrar.</span></p></li>
+        <li class="reveal"><span class="n mono">03</span><b><span lang="en">Messenger</span><span lang="es">Comunicador</span></b><p><span lang="en">Drafts the first WhatsApp message, one by one, never in bulk.</span><span lang="es">Redacta el primer mensaje de WhatsApp, uno por uno, nunca masivo.</span></p></li>
+        <li class="reveal"><span class="n mono">04</span><b><span lang="en">Supervisor</span><span lang="es">Encargado</span></b><p><span lang="en">Watches for stuck tasks and the AI quota, and reviews new skills before they are installed.</span><span lang="es">Vigila tareas trabadas y la cuota de IA, y revisa las skills nuevas antes de instalarlas.</span></p></li>
+        <li class="reveal"><span class="n mono">05</span><b><span lang="en">Collector</span><span lang="es">Cobrador</span></b><p><span lang="en">Keeps track of payments and reminds me who owes what. It never moves money.</span><span lang="es">Lleva los cobros y me recuerda quién debe qué. Nunca mueve plata.</span></p></li>
+        <li class="reveal"><span class="n mono">06</span><b>Hosting</b><p><span lang="en">Prepares each client's final site for publishing, again behind my approval.</span><span lang="es">Prepara el sitio final de cada cliente para publicarlo, otra vez con mi aprobación.</span></p></li>
+      </ul>
+      <div class="gal">
+        <figure class="a reveal"><div class="img"><img src="assets/proyectos/agent-village/bandeja.webp" alt="Inbox with two requests waiting for approval: publishing a demo and sending a WhatsApp message" data-i18n-attr="alt" data-en-alt="Inbox with two requests waiting for approval: publishing a demo and sending a WhatsApp message" data-es-alt="Bandeja con dos pedidos esperando aprobación: publicar una demo y mandar un mensaje de WhatsApp" width="1440" height="900" loading="lazy"></div>
+          <figcaption><span class="mono">Fig. 1</span><span><span lang="en">The inbox: every message and every publication waits here for my click. Approve or reject, nothing in between.</span><span lang="es">La bandeja: cada mensaje y cada publicación espera acá mi clic. Aprobar o rechazar, nada en el medio.</span></span></figcaption></figure>
+        <figure class="b reveal"><div class="img"><img src="assets/proyectos/agent-village/taller.webp" alt="Workshop window to commission a template by trade, style and format" data-i18n-attr="alt" data-en-alt="Workshop window to commission a template by trade, style and format" data-es-alt="Ventana del Taller para encargar una plantilla por rubro, estética y formato" width="1440" height="900" loading="lazy"></div>
+          <figcaption><span class="mono">Fig. 2</span><span><span lang="en">Workshop: I commission a template by trade and style; the Designer builds it once.</span><span lang="es">Taller: encargo una plantilla por rubro y estética; el Diseñador la arma una sola vez.</span></span></figcaption></figure>
+        <figure class="c reveal"><div class="img"><img src="assets/proyectos/agent-village/demo.webp" alt="Demo website for a made-up dental clinic with a booking button" data-i18n-attr="alt" data-en-alt="Demo website for a made-up dental clinic with a booking button" data-es-alt="Demo de sitio para un consultorio odontológico inventado con botón para pedir turno" width="1440" height="900" loading="lazy"></div>
+          <figcaption><span class="mono">Fig. 3</span><span><span lang="en">A demo for a made-up dental clinic, with a banner that says it is a proposal, not the official site.</span><span lang="es">Una demo para un consultorio inventado, con una franja que aclara que es una propuesta y no el sitio oficial.</span></span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <p class="ghost" aria-hidden="true"><span lang="en">Features</span><span lang="es">Funciones</span></p>
+      <div class="head"><h2><span lang="en">An office you can see</span><span lang="es">Una oficina que se ve</span></h2><span class="mono">(03)</span></div>
+      <div class="feat">
+        <div class="reveal"><h3><span lang="en">A 3D house as the dashboard</span><span lang="es">Una casa 3D como panel</span></h3><p><span lang="en">Each agent works at its desk; you see who is busy, stuck or waiting for you at a glance.</span><span lang="es">Cada agente trabaja en su escritorio: de un vistazo ves quién está ocupado, trabado o esperándote.</span></p></div>
+        <div class="reveal"><h3><span lang="en">Map of local businesses</span><span lang="es">Mapa de negocios</span></h3><p><span lang="en">Open map data, filtered by trade and distance, with each website checked for being missing or outdated.</span><span lang="es">Datos abiertos de mapas, filtrados por rubro y distancia, con la web de cada uno revisada: si no tiene o está vieja.</span></p></div>
+        <div class="reveal"><h3><span lang="en">Night shift</span><span lang="es">Turno noche</span></h3><p><span lang="en">A production mode that works through the queue and stops before using up the AI quota, with a report in the morning.</span><span lang="es">Un modo producción que avanza con la cola y frena antes de agotar la cuota de IA, con un informe a la mañana.</span></p></div>
+        <div class="reveal"><h3><span lang="en">Equippable skills</span><span lang="es">Skills equipables</span></h3><p><span lang="en">Agents gain skills from a store; each one is reviewed before install and only its text is copied, never code.</span><span lang="es">Los agentes suman skills desde una tienda; cada una se revisa antes de instalarla y solo se copia su texto, nunca código.</span></p></div>
+        <div class="reveal"><h3><span lang="en">Visit mode on the phone</span><span lang="es">Modo visita en el celular</span></h3><p><span lang="en">A route for in-person visits that works offline and syncs back when it is on Wi-Fi again.</span><span lang="es">Una ruta para visitas en persona que funciona sin internet y se sincroniza al volver al Wi-Fi.</span></p></div>
+        <div class="reveal"><h3><span lang="en">Everything is logged</span><span lang="es">Todo queda registrado</span></h3><p><span lang="en">Every run, step, duration, cost and error, so the system can be measured, not guessed.</span><span lang="es">Cada tarea, paso, duración, costo y error, para medir el sistema en vez de adivinarlo.</span></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <p class="ghost" aria-hidden="true"><span lang="en">System</span><span lang="es">Sistema</span></p>
+      <div class="head"><h2><span lang="en">Agents prepare, I decide</span><span lang="es">Los agentes preparan, yo decido</span></h2><span class="mono">(04)</span></div>
+      <div class="two reveal">
+        <p class="lead"><span lang="en">Every road leads to <em>one inbox and one click.</em></span><span lang="es">Todos los caminos terminan en <em>una bandeja y un clic.</em></span></p>
+        <p><span lang="en">The agents can search, read, design and write as much as they want. Anything that touches the outside world, like sending a message, publishing a site or charging a client, stops at the inbox until I approve it.</span><span lang="es">Los agentes pueden buscar, leer, diseñar y escribir todo lo que quieran. Cualquier cosa que toque el mundo de afuera, como mandar un mensaje, publicar un sitio o cobrarle a un cliente, se frena en la bandeja hasta que yo la apruebe.</span></p>
+      </div>
+      <div class="flow reveal" role="img" aria-label="Searching, analyzing, building demos and drafting messages all end in the inbox; only after my approval does a message go out, a demo get published, a payment get logged or a site go live." data-i18n-attr="aria-label" data-en-aria-label="Searching, analyzing, building demos and drafting messages all end in the inbox; only after my approval does a message go out, a demo get published, a payment get logged or a site go live." data-es-aria-label="Buscar, analizar, armar demos y redactar mensajes terminan en la bandeja; recién con mi aprobación sale un mensaje, se publica una demo, se registra un cobro o se sube un sitio.">
+        <div class="col"><span class="box"><span lang="en">Find businesses</span><span lang="es">Buscar negocios</span></span><span class="box"><span lang="en">Check their website</span><span lang="es">Revisar su web</span></span><span class="box"><span lang="en">Build the demo</span><span lang="es">Armar la demo</span></span><span class="box"><span lang="en">Draft the message</span><span lang="es">Redactar el mensaje</span></span><span class="box ai"><span lang="en">Code → local AI → Claude</span><span lang="es">Código → IA local → Claude</span></span></div>
+        <span class="arrow" aria-hidden="true"><i></i></span>
+        <span class="box key"><span lang="en">Inbox · my click</span><span lang="es">Bandeja · mi clic</span></span>
+        <span class="arrow" aria-hidden="true"><i style="animation-delay:.8s"></i></span>
+        <div class="outs"><span><i style="background:var(--ember)"></i><span lang="en">Message sent by me</span><span lang="es">Mensaje que mando yo</span></span><span><i style="background:var(--ember)"></i><span lang="en">Demo published</span><span lang="es">Demo publicada</span></span><span><i style="background:var(--ember)"></i><span lang="en">Payment logged</span><span lang="es">Cobro registrado</span></span><span><i style="background:var(--ember)"></i><span lang="en">Site online</span><span lang="es">Sitio online</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <p class="ghost" aria-hidden="true"><span lang="en">Decisions</span><span lang="es">Decisiones</span></p>
+      <div class="head"><h2><span lang="en">The decisions that shaped it</span><span lang="es">Las decisiones que lo definieron</span></h2><span class="mono">(05)</span></div>
+      <ol class="dec">
+        <li class="reveal"><span class="n mono">D.01</span><div><h3><span lang="en">Approval lives in code, not in a prompt</span><span lang="es">La aprobación vive en el código, no en un prompt</span></h3><p><span lang="en">Telling a model "ask before sending" is not a guarantee. Every outside action is a task that stops in a waiting-for-approval state with its own record, and only my click moves it forward.</span><span lang="es">Decirle a un modelo "preguntá antes de mandar" no es una garantía. Cada acción hacia afuera es una tarea que se frena en un estado de espera con su propio registro, y solo mi clic la hace avanzar.</span></p></div><div class="res"><b>0</b><span><span lang="en">outside actions without my click</span><span lang="es">acciones hacia afuera sin mi clic</span></span></div></li>
+        <li class="reveal"><span class="n mono">D.02</span><div><h3><span lang="en">The cheapest brain that can do the job</span><span lang="es">El cerebro más barato que alcance</span></h3><p><span lang="en">Plain code when rules are enough, a local model for simple reading and classifying, and Claude only where judgment is needed. Each task is routed to the cheapest option that passes.</span><span lang="es">Código común cuando alcanzan las reglas, un modelo local para leer y clasificar lo simple, y Claude solo donde hace falta criterio. Cada tarea va al cerebro más barato que la resuelve.</span></p></div><div class="res"><b>3</b><span><span lang="en">brains: code, local AI and Claude</span><span lang="es">cerebros: código, IA local y Claude</span></span></div></li>
+        <li class="reveal"><span class="n mono">D.03</span><div><h3><span lang="en">Design once, fill many times</span><span lang="es">Diseñar una vez, rellenar muchas</span></h3><p><span lang="en">Asking a top model for a full site per business would burn the quota. Instead, Opus designs one template per trade and style, with holes for the data, and plain code fills it for each business.</span><span lang="es">Pedirle a un modelo grande un sitio entero por negocio agotaría la cuota. En cambio, Opus diseña una plantilla por rubro y estética, con huecos para los datos, y código común la rellena para cada negocio.</span></p></div><div class="res"><b>0<span class="dot">%</span></b><span><span lang="en">AI quota spent per extra demo</span><span lang="es">de cuota de IA por cada demo extra</span></span></div></li>
+        <li class="reveal"><span class="n mono">D.04</span><div><h3><span lang="en">One subscription, nothing else</span><span lang="es">Una suscripción, nada más</span></h3><p><span lang="en">The whole system runs on a single Claude subscription: open map data, a local model, my own computer and free hosting for the demos. Nothing else that can charge a card.</span><span lang="es">Todo el sistema corre con una sola suscripción de Claude: datos abiertos de mapas, un modelo local, mi propia computadora y hosting gratis para las demos. Nada más que pueda cobrar con tarjeta.</span></p></div><div class="res"><b>1<span class="dot">.</span></b><span><span lang="en">fixed cost: the Claude plan</span><span lang="es">costo fijo: el plan de Claude</span></span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="nums">
+    <div class="wrap">
+      <div class="head" style="border-color:rgba(255,255,255,.14)"><h2 style="color:var(--fog)"><span lang="en">By the numbers</span><span lang="es">En números</span></h2><span class="mono" style="color:rgba(255,255,255,.55)">(06)</span></div>
+      <div class="grid" style="margin-top:36px">
+        <div class="reveal"><b>21k</b><span class="mono"><span lang="en">Local businesses mapped (21,023)</span><span lang="es">Negocios locales en el mapa (21.023)</span></span></div>
+        <div class="reveal"><b data-count="6">6</b><span class="mono"><span lang="en">Agents with their own desk</span><span lang="es">Agentes con escritorio propio</span></span></div>
+        <div class="reveal"><b data-count="173">173</b><span class="mono"><span lang="en">Automated tests</span><span lang="es">Tests automáticos</span></span></div>
+      </div>
+      <div class="tags" style="margin-top:56px"><span class="tag" style="background:var(--fog);color:var(--onyx)">Next.js 16</span><span class="tag" style="background:var(--fog);color:var(--onyx)">React 19</span><span class="tag" style="background:var(--fog);color:var(--onyx)">TypeScript</span><span class="tag" style="background:var(--fog);color:var(--onyx)">Tailwind v4</span><span class="tag" style="background:var(--fog);color:var(--onyx)">PostgreSQL · Drizzle</span><span class="tag" style="background:var(--fog);color:var(--onyx)">pg-boss</span><span class="tag" style="background:var(--fog);color:var(--onyx)">Claude Agent SDK</span><span class="tag" style="background:var(--fog);color:var(--onyx)">Ollama</span><span class="tag" style="background:var(--fog);color:var(--onyx)">Three.js</span><span class="tag" style="background:var(--fog);color:var(--onyx)">Leaflet</span><span class="tag" style="background:var(--fog);color:var(--onyx)">DuckDB</span></div>
+    </div>
+  </section>
+</main>
+
+<footer class="next">
+  <div class="wrap">
+    <span class="mono"><span lang="en">Next project</span><span lang="es">Siguiente proyecto</span></span>
+    <a class="big" href="estudio-bg.html">Estudio B+G <span class="arr" aria-hidden="true">→</span></a>
+    <div class="foot mono"><a href="index.html#trabajos">← <span lang="en">Back to work</span><span lang="es">Volver a trabajos</span></a><span>© 2026 Facundo Biagioni</span></div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  requestAnimationFrame(() => document.body.classList.add('ready'));
+
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal, #frame').forEach(el => io.observe(el));
+
+  // Video: plays only while visible; the button pauses it for good
+  const vid = document.getElementById('vid'), btn = document.getElementById('vbtn');
+  let userPaused = reduce;
+  const es = () => document.documentElement.lang === 'es';
+  const sync = () => btn.textContent = vid.paused ? (es() ? 'Reproducir' : 'Play') : (es() ? 'Pausa' : 'Pause');
+  addEventListener('langchange', sync);
+  vid.addEventListener('play', sync); vid.addEventListener('pause', sync);
+  btn.addEventListener('click', () => { if (vid.paused) { userPaused = false; vid.play(); } else { userPaused = true; vid.pause(); } });
+  new IntersectionObserver(([e]) => { if (e.isIntersecting && !userPaused) vid.play().catch(() => {}); else vid.pause(); }, { threshold: 0.25 }).observe(vid);
+  sync();
+
+  // Count-up numbers
+  const cio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    cio.unobserve(e.target);
+    if (reduce) return;
+    const el = e.target, end = +el.dataset.count, pre = el.dataset.prefix || '', t0 = performance.now();
+    const step = t => { const k = Math.min(1, (t - t0) / 1400); el.textContent = pre + Math.round(end * (1 - Math.pow(1 - k, 3))).toLocaleString(es() ? 'es-AR' : 'en-US'); if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  }), { threshold: 0.6 });
+  document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+  const fmtAll = () => document.querySelectorAll('[data-count]').forEach(el => el.textContent = (el.dataset.prefix || '') + (+el.dataset.count).toLocaleString(es() ? 'es-AR' : 'en-US'));
+  addEventListener('langchange', fmtAll); fmtAll();
+})();
+</script>
+<script src="assets/i18n.js"></script>
+</body>
+</html>
