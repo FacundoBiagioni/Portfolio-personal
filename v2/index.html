@@ -1,18 +1,24 @@
 <!doctype html>
-<html lang="es-AR">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Facundo Biagioni · Desarrollador frontend</title>
-<meta name="description" content="Facundo Biagioni, desarrollador frontend en La Plata. Interfaces con detalle y sistemas de agentes de IA con aprobación humana.">
-<meta property="og:title" content="Facundo Biagioni · Desarrollador frontend">
-<meta property="og:description" content="Interfaces que se sienten vivas y sistemas que trabajan solos.">
+<script>document.documentElement.lang = (function () { try { return localStorage.getItem('fb-lang') === 'es' ? 'es' : 'en'; } catch (e) { return 'en'; } })();</script>
+<title data-en="Facundo Biagioni · Frontend developer" data-es="Facundo Biagioni · Desarrollador frontend">Facundo Biagioni · Frontend developer</title>
+<meta name="description" content="Facundo Biagioni, frontend developer in La Plata, Argentina. Detailed interfaces and AI agent systems with human approval.">
+<meta property="og:title" content="Facundo Biagioni · Frontend developer">
+<meta property="og:description" content="Interfaces that feel alive and systems that work on their own.">
 <meta property="og:image" content="../assets/foto.jpg">
 <meta name="theme-color" content="#161616">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100..900&family=Inter+Tight:wght@500&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
+  /* language: both versions live in the HTML; only the active one shows */
+  html[lang="en"] [lang="es"], html[lang="es"] [lang="en"] { display: none !important; }
+  .lang { cursor: pointer; }
+  .lang .l-en, .lang .l-es { opacity: .45; transition: opacity .2s; }
+  html[lang="en"] .lang .l-en, html[lang="es"] .lang .l-es { opacity: 1; }
   :root {
     --ember: #ff6436;
     --onyx: #161616;
@@ -44,6 +50,9 @@
   nav .links { display: flex; gap: 6px; flex-wrap: wrap; }
   .pillnav { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 7px 14px; border-radius: 9999px; border: 1px solid rgba(255,255,255,.35); font: 500 13px/1 var(--mono); text-transform: uppercase; white-space: nowrap; transition: background-color .3s var(--in), color .3s var(--in); }
   .pillnav:hover { background: var(--white); color: var(--onyx); }
+  button.pillnav { background: transparent; color: inherit; }
+  .cvbtn { display: inline-flex; align-items: center; gap: 8px; margin-top: 28px; padding: 10px 16px; border-radius: 9999px; background: var(--onyx); color: var(--fog); font: 500 13px/1 var(--mono); text-transform: uppercase; transition: background-color .3s var(--in); }
+  .cvbtn:hover { background: var(--ember); color: var(--white); }
   @media (max-width: 640px) { nav .links .hide-sm { display: none; } }
 
   /* hero */
@@ -130,20 +139,22 @@
 </style>
 </head>
 <body>
-<a class="skip" href="#trabajos">Saltar al contenido</a>
+<a class="skip" href="#trabajos"><span lang="en">Skip to content</span><span lang="es">Saltar al contenido</span></a>
 
-<nav aria-label="Principal">
+<nav aria-label="Main">
   <a class="pillnav" href="#">• F/B</a>
   <div class="links">
-    <a class="pillnav" href="#trabajos">+ Trabajos</a>
-    <a class="pillnav hide-sm" href="#sobre-mi">+ Sobre mí</a>
-    <a class="pillnav" href="#contacto">+ Contacto</a>
+    <a class="pillnav" href="#trabajos">+ <span lang="en">Work</span><span lang="es">Trabajos</span></a>
+    <a class="pillnav hide-sm" href="#sobre-mi">+ <span lang="en">About</span><span lang="es">Sobre mí</span></a>
+    <a class="pillnav hide-sm" href="#contacto">+ <span lang="en">Contact</span><span lang="es">Contacto</span></a>
+    <a class="pillnav hide-sm" href="../assets/cv/cv-facundo-biagioni-es.pdf" download data-cv>+ CV</a>
+    <button class="pillnav lang" type="button" data-lang-toggle><span class="l-en">EN</span>/<span class="l-es">ES</span></button>
   </div>
 </nav>
 
 <header class="hero">
   <div class="meta-row mono">
-    <span class="live"><i aria-hidden="true"></i>Disponible · 2026</span>
+    <span class="live"><i aria-hidden="true"></i><span lang="en">Available</span><span lang="es">Disponible</span> · 2026</span>
     <span>La Plata, AR · 34.92°S 57.95°W</span>
     <span id="clock" aria-live="off">--:--</span>
   </div>
@@ -152,35 +163,35 @@
     <span class="line"><span>Biagioni</span></span>
   </h1>
   <div class="hero-foot">
-    <p>Desarrollador frontend. Construyo interfaces que se sienten vivas y sistemas de agentes que trabajan solos, pero nunca sin permiso.</p>
-    <span class="mono">Frontend · Motion · Agentes de IA<br>Índice ↓</span>
+    <p><span lang="en">Frontend developer. I build interfaces that feel alive and agent systems that work on their own, but never without permission.</span><span lang="es">Desarrollador frontend. Construyo interfaces que se sienten vivas y sistemas de agentes que trabajan solos, pero nunca sin permiso.</span></p>
+    <span class="mono">Frontend · Motion · <span lang="en">AI agents</span><span lang="es">Agentes de IA</span><br><span lang="en">Index</span><span lang="es">Índice</span> ↓</span>
   </div>
 </header>
 
 <main id="contenido">
   <section id="trabajos">
     <div class="wrap">
-      <p class="ghost" aria-hidden="true">Trabajos</p>
-      <div class="head"><h2>Trabajo seleccionado</h2><span class="mono">04 proyectos</span></div>
+      <p class="ghost" aria-hidden="true"><span lang="en">Work</span><span lang="es">Trabajos</span></p>
+      <div class="head"><h2><span lang="en">Selected work</span><span lang="es">Trabajo seleccionado</span></h2><span class="mono">04 <span lang="en">projects</span><span lang="es">proyectos</span></span></div>
       <ul class="work">
         <li class="reveal"><a href="#" data-card="c1">
           <span class="n mono">(01)</span>
-          <div><h3>Agent Village</h3><p>Un equipo de agentes de IA que encuentra negocios sin web, prepara una demo y un mensaje, y espera mi aprobación con un clic. Una casa 3D low poly con HUD de juego.</p></div>
+          <div><h3>Agent Village</h3><p><span lang="en">A team of AI agents that finds local businesses without a website, prepares a demo and a message, and waits for my one-click approval. A low-poly 3D house with a game HUD.</span><span lang="es">Un equipo de agentes de IA que encuentra negocios sin web, prepara una demo y un mensaje, y espera mi aprobación con un clic. Una casa 3D low poly con HUD de juego.</span></p></div>
           <div class="tags"><span class="tag">Next.js</span><span class="tag">Agent SDK</span><span class="tag">Three.js</span><span class="tag">PostgreSQL</span></div>
         </a></li>
         <li class="reveal"><a href="#" data-card="c2">
           <span class="n mono">(02)</span>
-          <div><h3>Estudio B+G</h3><p>Sitio institucional y portfolio de 15 obras para un estudio de arquitectura de La Plata.</p></div>
+          <div><h3>Estudio B+G</h3><p><span lang="en">Studio website and a 15-project portfolio for an architecture firm in La Plata.</span><span lang="es">Sitio institucional y portfolio de 15 obras para un estudio de arquitectura de La Plata.</span></p></div>
           <div class="tags"><span class="tag">Next.js 16</span><span class="tag">Tailwind v4</span><span class="tag">Framer Motion</span></div>
         </a></li>
         <li class="reveal"><a href="#" data-card="c3">
           <span class="n mono">(03)</span>
-          <div><h3>A. Filgueira</h3><p>Portfolio bilingüe para una artista de arte abstracto: la obra manda.</p></div>
+          <div><h3>A. Filgueira</h3><p><span lang="en">Bilingual portfolio for an abstract artist: the work comes first.</span><span lang="es">Portfolio bilingüe para una artista de arte abstracto: la obra manda.</span></p></div>
           <div class="tags"><span class="tag">Next.js</span><span class="tag">next-intl</span></div>
         </a></li>
         <li class="reveal"><a href="can-i-100-it.html" data-card="c4">
           <span class="n mono">(04)</span>
-          <div><h3>Can i 100% it?</h3><p>Una sola búsqueda para saber si todavía se puede conseguir el 100% de los logros de un juego de Steam.</p></div>
+          <div><h3>Can i 100% it?</h3><p><span lang="en">One search to find out whether you can still get 100% of a Steam game's achievements.</span><span lang="es">Una sola búsqueda para saber si todavía se puede conseguir el 100% de los logros de un juego de Steam.</span></p></div>
           <div class="tags"><span class="tag">Next.js 16</span><span class="tag">Gemini</span><span class="tag">PostgreSQL</span></div>
         </a></li>
       </ul>
@@ -189,19 +200,20 @@
 
   <section id="sobre-mi">
     <div class="wrap">
-      <p class="ghost" aria-hidden="true">Perfil</p>
-      <div class="head"><h2>Sobre mí</h2><span class="mono">Índice 02</span></div>
+      <p class="ghost" aria-hidden="true"><span lang="en">Profile</span><span lang="es">Perfil</span></p>
+      <div class="head"><h2><span lang="en">About</span><span lang="es">Sobre mí</span></h2><span class="mono"><span lang="en">Index</span><span lang="es">Índice</span> 02</span></div>
       <div class="about">
         <figure class="photo reveal">
-          <img src="../assets/foto.webp" alt="Retrato de Facundo Biagioni" width="900" height="1197" loading="lazy">
+          <img src="../assets/foto.webp" alt="Portrait of Facundo Biagioni" data-i18n-attr="alt" data-en-alt="Portrait of Facundo Biagioni" data-es-alt="Retrato de Facundo Biagioni" width="900" height="1197" loading="lazy">
           <figcaption class="mono">FB · La Plata</figcaption>
         </figure>
         <div class="reveal">
-          <p class="bio">Me obsesionan los detalles que casi nadie nota pero todos sienten. <em>El peso de una tipografía, el ritmo de una animación, una página que carga rápido en un celular viejo.</em> Hoy los combino con agentes de IA que trabajan solos y nunca actúan sin una persona que apruebe.</p>
+          <p class="bio"><span lang="en">I'm obsessed with the details almost nobody notices but everyone feels. <em>The weight of a typeface, the rhythm of an animation, a page that loads fast on an old phone.</em> Today I pair them with AI agents that work on their own and never act without a person's approval.</span><span lang="es">Me obsesionan los detalles que casi nadie nota pero todos sienten. <em>El peso de una tipografía, el ritmo de una animación, una página que carga rápido en un celular viejo.</em> Hoy los combino con agentes de IA que trabajan solos y nunca actúan sin una persona que apruebe.</span></p>
           <div class="cols">
-            <div><span class="mono">Hago</span><ul><li>Interfaces en React y Next.js</li><li>Motion y microinteracciones</li><li>Sistemas de agentes con Claude</li><li>Escenas 3D livianas</li></ul></div>
-            <div><span class="mono">Con</span><ul><li>TypeScript · Tailwind</li><li>Framer Motion · Three.js</li><li>PostgreSQL · Drizzle</li><li>Vercel · Cloudflare</li></ul></div>
+            <div><span class="mono"><span lang="en">I build</span><span lang="es">Hago</span></span><ul><li><span lang="en">Interfaces in React and Next.js</span><span lang="es">Interfaces en React y Next.js</span></li><li><span lang="en">Motion and micro-interactions</span><span lang="es">Motion y microinteracciones</span></li><li><span lang="en">Agent systems with Claude</span><span lang="es">Sistemas de agentes con Claude</span></li><li><span lang="en">Lightweight 3D scenes</span><span lang="es">Escenas 3D livianas</span></li></ul></div>
+            <div><span class="mono"><span lang="en">With</span><span lang="es">Con</span></span><ul><li>TypeScript · Tailwind</li><li>Framer Motion · Three.js</li><li>PostgreSQL · Drizzle</li><li>Vercel · Cloudflare</li></ul></div>
           </div>
+          <a class="cvbtn" href="../assets/cv/cv-facundo-biagioni-es.pdf" download data-cv>↓ <span lang="en">Download CV</span><span lang="es">Descargar CV</span></a>
         </div>
       </div>
     </div>
@@ -210,13 +222,14 @@
 
 <footer class="contact" id="contacto">
   <div class="wrap">
-    <span class="mono" style="color: rgba(255,255,255,.55)">¿Armamos algo? Escribime</span>
-    <a class="big" style="margin-top: 28px" href="mailto:facundobiagioni@gmail.com">Hola@<br>Facundo</a>
+    <span class="mono" style="color: rgba(255,255,255,.55)"><span lang="en">Let's build something. Write to me</span><span lang="es">¿Armamos algo? Escribime</span></span>
+    <a class="big" style="margin-top: 28px" href="mailto:facundobiagioni@gmail.com"><span lang="en">Hello@</span><span lang="es">Hola@</span><br>Facundo</a>
     <div class="row">
       <a class="pillnav" href="https://wa.me/5492213584349" target="_blank" rel="noopener">+ WhatsApp</a>
       <a class="pillnav" href="https://www.linkedin.com/in/facundobiagioni/" target="_blank" rel="noopener">+ LinkedIn</a>
       <a class="pillnav" href="https://github.com/FacundoBiagioni" target="_blank" rel="noopener">+ GitHub</a>
       <a class="pillnav" href="https://www.instagram.com/facu.biagio" target="_blank" rel="noopener">+ Instagram</a>
+      <a class="pillnav" href="../assets/cv/cv-facundo-biagioni-es.pdf" download data-cv>+ CV</a>
     </div>
     <div class="foot mono"><span>© 2026 Facundo Biagioni</span><span>facundobiagioni@gmail.com</span></div>
   </div>
@@ -236,8 +249,8 @@
 
   // La Plata local time
   const clock = document.getElementById('clock');
-  const tick = () => clock.textContent = new Intl.DateTimeFormat('es-AR', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Argentina/Buenos_Aires' }).format(new Date()) + ' ART';
-  tick(); setInterval(tick, 30000);
+  const tick = () => clock.textContent = new Intl.DateTimeFormat(document.documentElement.lang === 'es' ? 'es-AR' : 'en-US', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Argentina/Buenos_Aires' }).format(new Date()) + ' ART';
+  tick(); setInterval(tick, 30000); addEventListener('langchange', tick);
 
   // Hero name: weight follows scroll, thinning as it leaves
   const h1 = document.querySelector('h1');
@@ -267,5 +280,6 @@
   }
 })();
 </script>
+<script src="../assets/i18n.js"></script>
 </body>
 </html>

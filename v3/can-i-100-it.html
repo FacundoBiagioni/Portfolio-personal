@@ -1,18 +1,24 @@
 <!doctype html>
-<html lang="es-AR">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Can i 100% it? · Facundo Biagioni</title>
-<meta name="description" content="Caso de estudio: una sola búsqueda para saber si todavía se puede conseguir el 100% de los logros de un juego de Steam.">
-<meta property="og:title" content="Can i 100% it? · Caso de estudio">
-<meta property="og:description" content="Una sola búsqueda para saber si todavía se puede conseguir el 100% de los logros de un juego de Steam.">
+<script>document.documentElement.lang = (function () { try { return localStorage.getItem('fb-lang') === 'es' ? 'es' : 'en'; } catch (e) { return 'en'; } })();</script>
+<title data-en="Can i 100% it? · Facundo Biagioni" data-es="Can i 100% it? · Facundo Biagioni">Can i 100% it? · Facundo Biagioni</title>
+<meta name="description" content="Case study: one search to find out whether you can still get 100% of a Steam game's achievements.">
+<meta property="og:title" content="Can i 100% it? · Facundo Biagioni">
+<meta property="og:description" content="One search to find out whether you can still get 100% of a Steam game's achievements.">
 <meta property="og:image" content="../assets/proyectos/can-i-100-it/poster.webp">
 <meta name="theme-color" content="#000000">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
+  /* language: both versions live in the HTML; only the active one shows */
+  html[lang="en"] [lang="es"], html[lang="es"] [lang="en"] { display: none !important; }
+  .lang { cursor: pointer; }
+  .lang .l-en, .lang .l-es { opacity: .45; transition: opacity .2s; }
+  html[lang="en"] .lang .l-en, html[lang="es"] .lang .l-es { opacity: 1; }
   :root {
     --black: #000; --white: #fff; --card: #2f2f2f; --edge: #5a5a5a; --muted: #9a9a9a; --rule: #dddddd;
     --umber: #34281d; --earth: #352b24; --copper: #6e3822;
@@ -46,6 +52,8 @@
   .btn.ghost { background: transparent; color: var(--white); box-shadow: inset 0 0 0 2px rgba(255,255,255,.22); }
   .btn.ghost:hover { box-shadow: inset 0 0 0 2px rgba(255,255,255,.7); }
   nav .btn { height: 40px; padding: 0 16px; }
+  nav .right { display: flex; gap: 8px; align-items: center; }
+  button.btn { border: 0; }
 
   /* opening */
   .open { position: relative; padding: 168px 0 0; overflow: hidden; }
@@ -212,79 +220,79 @@
 </style>
 </head>
 <body>
-<a class="skip" href="#contenido">Saltar al contenido</a>
+<a class="skip" href="#contenido"><span lang="en">Skip to content</span><span lang="es">Saltar al contenido</span></a>
 
-<nav aria-label="Principal">
+<nav aria-label="Main">
   <a class="brand" href="index.html">Facundo <span class="serif">Biagioni</span></a>
   <ul>
-    <li><a href="index.html#trabajos">Trabajos</a></li>
-    <li><a href="index.html#sobre-mi">Sobre mí</a></li>
-    <li><a href="index.html#contacto">Contacto</a></li>
+    <li><a href="index.html#trabajos"><span lang="en">Work</span><span lang="es">Trabajos</span></a></li>
+    <li><a href="index.html#sobre-mi"><span lang="en">About</span><span lang="es">Sobre mí</span></a></li>
+    <li><a href="index.html#contacto"><span lang="en">Contact</span><span lang="es">Contacto</span></a></li>
   </ul>
-  <a class="btn" href="https://wa.me/5492213584349" target="_blank" rel="noopener">Escribime</a>
+  <div class="right"><button class="btn ghost lang" type="button" data-lang-toggle><span class="l-en">EN</span>/<span class="l-es">ES</span></button><a class="btn" href="https://wa.me/5492213584349" target="_blank" rel="noopener"><span lang="en">Get in touch</span><span lang="es">Escribime</span></a></div>
 </nav>
 
 <header class="open">
   <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="wrap">
-    <p class="crumb"><a href="index.html#trabajos">Trabajos</a><span aria-hidden="true">/</span><span>Caso de estudio</span></p>
+    <p class="crumb"><a href="index.html#trabajos"><span lang="en">Work</span><span lang="es">Trabajos</span></a><span aria-hidden="true">/</span><span><span lang="en">Case study</span><span lang="es">Caso de estudio</span></span></p>
     <h1>Can i 100% <span class="serif">it?</span></h1>
     <div class="intro">
-      <p>Una sola búsqueda para saber si todavía se puede conseguir el 100% de los logros de un juego de Steam, sin pasar una hora entre foros, guías y bases de datos.</p>
+      <p><span lang="en">One search to find out whether you can still get 100% of a Steam game's achievements, without spending an hour across forums, guides and databases.</span><span lang="es">Una sola búsqueda para saber si todavía se puede conseguir el 100% de los logros de un juego de Steam, sin pasar una hora entre foros, guías y bases de datos.</span></p>
       <div class="row">
-        <a class="btn" href="https://can-i-100-it.vercel.app/" target="_blank" rel="noopener">Ver el sitio <span class="arr" aria-hidden="true">↗</span></a>
-        <a class="btn ghost" href="https://github.com/FacundoBiagioni/Can-i-100percent-it" target="_blank" rel="noopener">Ver el código</a>
+        <a class="btn" href="https://can-i-100-it.vercel.app/" target="_blank" rel="noopener"><span lang="en">Visit the site</span><span lang="es">Ver el sitio</span> <span class="arr" aria-hidden="true">↗</span></a>
+        <a class="btn ghost" href="https://github.com/FacundoBiagioni/Can-i-100percent-it" target="_blank" rel="noopener"><span lang="en">View the code</span><span lang="es">Ver el código</span></a>
       </div>
     </div>
     <dl class="meta">
-      <div><dt class="label">Rol</dt><dd style="margin:0"><b>Diseño y desarrollo, solo</b></dd></div>
-      <div><dt class="label">Tipo</dt><dd style="margin:0"><b>Proyecto personal</b></dd></div>
-      <div><dt class="label">Año</dt><dd style="margin:0"><b>2026</b></dd></div>
-      <div><dt class="label">Estado</dt><dd style="margin:0"><b>En línea, en español e inglés</b></dd></div>
+      <div><dt class="label"><span lang="en">Role</span><span lang="es">Rol</span></dt><dd style="margin:0"><b><span lang="en">Design and development, solo</span><span lang="es">Diseño y desarrollo, solo</span></b></dd></div>
+      <div><dt class="label"><span lang="en">Type</span><span lang="es">Tipo</span></dt><dd style="margin:0"><b><span lang="en">Personal project</span><span lang="es">Proyecto personal</span></b></dd></div>
+      <div><dt class="label"><span lang="en">Year</span><span lang="es">Año</span></dt><dd style="margin:0"><b>2026</b></dd></div>
+      <div><dt class="label"><span lang="en">Status</span><span lang="es">Estado</span></dt><dd style="margin:0"><b><span lang="en">Live, in English and Spanish</span><span lang="es">En línea, en español e inglés</span></b></dd></div>
     </dl>
   </div>
 
   <div class="wrap screen-stage">
     <div class="glow" aria-hidden="true"></div>
     <div class="screen" id="screen">
-      <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>can-i-100-it.vercel.app</span><span class="live">En línea</span></div>
-      <video id="vid" src="../assets/proyectos/can-i-100-it/hero.webm" poster="../assets/proyectos/can-i-100-it/poster.webp" muted loop playsinline preload="metadata" aria-label="Recorrido grabado por la portada de Can i 100% it?"></video>
-      <button class="vctl" id="vctl" type="button" aria-label="Pausar video"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><rect x="2" y="1" width="3.5" height="12" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" fill="currentColor"/></svg></button>
+      <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>can-i-100-it.vercel.app</span><span class="live"><span lang="en">Live</span><span lang="es">En línea</span></span></div>
+      <video id="vid" src="../assets/proyectos/can-i-100-it/hero.webm" poster="../assets/proyectos/can-i-100-it/poster.webp" muted loop playsinline preload="metadata" aria-label="Screen recording of the Can i 100% it? home page" data-i18n-attr="aria-label" data-en-aria-label="Screen recording of the Can i 100% it? home page" data-es-aria-label="Recorrido grabado por la portada de Can i 100% it?"></video>
+      <button class="vctl" id="vctl" type="button" aria-label="Pause video"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><rect x="2" y="1" width="3.5" height="12" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" fill="currentColor"/></svg></button>
     </div>
   </div>
 </header>
 
 <main id="contenido">
   <section class="proof wrap reveal">
-    <p>Una pregunta que parece simple y casi nunca lo es: <span class="serif">¿todavía se puede?</span></p>
+    <p><span lang="en">A question that sounds simple and almost never is: <span class="serif">can it still be done?</span></span><span lang="es">Una pregunta que parece simple y casi nunca lo es: <span class="serif">¿todavía se puede?</span></span></p>
     <div class="stats">
-      <div><b data-count="1100" data-prefix="+">+1.100</b><span>juegos analizados</span></div>
-      <div><b data-count="54">54</b><span>ya no se pueden completar</span></div>
-      <div><b data-count="100" data-prefix="~">~100</b><span>juegos nuevos por noche, solos</span></div>
+      <div><b data-count="1100" data-prefix="+">+1.100</b><span><span lang="en">games analyzed</span><span lang="es">juegos analizados</span></span></div>
+      <div><b data-count="54">54</b><span><span lang="en">can no longer be completed</span><span lang="es">ya no se pueden completar</span></span></div>
+      <div><b data-count="100" data-prefix="~">~100</b><span><span lang="en">new games a night, on their own</span><span lang="es">juegos nuevos por noche, solos</span></span></div>
     </div>
   </section>
 
   <section class="white">
     <div class="wrap">
       <div class="pair reveal">
-        <div><span class="label">El problema</span><h2>Investigar un juego antes de jugarlo lleva más que jugarlo</h2></div>
+        <div><span class="label"><span lang="en">The problem</span><span lang="es">El problema</span></span><h2><span lang="en">Researching a game takes longer than playing it</span><span lang="es">Investigar un juego antes de jugarlo lleva más que jugarlo</span></h2></div>
         <div>
-          <p>Para saber si un juego se puede completar al 100% hay que cruzar la tienda de Steam, bases de datos de cazadores de logros, foros y guías. Y muchas veces la respuesta es no.</p>
-          <p>Hay servidores que se apagaron, logros con bugs, logros que se pierden para siempre si te equivocás de decisión y otros que solo existen dentro de un DLC pago.</p>
-          <div class="chips" aria-label="Casos que lo vuelven imposible"><span>Servidores apagados</span><span>Logros con bugs</span><span>Logros perdibles</span><span>DLC pagos</span></div>
+          <p><span lang="en">To know whether a game can be 100%'d you have to cross-check the Steam store, achievement hunter databases, forums and guides. And often the answer is no.</span><span lang="es">Para saber si un juego se puede completar al 100% hay que cruzar la tienda de Steam, bases de datos de cazadores de logros, foros y guías. Y muchas veces la respuesta es no.</span></p>
+          <p><span lang="en">Servers that were shut down, bugged achievements, achievements lost forever after one wrong choice, and others that only exist inside paid DLC.</span><span lang="es">Hay servidores que se apagaron, logros con bugs, logros que se pierden para siempre si te equivocás de decisión y otros que solo existen dentro de un DLC pago.</span></p>
+          <div class="chips"><span><span lang="en">Servers shut down</span><span lang="es">Servidores apagados</span></span><span><span lang="en">Bugged achievements</span><span lang="es">Logros con bugs</span></span><span><span lang="en">Missable achievements</span><span lang="es">Logros perdibles</span></span><span><span lang="en">Paid DLC</span><span lang="es">DLC pagos</span></span></div>
         </div>
       </div>
       <div class="pair reveal">
-        <div><span class="label">La respuesta</span><h2>Escribís el nombre, recibís un <span class="serif">veredicto</span></h2></div>
+        <div><span class="label"><span lang="en">The answer</span><span lang="es">La respuesta</span></span><h2><span lang="en">Type the name, get a <span class="serif">verdict</span></span><span lang="es">Escribís el nombre, recibís un <span class="serif">veredicto</span></span></h2></div>
         <div>
-          <p>Cada juego se cruza con varias fuentes y termina en una de cuatro respuestas, con su nivel de confianza y el porqué. Si algo está mal, cualquiera puede reportarlo.</p>
+          <p><span lang="en">Every game is checked against several sources and lands on one of four answers, with its confidence level and the reason why. If something's wrong, anyone can report it.</span><span lang="es">Cada juego se cruza con varias fuentes y termina en una de cuatro respuestas, con su nivel de confianza y el porqué. Si algo está mal, cualquiera puede reportarlo.</span></p>
         </div>
       </div>
       <div class="verdicts reveal">
-        <div class="v ok"><strong><i aria-hidden="true"></i>100% posible</strong><p>Todos los logros se pueden conseguir hoy.</p></div>
-        <div class="v bad"><strong><i aria-hidden="true"></i>100% imposible</strong><p>Al menos un logro quedó fuera de alcance para siempre.</p></div>
-        <div class="v warn"><strong><i aria-hidden="true"></i>Info insuficiente</strong><p>No hay pruebas suficientes para un lado ni para el otro, y lo dice.</p></div>
-        <div class="v none"><strong><i aria-hidden="true"></i>Sin logros</strong><p>El juego no tiene logros de Steam para conseguir.</p></div>
+        <div class="v ok"><strong><i aria-hidden="true"></i><span lang="en">100% possible</span><span lang="es">100% posible</span></strong><p><span lang="en">Every achievement can be unlocked today.</span><span lang="es">Todos los logros se pueden conseguir hoy.</span></p></div>
+        <div class="v bad"><strong><i aria-hidden="true"></i><span lang="en">100% impossible</span><span lang="es">100% imposible</span></strong><p><span lang="en">At least one achievement is out of reach for good.</span><span lang="es">Al menos un logro quedó fuera de alcance para siempre.</span></p></div>
+        <div class="v warn"><strong><i aria-hidden="true"></i><span lang="en">Not enough info</span><span lang="es">Info insuficiente</span></strong><p><span lang="en">There isn't enough evidence either way, and it says so.</span><span lang="es">No hay pruebas suficientes para un lado ni para el otro, y lo dice.</span></p></div>
+        <div class="v none"><strong><i aria-hidden="true"></i><span lang="en">No achievements</span><span lang="es">Sin logros</span></strong><p><span lang="en">The game has no Steam achievements to unlock.</span><span lang="es">El juego no tiene logros de Steam para conseguir.</span></p></div>
       </div>
     </div>
   </section>
@@ -292,32 +300,32 @@
   <section class="earth">
     <div class="wrap">
       <div class="head reveal">
-        <div><span class="label" style="color:rgba(255,255,255,.6)">Qué resuelve</span><h2>Todo lo que buscarías a mano, en una pantalla</h2></div>
-        <p>El veredicto es lo principal, pero alrededor junta lo que un cazador de logros revisa antes de comprar: cuánto tarda, qué DLC necesita y si está barato.</p>
+        <div><span class="label" style="color:rgba(255,255,255,.6)"><span lang="en">What it solves</span><span lang="es">Qué resuelve</span></span><h2><span lang="en">Everything you'd look up by hand, on one screen</span><span lang="es">Todo lo que buscarías a mano, en una pantalla</span></h2></div>
+        <p><span lang="en">The verdict comes first, but around it sits everything an achievement hunter checks before buying: how long it takes, which DLC it needs and whether it is on sale.</span><span lang="es">El veredicto es lo principal, pero alrededor junta lo que un cazador de logros revisa antes de comprar: cuánto tarda, qué DLC necesita y si está barato.</span></p>
       </div>
       <div class="bento">
         <figure class="shot reveal">
-          <div class="frame"><img src="../assets/proyectos/can-i-100-it/veredicto.webp" alt="Página de Batman: Arkham Origins con el veredicto 100% imposible, el precio y el mínimo histórico" width="1440" height="900" loading="lazy"></div>
-          <figcaption><b>El veredicto de un juego.</b> Arkham Origins: 100% imposible con confianza alta, 11 logros marcados, 1 DLC pago y unas 90 horas para completarlo. Abajo, el precio en tu región y su mayor descuento.</figcaption>
+          <div class="frame"><img src="../assets/proyectos/can-i-100-it/veredicto.webp" alt="Batman: Arkham Origins page with the 100% impossible verdict, its price and its lowest price ever" data-i18n-attr="alt" data-en-alt="Batman: Arkham Origins page with the 100% impossible verdict, its price and its lowest price ever" data-es-alt="Página de Batman: Arkham Origins con el veredicto 100% imposible, el precio y el mínimo histórico" width="1440" height="900" loading="lazy"></div>
+          <figcaption><span lang="en"><b>A game verdict.</b> Arkham Origins: 100% impossible with high confidence, 11 flagged achievements, 1 paid DLC and about 90 hours to finish. Below, the price in your region and its biggest discount.</span><span lang="es"><b>El veredicto de un juego.</b> Arkham Origins: 100% imposible con confianza alta, 11 logros marcados, 1 DLC pago y unas 90 horas para completarlo. Abajo, el precio en tu región y su mayor descuento.</span></figcaption>
         </figure>
         <div class="side">
           <figure class="shot reveal">
-            <div class="frame"><img src="../assets/proyectos/can-i-100-it/biblioteca.webp" alt="Página Biblioteca para revisar todos los juegos de un perfil de Steam" width="1440" height="900" loading="lazy"></div>
-            <figcaption><b>Tu biblioteca entera.</b> Pegás tu perfil de Steam y te dice cuáles de tus juegos ya no se pueden completar.</figcaption>
+            <div class="frame"><img src="../assets/proyectos/can-i-100-it/biblioteca.webp" alt="Library page to check every game on a Steam profile" data-i18n-attr="alt" data-en-alt="Library page to check every game on a Steam profile" data-es-alt="Página Biblioteca para revisar todos los juegos de un perfil de Steam" width="1440" height="900" loading="lazy"></div>
+            <figcaption><span lang="en"><b>Your whole library.</b> Paste your Steam profile and it tells you which of your games can no longer be completed.</span><span lang="es"><b>Tu biblioteca entera.</b> Pegás tu perfil de Steam y te dice cuáles de tus juegos ya no se pueden completar.</span></figcaption>
           </figure>
           <figure class="shot reveal">
-            <div class="frame"><img src="../assets/proyectos/can-i-100-it/listas.webp" alt="Página Listas con juegos agrupados por lo que cuesta el 100%" width="1440" height="900" loading="lazy"></div>
-            <figcaption><b>Listas que crecen solas.</b> Imposibles, fáciles, los más difíciles, con DLC pago y con multijugador.</figcaption>
+            <div class="frame"><img src="../assets/proyectos/can-i-100-it/listas.webp" alt="Lists page with games grouped by what 100% takes" data-i18n-attr="alt" data-en-alt="Lists page with games grouped by what 100% takes" data-es-alt="Página Listas con juegos agrupados por lo que cuesta el 100%" width="1440" height="900" loading="lazy"></div>
+            <figcaption><span lang="en"><b>Lists that grow on their own.</b> Impossible, easy, hardest, paid DLC and multiplayer.</span><span lang="es"><b>Listas que crecen solas.</b> Imposibles, fáciles, los más difíciles, con DLC pago y con multijugador.</span></figcaption>
           </figure>
         </div>
       </div>
       <div class="features">
-        <div class="reveal"><h3>Logros perdibles y con bugs</h3><p>Marcados uno por uno, con la opción de ocultar spoilers activada por defecto.</p></div>
-        <div class="reveal"><h3>DLC pagos</h3><p>Cuáles hacen falta para el 100% y cuánto cuestan en tu tienda.</p></div>
-        <div class="reveal"><h3>Multijugador y servidores</h3><p>Si algún logro pide jugar online y si los servidores siguen vivos.</p></div>
-        <div class="reveal"><h3>Tiempo al 100%</h3><p>Cuánto tardan de verdad los jugadores, no una estimación de marketing.</p></div>
-        <div class="reveal"><h3>Precio y mínimo histórico</h3><p>Precios de tu región y el mayor descuento que tuvo en Steam.</p></div>
-        <div class="reveal"><h3>Seguir juegos, sin cuenta</h3><p>Te avisa si cambia el veredicto o si llega a su precio más bajo.</p></div>
+        <div class="reveal"><h3><span lang="en">Missable and bugged achievements</span><span lang="es">Logros perdibles y con bugs</span></h3><p><span lang="en">Flagged one by one, with spoilers hidden by default.</span><span lang="es">Marcados uno por uno, con la opción de ocultar spoilers activada por defecto.</span></p></div>
+        <div class="reveal"><h3><span lang="en">Paid DLC</span><span lang="es">DLC pagos</span></h3><p><span lang="en">Which ones 100% requires and what they cost in your store.</span><span lang="es">Cuáles hacen falta para el 100% y cuánto cuestan en tu tienda.</span></p></div>
+        <div class="reveal"><h3><span lang="en">Multiplayer and servers</span><span lang="es">Multijugador y servidores</span></h3><p><span lang="en">Whether any achievement needs online play and whether the servers are still up.</span><span lang="es">Si algún logro pide jugar online y si los servidores siguen vivos.</span></p></div>
+        <div class="reveal"><h3><span lang="en">Time to 100%</span><span lang="es">Tiempo al 100%</span></h3><p><span lang="en">How long players really take, not a marketing estimate.</span><span lang="es">Cuánto tardan de verdad los jugadores, no una estimación de marketing.</span></p></div>
+        <div class="reveal"><h3><span lang="en">Price and lowest ever</span><span lang="es">Precio y mínimo histórico</span></h3><p><span lang="en">Prices for your region and its biggest discount on Steam.</span><span lang="es">Precios de tu región y el mayor descuento que tuvo en Steam.</span></p></div>
+        <div class="reveal"><h3><span lang="en">Follow games, no account</span><span lang="es">Seguir juegos, sin cuenta</span></h3><p><span lang="en">It flags when a verdict changes or a game hits its lowest price.</span><span lang="es">Te avisa si cambia el veredicto o si llega a su precio más bajo.</span></p></div>
       </div>
     </div>
   </section>
@@ -325,20 +333,20 @@
   <section class="pipe">
     <div class="wrap">
       <div class="head reveal">
-        <div><span class="label">Cómo funciona</span><h2>Los datos deciden primero, la IA solo completa</h2></div>
-        <p>Los datos curados por cazadores de logros tienen la última palabra. La IA lee hilos de foros solamente cuando ninguna fuente curada cubre el caso, y el resultado lleva su nivel de confianza.</p>
+        <div><span class="label"><span lang="en">How it works</span><span lang="es">Cómo funciona</span></span><h2><span lang="en">Data decides first, AI only fills the gaps</span><span lang="es">Los datos deciden primero, la IA solo completa</span></h2></div>
+        <p><span lang="en">Data curated by achievement hunters has the final say. AI reads forum threads only when no curated source covers the case, and the result carries its confidence level.</span><span lang="es">Los datos curados por cazadores de logros tienen la última palabra. La IA lee hilos de foros solamente cuando ninguna fuente curada cubre el caso, y el resultado lleva su nivel de confianza.</span></p>
       </div>
-      <div class="diagram reveal" id="diagram" role="img" aria-label="Diagrama: Steam, SteamHunters, Achievement Scouts, IsThereAnyDeal y reportes de usuarios alimentan las reglas; una IA lee foros solo si faltan datos; las reglas producen uno de cuatro veredictos.">
+      <div class="diagram reveal" id="diagram" role="img" aria-label="Diagram: Steam, SteamHunters, Achievement Scouts, IsThereAnyDeal and user reports feed the rules; an AI reads forums only when data is missing; the rules produce one of four verdicts." data-i18n-attr="aria-label" data-en-aria-label="Diagram: Steam, SteamHunters, Achievement Scouts, IsThereAnyDeal and user reports feed the rules; an AI reads forums only when data is missing; the rules produce one of four verdicts." data-es-aria-label="Diagrama: Steam, SteamHunters, Achievement Scouts, IsThereAnyDeal y reportes de usuarios alimentan las reglas; una IA lee foros solo si faltan datos; las reglas producen uno de cuatro veredictos.">
         <svg viewBox="0 0 1000 380" aria-hidden="true">
           <g class="node"><rect x="10" y="20" width="190" height="40" rx="4"/><text x="26" y="45">Steam</text></g>
           <g class="node"><rect x="10" y="85" width="190" height="40" rx="4"/><text x="26" y="110">SteamHunters</text></g>
           <g class="node"><rect x="10" y="150" width="190" height="40" rx="4"/><text x="26" y="175">Achievement Scouts</text></g>
           <g class="node"><rect x="10" y="215" width="190" height="40" rx="4"/><text x="26" y="240">IsThereAnyDeal</text></g>
-          <g class="node"><rect x="10" y="280" width="190" height="40" rx="4"/><text x="26" y="305">Reportes de usuarios</text></g>
-          <g class="node ai"><rect x="330" y="300" width="200" height="40" rx="4"/><text x="346" y="325">IA: foros, guías, wiki</text></g>
-          <text class="note" x="330" y="360">solo si nada curado lo cubre</text>
-          <g class="node key"><rect x="420" y="150" width="160" height="48" rx="4"/><text x="472" y="179">Reglas</text></g>
-          <g class="node"><rect x="650" y="150" width="140" height="48" rx="4"/><text x="668" y="179">Confianza</text></g>
+          <g class="node"><rect x="10" y="280" width="190" height="40" rx="4"/><text x="26" y="305"><tspan lang="en">User reports</tspan><tspan lang="es">Reportes de usuarios</tspan></text></g>
+          <g class="node ai"><rect x="330" y="300" width="200" height="40" rx="4"/><text x="346" y="325"><tspan lang="en">AI: forums, guides, wiki</tspan><tspan lang="es">IA: foros, guías, wiki</tspan></text></g>
+          <text class="note" x="330" y="360"><tspan lang="en">only if nothing curated covers it</tspan><tspan lang="es">solo si nada curado lo cubre</tspan></text>
+          <g class="node key"><rect x="420" y="150" width="160" height="48" rx="4"/><text x="472" y="179"><tspan lang="en">Rules</tspan><tspan lang="es">Reglas</tspan></text></g>
+          <g class="node"><rect x="650" y="150" width="140" height="48" rx="4"/><text x="668" y="179"><tspan lang="en">Confidence</tspan><tspan lang="es">Confianza</tspan></text></g>
           <path d="M200 40 C 320 40, 330 174, 420 174"/>
           <path d="M200 105 C 320 105, 330 174, 420 174"/>
           <path d="M200 170 C 320 170, 330 174, 420 174"/>
@@ -363,52 +371,52 @@
 
   <section class="decisions">
     <div class="wrap">
-      <div class="head reveal"><span class="label">Decisiones</span><h2 style="max-width:20ch">Lo que más me costó y cómo lo resolví</h2></div>
+      <div class="head reveal"><span class="label"><span lang="en">Decisions</span><span lang="es">Decisiones</span></span><h2 style="max-width:20ch"><span lang="en">The hardest parts and how I solved them</span><span lang="es">Lo que más me costó y cómo lo resolví</span></h2></div>
       <details class="reveal" open>
-        <summary><span class="n">01</span><h3>La IA, solo donde hace falta</h3><span class="plus" aria-hidden="true"></span></summary>
-        <div class="ans"><p>Pedirle todo a un modelo de lenguaje sale caro y da respuestas que cambian de un día para el otro. Por eso el veredicto sale de reglas escritas en código sobre datos curados, y la IA (Gemini) solo lee hilos de foros cuando nada curado cubre el caso. Cada veredicto dice con qué confianza se tomó.</p>
-          <div class="result"><b>Último recurso</b><span>la IA solo entra cuando faltan datos curados</span></div></div>
+        <summary><span class="n">01</span><h3><span lang="en">AI only where it is needed</span><span lang="es">La IA, solo donde hace falta</span></h3><span class="plus" aria-hidden="true"></span></summary>
+        <div class="ans"><p><span lang="en">Asking a language model for everything is expensive and gives answers that change from one day to the next. So the verdict comes from rules written in code over curated data, and the AI (Gemini) only reads forum threads when nothing curated covers the case. Every verdict states the confidence it was made with.</span><span lang="es">Pedirle todo a un modelo de lenguaje sale caro y da respuestas que cambian de un día para el otro. Por eso el veredicto sale de reglas escritas en código sobre datos curados, y la IA (Gemini) solo lee hilos de foros cuando nada curado cubre el caso. Cada veredicto dice con qué confianza se tomó.</span></p>
+          <div class="result"><b><span lang="en">Last resort</span><span lang="es">Último recurso</span></b><span><span lang="en">AI only steps in when curated data is missing</span><span lang="es">la IA solo entra cuando faltan datos curados</span></span></div></div>
       </details>
       <details class="reveal">
-        <summary><span class="n">02</span><h3>Multijugador leído del texto de cada logro</h3><span class="plus" aria-hidden="true"></span></summary>
-        <div class="ans"><p>Steam dice si un juego <em>tiene</em> multijugador, no si un logro lo <em>pide</em>, y además borra esa categoría cuando cierra los servidores. Pasé a detectarlo desde el texto de cada logro, y marco servidores caídos cuando la mayoría de los logros online figuran como imposibles. Así aparecieron casos como Arkham Origins.</p>
-          <div class="result"><b>621 → 302</b><span>juegos marcados como “requiere multijugador”, con muchos menos falsos positivos</span></div></div>
+        <summary><span class="n">02</span><h3><span lang="en">Multiplayer read from each achievement's text</span><span lang="es">Multijugador leído del texto de cada logro</span></h3><span class="plus" aria-hidden="true"></span></summary>
+        <div class="ans"><p><span lang="en">Steam tells you whether a game <em>has</em> multiplayer, not whether an achievement <em>needs</em> it, and it removes that category when servers close. I switched to detecting it from each achievement's text, and flag servers as down when most online achievements are marked impossible. That is how cases like Arkham Origins surfaced.</span><span lang="es">Steam dice si un juego <em>tiene</em> multijugador, no si un logro lo <em>pide</em>, y además borra esa categoría cuando cierra los servidores. Pasé a detectarlo desde el texto de cada logro, y marco servidores caídos cuando la mayoría de los logros online figuran como imposibles. Así aparecieron casos como Arkham Origins.</span></p>
+          <div class="result"><b>621 → 302</b><span><span lang="en">games flagged as “requires multiplayer”, with far fewer false positives</span><span lang="es">juegos marcados como “requiere multijugador”, con muchos menos falsos positivos</span></span></div></div>
       </details>
       <details class="reveal">
-        <summary><span class="n">03</span><h3>Un análisis nocturno con la cuota que sobra</h3><span class="plus" aria-hidden="true"></span></summary>
-        <div class="ans"><p>El plan gratis de la IA tiene una cuota diaria. De noche, entre las 23 y las 2, una tarea programada analiza juegos populares que todavía no tienen veredicto, usando lo que sobró del día y dejando una reserva para las visitas.</p>
-          <div class="result"><b>~100</b><span>juegos nuevos por noche sin gastar de más</span></div></div>
+        <summary><span class="n">03</span><h3><span lang="en">A nightly run on the day's leftover quota</span><span lang="es">Un análisis nocturno con la cuota que sobra</span></h3><span class="plus" aria-hidden="true"></span></summary>
+        <div class="ans"><p><span lang="en">The AI's free plan has a daily quota. At night, between 11 pm and 2 am, a scheduled job analyzes popular games that don't have a verdict yet, using what was left of the day and keeping a reserve for visitors.</span><span lang="es">El plan gratis de la IA tiene una cuota diaria. De noche, entre las 23 y las 2, una tarea programada analiza juegos populares que todavía no tienen veredicto, usando lo que sobró del día y dejando una reserva para las visitas.</span></p>
+          <div class="result"><b>~100</b><span><span lang="en">new games a night without overspending</span><span lang="es">juegos nuevos por noche sin gastar de más</span></span></div></div>
       </details>
       <details class="reveal">
-        <summary><span class="n">04</span><h3>Privado por diseño, sin cuentas</h3><span class="plus" aria-hidden="true"></span></summary>
-        <div class="ans"><p>Los juegos seguidos, los recientes y los ajustes viven en tu navegador, con un botón para borrarlo todo. Por debajo: política de seguridad de contenido con nonces, límites de uso, monitoreo de errores propio y páginas legales bajo la Ley 25.326.</p>
-          <div class="result"><b>0 cuentas</b><span>nada que registrar para usarlo</span></div></div>
+        <summary><span class="n">04</span><h3><span lang="en">Private by design, no accounts</span><span lang="es">Privado por diseño, sin cuentas</span></h3><span class="plus" aria-hidden="true"></span></summary>
+        <div class="ans"><p><span lang="en">Followed games, recent searches and settings live in your browser, with one button to wipe them all. Under the hood: a nonce-based Content Security Policy, rate limits, in-house error monitoring and legal pages under Argentina's data protection law (25.326).</span><span lang="es">Los juegos seguidos, los recientes y los ajustes viven en tu navegador, con un botón para borrarlo todo. Por debajo: política de seguridad de contenido con nonces, límites de uso, monitoreo de errores propio y páginas legales bajo la Ley 25.326.</span></p>
+          <div class="result"><b><span lang="en">0 accounts</span><span lang="es">0 cuentas</span></b><span><span lang="en">nothing to sign up for</span><span lang="es">nada que registrar para usarlo</span></span></div></div>
       </details>
     </div>
   </section>
 
   <section class="stack">
     <div class="wrap">
-      <div class="reveal"><span class="label">Con qué está hecho</span><h2>Stack</h2></div>
+      <div class="reveal"><span class="label"><span lang="en">Built with</span><span lang="es">Con qué está hecho</span></span><h2>Stack</h2></div>
       <div class="tiles reveal">
-        <div class="tile"><span class="label">Interfaz</span><b>Next.js 16 · React 19</b></div>
-        <div class="tile"><span class="label">Lenguaje y estilos</span><b>TypeScript · Tailwind v4</b></div>
-        <div class="tile"><span class="label">Datos</span><b>PostgreSQL · Drizzle</b></div>
-        <div class="tile"><span class="label">Caché</span><b>Upstash Redis</b></div>
-        <div class="tile"><span class="label">IA</span><b>Gemini</b></div>
-        <div class="tile"><span class="label">Validación</span><b>Zod</b></div>
-        <div class="tile"><span class="label">Hosting y tareas</span><b>Vercel · cron</b></div>
-        <div class="tile"><span class="label">Idiomas</span><b>Español · Inglés</b></div>
+        <div class="tile"><span class="label"><span lang="en">Interface</span><span lang="es">Interfaz</span></span><b>Next.js 16 · React 19</b></div>
+        <div class="tile"><span class="label"><span lang="en">Language and styles</span><span lang="es">Lenguaje y estilos</span></span><b>TypeScript · Tailwind v4</b></div>
+        <div class="tile"><span class="label"><span lang="en">Data</span><span lang="es">Datos</span></span><b>PostgreSQL · Drizzle</b></div>
+        <div class="tile"><span class="label"><span lang="en">Cache</span><span lang="es">Caché</span></span><b>Upstash Redis</b></div>
+        <div class="tile"><span class="label"><span lang="en">AI</span><span lang="es">IA</span></span><b>Gemini</b></div>
+        <div class="tile"><span class="label"><span lang="en">Validation</span><span lang="es">Validación</span></span><b>Zod</b></div>
+        <div class="tile"><span class="label"><span lang="en">Hosting and jobs</span><span lang="es">Hosting y tareas</span></span><b>Vercel · cron</b></div>
+        <div class="tile"><span class="label"><span lang="en">Languages</span><span lang="es">Idiomas</span></span><b><span lang="en">English · Spanish</span><span lang="es">Español · Inglés</span></b></div>
       </div>
     </div>
   </section>
 
   <section class="next">
-    <span class="label">Siguiente proyecto</span>
+    <span class="label"><span lang="en">Next project</span><span lang="es">Siguiente proyecto</span></span>
     <a class="big" href="index.html#trabajos">Agent <span class="serif">Village</span></a>
     <div class="row">
-      <a class="btn" href="https://can-i-100-it.vercel.app/" target="_blank" rel="noopener">Probar Can i 100% it? <span class="arr" aria-hidden="true">↗</span></a>
-      <a class="btn ghost" href="index.html#trabajos">Volver a trabajos</a>
+      <a class="btn" href="https://can-i-100-it.vercel.app/" target="_blank" rel="noopener"><span lang="en">Try Can i 100% it?</span><span lang="es">Probar Can i 100% it?</span> <span class="arr" aria-hidden="true">↗</span></a>
+      <a class="btn ghost" href="index.html#trabajos"><span lang="en">Back to work</span><span lang="es">Volver a trabajos</span></a>
     </div>
   </section>
 </main>
@@ -443,14 +451,18 @@
   const icon = playing => btn.innerHTML = playing
     ? '<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><rect x="2" y="1" width="3.5" height="12" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" fill="currentColor"/></svg>'
     : '<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1l10 6-10 6z" fill="currentColor"/></svg>';
-  const sync = () => { const on = !vid.paused; icon(on); btn.setAttribute('aria-label', on ? 'Pausar video' : 'Reproducir video'); };
+  const es = () => document.documentElement.lang === 'es';
+  const sync = () => { const on = !vid.paused; icon(on); btn.setAttribute('aria-label', on ? (es() ? 'Pausar video' : 'Pause video') : (es() ? 'Reproducir video' : 'Play video')); };
+  addEventListener('langchange', sync);
   vid.addEventListener('play', sync); vid.addEventListener('pause', sync);
   btn.addEventListener('click', () => { if (vid.paused) { userPaused = false; vid.play(); } else { userPaused = true; vid.pause(); } });
   new IntersectionObserver(([e]) => { if (e.isIntersecting && !userPaused) vid.play().catch(() => {}); else vid.pause(); }, { threshold: 0.25 }).observe(vid);
   sync();
 
   // Count-up numbers
-  const fmt = n => n.toLocaleString('es-AR');
+  const fmt = n => n.toLocaleString(document.documentElement.lang === 'es' ? 'es-AR' : 'en-US');
+  const fmtAll = () => document.querySelectorAll('[data-count]').forEach(el => el.textContent = (el.dataset.prefix || '') + fmt(+el.dataset.count));
+  addEventListener('langchange', fmtAll); fmtAll();
   const cio = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return;
     cio.unobserve(e.target);
@@ -463,5 +475,6 @@
   document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
 })();
 </script>
+<script src="../assets/i18n.js"></script>
 </body>
 </html>

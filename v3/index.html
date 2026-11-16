@@ -1,18 +1,24 @@
 <!doctype html>
-<html lang="es-AR">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Facundo Biagioni · Desarrollador frontend</title>
-<meta name="description" content="Facundo Biagioni, desarrollador frontend en La Plata. Interfaces con detalle y sistemas de agentes de IA con aprobación humana.">
-<meta property="og:title" content="Facundo Biagioni · Desarrollador frontend">
-<meta property="og:description" content="Interfaces que se sienten vivas y sistemas que trabajan solos.">
+<script>document.documentElement.lang = (function () { try { return localStorage.getItem('fb-lang') === 'es' ? 'es' : 'en'; } catch (e) { return 'en'; } })();</script>
+<title data-en="Facundo Biagioni · Frontend developer" data-es="Facundo Biagioni · Desarrollador frontend">Facundo Biagioni · Frontend developer</title>
+<meta name="description" content="Facundo Biagioni, frontend developer in La Plata, Argentina. Detailed interfaces and AI agent systems with human approval.">
+<meta property="og:title" content="Facundo Biagioni · Frontend developer">
+<meta property="og:description" content="Interfaces that feel alive and systems that work on their own.">
 <meta property="og:image" content="../assets/foto.jpg">
 <meta name="theme-color" content="#000000">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
+  /* language: both versions live in the HTML; only the active one shows */
+  html[lang="en"] [lang="es"], html[lang="es"] [lang="en"] { display: none !important; }
+  .lang { cursor: pointer; }
+  .lang .l-en, .lang .l-es { opacity: .45; transition: opacity .2s; }
+  html[lang="en"] .lang .l-en, html[lang="es"] .lang .l-es { opacity: 1; }
   :root {
     --black: #000;
     --white: #fff;
@@ -51,6 +57,8 @@
   .btn.ghost { background: transparent; color: var(--white); box-shadow: inset 0 0 0 2px rgba(255,255,255,.22); }
   .btn.ghost:hover { box-shadow: inset 0 0 0 2px rgba(255,255,255,.7); background: transparent; }
   nav .btn { height: 40px; padding: 0 16px; }
+  nav .right { display: flex; gap: 8px; align-items: center; }
+  button.btn { border: 0; }
 
   /* hero stage */
   .stage { position: relative; min-height: 100svh; padding-top: 180px; overflow: hidden; background: var(--black); }
@@ -223,28 +231,29 @@
 </style>
 </head>
 <body>
-<a class="skip" href="#contenido">Saltar al contenido</a>
+<a class="skip" href="#contenido"><span lang="en">Skip to content</span><span lang="es">Saltar al contenido</span></a>
 
-<nav aria-label="Principal">
+<nav aria-label="Main">
   <a class="brand" href="#">Facundo <span class="serif">Biagioni</span></a>
   <ul>
-    <li><a href="#trabajos">Trabajos</a></li>
-    <li><a href="#sobre-mi">Sobre mí</a></li>
-    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#trabajos"><span lang="en">Work</span><span lang="es">Trabajos</span></a></li>
+    <li><a href="#sobre-mi"><span lang="en">About</span><span lang="es">Sobre mí</span></a></li>
+    <li><a href="#contacto"><span lang="en">Contact</span><span lang="es">Contacto</span></a></li>
+    <li><a href="../assets/cv/cv-facundo-biagioni-es.pdf" download data-cv>CV</a></li>
   </ul>
-  <a class="btn" href="https://wa.me/5492213584349" target="_blank" rel="noopener">Escribime</a>
+  <div class="right"><button class="btn ghost lang" type="button" data-lang-toggle><span class="l-en">EN</span>/<span class="l-es">ES</span></button><a class="btn" href="https://wa.me/5492213584349" target="_blank" rel="noopener"><span lang="en">Get in touch</span><span lang="es">Escribime</span></a></div>
 </nav>
 
 <header class="stage">
   <div class="promise">
-    <span class="eyebrow">Desarrollador frontend · <b>agentes de IA</b></span>
-    <h1>Interfaces que se sienten <span class="serif">vivas</span></h1>
-    <p class="lede">Soy Facundo Biagioni. Diseño y programo productos web con detalle de estudio, y sistemas de agentes que trabajan solos, pero nunca sin permiso.</p>
+    <span class="eyebrow"><span lang="en">Frontend developer</span><span lang="es">Desarrollador frontend</span> · <b><span lang="en">AI agents</span><span lang="es">agentes de IA</span></b></span>
+    <h1><span lang="en">Interfaces that feel <span class="serif">alive</span></span><span lang="es">Interfaces que se sienten <span class="serif">vivas</span></span></h1>
+    <p class="lede"><span lang="en">I'm Facundo Biagioni. I design and build web products with studio-level detail, and agent systems that work on their own, but never without permission.</span><span lang="es">Soy Facundo Biagioni. Diseño y programo productos web con detalle de estudio, y sistemas de agentes que trabajan solos, pero nunca sin permiso.</span></p>
     <div class="row">
-      <a class="btn" href="#trabajos">Ver trabajos <span class="arr" aria-hidden="true">→</span></a>
+      <a class="btn" href="#trabajos"><span lang="en">See work</span><span lang="es">Ver trabajos</span> <span class="arr" aria-hidden="true">→</span></a>
       <a class="btn ghost" href="https://github.com/FacundoBiagioni" target="_blank" rel="noopener">GitHub</a>
     </div>
-    <p class="note">La Plata, Argentina. Disponible para proyectos.</p>
+    <p class="note">La Plata, Argentina. <span lang="en">Available for projects.</span><span lang="es">Disponible para proyectos.</span></p>
   </div>
 
   <div class="aurora" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
@@ -255,12 +264,12 @@
     <div class="tilt">
       <div class="panel l"><div class="bar"><i></i><i></i><i></i><span>estudio-bg.com.ar</span></div>
         <div class="scroller"><div class="ui-arch">
-          <div class="hero-a"><div class="img"></div><div class="txt"><b>Obras</b>15 proyectos · La Plata</div></div>
+          <div class="hero-a"><div class="img"></div><div class="txt"><b><span lang="en">Works</span><span lang="es">Obras</span></b>15 <span lang="en">projects</span><span lang="es">proyectos</span> · La Plata</div></div>
           <div class="grid-a"><i></i><i></i><i></i><i></i><i></i><i></i></div>
         </div></div>
       </div>
       <div class="panel mid"><div class="bar"><i></i><i></i><i></i><span>agent-village · panel</span></div>
-        <div class="ui-village"><div class="house"></div><span class="ag"></span><span class="ag"></span><span class="ag"></span><div class="toast">Demo lista · esperando tu aprobación</div><div class="hud"><b></b><b></b><b></b><b></b><b></b><b></b></div></div>
+        <div class="ui-village"><div class="house"></div><span class="ag"></span><span class="ag"></span><span class="ag"></span><div class="toast"><span lang="en">Demo ready · waiting for your approval</span><span lang="es">Demo lista · esperando tu aprobación</span></div><div class="hud"><b></b><b></b><b></b><b></b><b></b><b></b></div></div>
       </div>
       <div class="panel r"><div class="bar"><i></i><i></i><i></i><span>alejandrafilgueira.art</span></div>
         <div class="scroller"><div class="ui-art"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
@@ -271,28 +280,28 @@
 
 <main id="contenido">
   <section class="proof wrap reveal">
-    <p>Cada proyecto empieza por una pregunta simple: qué tiene que sentir la persona que lo usa.</p>
+    <p><span lang="en">Every project starts with one simple question: what should the person using it feel?</span><span lang="es">Cada proyecto empieza por una pregunta simple: qué tiene que sentir la persona que lo usa.</span></p>
     <div class="stats">
-      <div><b>6</b><span>agentes en Agent Village</span></div>
-      <div><b>15</b><span>obras en el portfolio de B+G</span></div>
-      <div><b>1</b><span>clic para aprobar todo</span></div>
+      <div><b>6</b><span><span lang="en">agents in Agent Village</span><span lang="es">agentes en Agent Village</span></span></div>
+      <div><b>15</b><span><span lang="en">projects in the B+G portfolio</span><span lang="es">obras en el portfolio de B+G</span></span></div>
+      <div><b>1</b><span><span lang="en">click to approve everything</span><span lang="es">clic para aprobar todo</span></span></div>
     </div>
   </section>
 
   <section class="gallery" id="trabajos">
     <div class="wrap">
       <div class="pair reveal">
-        <h2>Trabajo seleccionado</h2>
+        <h2><span lang="en">Selected work</span><span lang="es">Trabajo seleccionado</span></h2>
         <div>
-          <p>Sitios para estudios y artistas, y un producto propio con agentes de IA. Cada uno con su propio lenguaje visual, ninguno hecho con plantilla.</p>
-          <a class="btn ghost" href="https://github.com/FacundoBiagioni" target="_blank" rel="noopener">Todo en GitHub</a>
+          <p><span lang="en">Sites for studios and artists, and products of my own built with AI. Each one with its own visual language, none made from a template.</span><span lang="es">Sitios para estudios y artistas, y productos propios con IA. Cada uno con su propio lenguaje visual, ninguno hecho con plantilla.</span></p>
+          <a class="btn ghost" href="https://github.com/FacundoBiagioni" target="_blank" rel="noopener"><span lang="en">All on GitHub</span><span lang="es">Todo en GitHub</span></a>
         </div>
       </div>
-      <div class="rail reveal" tabindex="0" aria-label="Proyectos, desplazable">
-        <a class="cap k1" href="#"><h3>Agent Village</h3><p>Agentes de IA que encuentran negocios sin web, preparan una demo y esperan mi aprobación. Casa 3D low poly con HUD.</p><span class="tag">Next.js · Agent SDK · Three.js</span><span class="go" aria-hidden="true">→</span></a>
-        <a class="cap k2" href="#"><h3>Estudio B+G</h3><p>Sitio institucional y portfolio de obras para un estudio de arquitectura de La Plata.</p><span class="tag">Next.js 16 · Tailwind v4</span><span class="go" aria-hidden="true">→</span></a>
-        <a class="cap k3" href="#"><h3>Alejandra Filgueira</h3><p>Portfolio bilingüe para una artista de arte abstracto.</p><span class="tag">Next.js · next-intl</span><span class="go" aria-hidden="true">→</span></a>
-        <a class="cap k4" href="can-i-100-it.html"><video src="../assets/proyectos/can-i-100-it/hero.webm" poster="../assets/proyectos/can-i-100-it/poster.webp" muted loop playsinline preload="none" aria-hidden="true"></video><h3>Can i 100% it?</h3><p>Una sola búsqueda para saber si todavía se puede conseguir el 100% de los logros de un juego de Steam.</p><span class="tag">Next.js 16 · Gemini · PostgreSQL</span><span class="go" aria-hidden="true">→</span></a>
+      <div class="rail reveal" tabindex="0" aria-label="Projects, scrollable" data-i18n-attr="aria-label" data-en-aria-label="Projects, scrollable" data-es-aria-label="Proyectos, desplazable">
+        <a class="cap k1" href="#"><h3>Agent Village</h3><p><span lang="en">AI agents that find businesses without a website, prepare a demo and wait for my approval. A low-poly 3D house with a HUD.</span><span lang="es">Agentes de IA que encuentran negocios sin web, preparan una demo y esperan mi aprobación. Casa 3D low poly con HUD.</span></p><span class="tag">Next.js · Agent SDK · Three.js</span><span class="go" aria-hidden="true">→</span></a>
+        <a class="cap k2" href="#"><h3>Estudio B+G</h3><p><span lang="en">Studio website and project portfolio for an architecture firm in La Plata.</span><span lang="es">Sitio institucional y portfolio de obras para un estudio de arquitectura de La Plata.</span></p><span class="tag">Next.js 16 · Tailwind v4</span><span class="go" aria-hidden="true">→</span></a>
+        <a class="cap k3" href="#"><h3>Alejandra Filgueira</h3><p><span lang="en">Bilingual portfolio for an abstract artist.</span><span lang="es">Portfolio bilingüe para una artista de arte abstracto.</span></p><span class="tag">Next.js · next-intl</span><span class="go" aria-hidden="true">→</span></a>
+        <a class="cap k4" href="can-i-100-it.html"><video src="../assets/proyectos/can-i-100-it/hero.webm" poster="../assets/proyectos/can-i-100-it/poster.webp" muted loop playsinline preload="none" aria-hidden="true"></video><h3>Can i 100% it?</h3><p><span lang="en">One search to find out whether you can still get 100% of a Steam game's achievements.</span><span lang="es">Una sola búsqueda para saber si todavía se puede conseguir el 100% de los logros de un juego de Steam.</span></p><span class="tag">Next.js 16 · Gemini · PostgreSQL</span><span class="go" aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -300,16 +309,17 @@
   <section class="earth" id="sobre-mi">
     <div class="wrap bento">
       <div class="portrait reveal">
-        <img src="../assets/foto.webp" alt="Retrato de Facundo Biagioni" width="900" height="1197" loading="lazy">
+        <img src="../assets/foto.webp" alt="Portrait of Facundo Biagioni" data-i18n-attr="alt" data-en-alt="Portrait of Facundo Biagioni" data-es-alt="Retrato de Facundo Biagioni" width="900" height="1197" loading="lazy">
         <span class="cap-note">Facundo Biagioni · La Plata</span>
       </div>
       <div class="side reveal">
         <div>
-          <h2>Detalle de <span class="serif">estudio</span>, criterio de producto</h2>
-          <p>Me obsesionan los detalles que casi nadie nota pero todos sienten: el peso de una tipografía, el ritmo de una animación, que la página cargue rápido en un celular viejo.</p>
-          <p>Hoy los combino con agentes de IA que buscan, diseñan y redactan solos, y que nunca hacen nada hacia afuera sin que una persona lo apruebe.</p>
+          <h2><span lang="en">Studio <span class="serif">detail</span>, product judgment</span><span lang="es">Detalle de <span class="serif">estudio</span>, criterio de producto</span></h2>
+          <p><span lang="en">I'm obsessed with the details almost nobody notices but everyone feels: the weight of a typeface, the rhythm of an animation, a page that loads fast on an old phone.</span><span lang="es">Me obsesionan los detalles que casi nadie nota pero todos sienten: el peso de una tipografía, el ritmo de una animación, que la página cargue rápido en un celular viejo.</span></p>
+          <p><span lang="en">Today I pair them with AI agents that search, design and write on their own, and never do anything outward without a person's approval.</span><span lang="es">Hoy los combino con agentes de IA que buscan, diseñan y redactan solos, y que nunca hacen nada hacia afuera sin que una persona lo apruebe.</span></p>
+          <a class="btn ghost" style="margin-top:12px" href="../assets/cv/cv-facundo-biagioni-es.pdf" download data-cv><span lang="en">Download CV</span><span lang="es">Descargar CV</span> <span class="arr" aria-hidden="true">↓</span></a>
         </div>
-        <div class="tile"><h3>Con qué trabajo</h3><ul><li>TypeScript</li><li>React</li><li>Next.js</li><li>Tailwind</li><li>Framer Motion</li><li>Three.js</li><li>PostgreSQL</li><li>Claude Agent SDK</li></ul></div>
+        <div class="tile"><h3><span lang="en">What I work with</span><span lang="es">Con qué trabajo</span></h3><ul><li>TypeScript</li><li>React</li><li>Next.js</li><li>Tailwind</li><li>Framer Motion</li><li>Three.js</li><li>PostgreSQL</li><li>Claude Agent SDK</li></ul></div>
       </div>
     </div>
   </section>
@@ -317,11 +327,12 @@
   <section class="closing" id="contacto">
     <canvas id="sphere" aria-hidden="true"></canvas>
     <div class="inner reveal">
-      <h2>Hagamos algo que se <span class="serif">note</span></h2>
-      <p>Respondo en el día. Sin formularios.</p>
+      <h2><span lang="en">Let's make something <span class="serif">memorable</span></span><span lang="es">Hagamos algo que se <span class="serif">note</span></span></h2>
+      <p><span lang="en">I reply the same day. No forms.</span><span lang="es">Respondo en el día. Sin formularios.</span></p>
       <div class="row">
         <a class="btn" href="https://wa.me/5492213584349" target="_blank" rel="noopener">WhatsApp <span class="arr" aria-hidden="true">→</span></a>
         <a class="btn ghost" href="mailto:facundobiagioni@gmail.com">Mail</a>
+        <a class="btn ghost" href="../assets/cv/cv-facundo-biagioni-es.pdf" download data-cv>CV <span class="arr" aria-hidden="true">↓</span></a>
       </div>
     </div>
   </section>
@@ -330,10 +341,10 @@
 <footer>
   <div class="wrap">
     <div class="dir">
-      <div><p class="tag">Interfaces que se sienten <span class="serif">vivas</span>.</p></div>
-      <div><h4>Sitio</h4><ul><li><a href="#trabajos">Trabajos</a></li><li><a href="#sobre-mi">Sobre mí</a></li><li><a href="#contacto">Contacto</a></li></ul></div>
-      <div><h4>Redes</h4><ul><li><a href="https://github.com/FacundoBiagioni" target="_blank" rel="noopener">GitHub</a></li><li><a href="https://www.linkedin.com/in/facundobiagioni/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.instagram.com/facu.biagio" target="_blank" rel="noopener">Instagram</a></li></ul></div>
-      <div><h4>Contacto</h4><ul><li><a href="https://wa.me/5492213584349" target="_blank" rel="noopener">WhatsApp</a></li><li><a href="mailto:facundobiagioni@gmail.com">Mail</a></li></ul></div>
+      <div><p class="tag"><span lang="en">Interfaces that feel <span class="serif">alive</span>.</span><span lang="es">Interfaces que se sienten <span class="serif">vivas</span>.</span></p></div>
+      <div><h4><span lang="en">Site</span><span lang="es">Sitio</span></h4><ul><li><a href="#trabajos"><span lang="en">Work</span><span lang="es">Trabajos</span></a></li><li><a href="#sobre-mi"><span lang="en">About</span><span lang="es">Sobre mí</span></a></li><li><a href="#contacto"><span lang="en">Contact</span><span lang="es">Contacto</span></a></li></ul></div>
+      <div><h4><span lang="en">Social</span><span lang="es">Redes</span></h4><ul><li><a href="https://github.com/FacundoBiagioni" target="_blank" rel="noopener">GitHub</a></li><li><a href="https://www.linkedin.com/in/facundobiagioni/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.instagram.com/facu.biagio" target="_blank" rel="noopener">Instagram</a></li></ul></div>
+      <div><h4><span lang="en">Contact</span><span lang="es">Contacto</span></h4><ul><li><a href="https://wa.me/5492213584349" target="_blank" rel="noopener">WhatsApp</a></li><li><a href="mailto:facundobiagioni@gmail.com">Mail</a></li><li><a href="../assets/cv/cv-facundo-biagioni-es.pdf" download data-cv>CV</a></li></ul></div>
     </div>
     <div class="legal"><span>© 2026 Facundo Biagioni</span><span>La Plata, Argentina</span></div>
   </div>
@@ -404,5 +415,6 @@
   new IntersectionObserver(([e]) => { const was = running; running = e.isIntersecting; if (running && !was) draw(); }).observe(cv);
 })();
 </script>
+<script src="../assets/i18n.js"></script>
 </body>
 </html>

@@ -14,6 +14,14 @@ Etapa de exploración: 3 versiones del diseño, una por referencia.
 
 Cada versión es un solo archivo HTML con CSS y JS propios, sin dependencias ni build. Las fuentes vienen de Google Fonts.
 
+## Idiomas
+
+El sitio arranca en inglés y tiene un botón EN/ES. La elección se guarda en el navegador y se mantiene entre páginas (`assets/i18n.js`).
+
+- Cada texto está dos veces en el HTML: `<span lang="en">…</span><span lang="es">…</span>`. El CSS muestra solo el idioma activo.
+- Los atributos (alt, aria-label) usan `data-i18n-attr` con `data-en-*` y `data-es-*`.
+- El CV se descarga según el idioma. Hoy solo existe `assets/cv/cv-facundo-biagioni-es.pdf`; cuando esté el inglés, guardarlo como `cv-facundo-biagioni-en.pdf` y completar `CV.en` en `assets/i18n.js`.
+
 ## Ver las versiones
 
 Abrí `index.html` en el navegador (doble clic) y elegí una.
