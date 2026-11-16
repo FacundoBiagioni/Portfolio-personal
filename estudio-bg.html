@@ -71,7 +71,7 @@
 
   /* full-bleed screen */
   .screen { background: var(--onyx); padding: 0 clamp(16px, 4vw, 48px) 72px; }
-  .screen figure { margin: 0; position: relative; }
+  .screen figure { margin: 0 auto; position: relative; max-width: 880px; }
   .screen .frame { position: relative; overflow: hidden; clip-path: inset(6% 6% 6% 6%); transition: clip-path 1.4s var(--in); }
   .screen .frame.on { clip-path: inset(0 0 0 0); }
   .screen video { width: 100%; aspect-ratio: 1280 / 672; object-fit: cover; }
@@ -214,6 +214,7 @@
     <p><span lang="en">A website that works as a cover letter for an architecture studio in La Plata. Minimal, elegant and led by the images.</span><span lang="es">Un sitio que funciona como carta de presentación para un estudio de arquitectura de La Plata. Minimalista, elegante y con las imágenes como protagonistas.</span></p>
     <div class="acts">
       <a class="pill solid" href="https://arquitectosbg.vercel.app/" target="_blank" rel="noopener">↗ <span lang="en">Visit the site</span><span lang="es">Ver el sitio</span></a>
+      <a class="pill" href="https://github.com/FacundoBiagioni/B-G-aquitectos" target="_blank" rel="noopener">+ <span lang="en">Code</span><span lang="es">Código</span></a>
     </div>
   </div>
 </header>

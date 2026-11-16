@@ -272,7 +272,10 @@
     const loop = () => { x += (tx - x) * 0.14; y += (ty - y) * 0.14; pv.style.left = x + 'px'; pv.style.top = y + 'px'; requestAnimationFrame(loop); };
     loop();
     document.querySelectorAll('.work a').forEach(a => {
-      a.addEventListener('pointerenter', () => {
+      a.addEventListener('pointerenter', e => {
+        // a hidden preview appears right at the cursor instead of gliding in from its last spot (or the corner)
+        tx = e.clientX + 200; ty = e.clientY;
+        if (!pv.classList.contains('on')) { x = tx; y = ty; }
         pv.querySelectorAll('.card').forEach(c => { const on = c.classList.contains(a.dataset.card); c.classList.toggle('show', on); const v = c.querySelector('video'); if (v) on ? v.play().catch(() => {}) : v.pause(); });
         pv.classList.add('on');
       });

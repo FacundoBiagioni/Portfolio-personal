@@ -71,7 +71,7 @@
 
   /* full-bleed screen */
   .screen { background: var(--onyx); padding: 0 clamp(16px, 4vw, 48px) 72px; }
-  .screen figure { margin: 0; position: relative; }
+  .screen figure { margin: 0 auto; position: relative; max-width: 880px; }
   .screen .frame { position: relative; overflow: hidden; clip-path: inset(6% 6% 6% 6%); transition: clip-path 1.4s var(--in); }
   .screen .frame.on { clip-path: inset(0 0 0 0); }
   .screen video { width: 100%; aspect-ratio: 1280 / 672; object-fit: cover; }
