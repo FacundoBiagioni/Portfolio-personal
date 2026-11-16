@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>document.documentElement.lang = (function () { try { return localStorage.getItem('fb-lang') === 'es' ? 'es' : 'en'; } catch (e) { return 'en'; } })();</script>
-<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <title data-en="Can i 100% it? · Facundo Biagioni" data-es="Can i 100% it? · Facundo Biagioni">Can i 100% it? · Facundo Biagioni</title>
 <meta name="description" content="Case study: one search to find out whether you can still get 100% of a Steam game's achievements.">
 <meta property="og:title" content="Can i 100% it? · Facundo Biagioni">
 <meta property="og:description" content="One search to find out whether you can still get 100% of a Steam game's achievements.">
-<meta property="og:image" content="../assets/proyectos/can-i-100-it/poster.webp">
+<meta property="og:image" content="assets/proyectos/can-i-100-it/poster.webp">
 <meta name="theme-color" content="#161616">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,7 +88,7 @@
   @media (max-width: 760px) { .spec { grid-template-columns: 1fr 1fr; } .spec div:nth-child(3) { padding-left: 0; border-left: 0; } }
 
   section { padding: 96px 0; }
-  .ghost { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: clamp(72px, 15vw, 210px); line-height: .74; color: var(--white); margin: 0 0 -0.12em; user-select: none; }
+  .ghost { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: clamp(72px, 15vw, 210px); line-height: .74; color: #e2e0e4; margin: 0 0 -0.12em; user-select: none; }
   .head { display: flex; justify-content: space-between; align-items: end; gap: 24px; border-bottom: 1px solid var(--mist); padding-bottom: 14px; }
   h2 { margin: 0; font-size: clamp(34px, 4.6vw, 60px); line-height: 1; letter-spacing: -0.03em; font-weight: 500; color: var(--onyx); }
   .head .mono { color: var(--stone); }
@@ -141,7 +141,7 @@
   .flow .arrow i { position: absolute; top: -3px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--ember); animation: run 2.2s var(--in) infinite; }
   @keyframes run { from { left: 0; opacity: 1; } to { left: calc(100% - 7px); opacity: .2; } }
   .flow .outs { display: grid; gap: 6px; }
-  .flow .outs span { display: flex; align-items: center; gap: 8px; font: 500 13px/1.2 var(--mono); text-transform: uppercase; padding: 9px 12px; border: 1px solid var(--mist); background: var(--white); }
+  .flow .outs > span { display: flex; align-items: center; gap: 8px; font: 500 13px/1.2 var(--mono); text-transform: uppercase; padding: 9px 12px; border: 1px solid var(--mist); background: var(--white); }
   .flow .outs i { width: 9px; height: 9px; border-radius: 50%; }
   @media (max-width: 860px) { .flow { grid-template-columns: 1fr; gap: 14px; } .flow .arrow { height: 28px; width: 1px; margin: 0 auto; } .flow .arrow::after { right: -4px; top: auto; bottom: -1px; border: 4px solid transparent; border-top: 7px solid var(--graphite); border-bottom: 0; } .flow .arrow i { animation-name: rundown; left: -3px; } @keyframes rundown { from { top: 0; } to { top: calc(100% - 7px); } } }
 
@@ -221,7 +221,7 @@
 <div class="screen">
   <figure>
     <div class="frame" id="frame">
-      <video id="vid" src="../assets/proyectos/can-i-100-it/hero.webm" poster="../assets/proyectos/can-i-100-it/poster.webp" muted loop playsinline preload="metadata" aria-label="Screen recording of the Can i 100% it? home page" data-i18n-attr="aria-label" data-en-aria-label="Screen recording of the Can i 100% it? home page" data-es-aria-label="Recorrido grabado por la portada de Can i 100% it?"></video>
+      <video id="vid" src="assets/proyectos/can-i-100-it/hero.webm" poster="assets/proyectos/can-i-100-it/poster.webp" muted loop playsinline preload="metadata" aria-label="Screen recording of the Can i 100% it? home page" data-i18n-attr="aria-label" data-en-aria-label="Screen recording of the Can i 100% it? home page" data-es-aria-label="Recorrido grabado por la portada de Can i 100% it?"></video>
     </div>
     <figcaption class="mono"><span>can-i-100-it.vercel.app · <span lang="en">home</span><span lang="es">portada</span></span><button class="vbtn" id="vbtn" type="button">Pause</button></figcaption>
   </figure>
@@ -265,11 +265,11 @@
         <li class="none reveal"><span class="n mono">D</span><b><span lang="en">No achievements</span><span lang="es">Sin logros</span></b><p><span lang="en">The game has no Steam achievements to unlock.</span><span lang="es">El juego no tiene logros de Steam para conseguir.</span></p></li>
       </ul>
       <div class="gal">
-        <figure class="a reveal"><div class="img"><img src="../assets/proyectos/can-i-100-it/veredicto.webp" alt="Batman: Arkham Origins page with the 100% impossible verdict, its price and its lowest price ever" data-i18n-attr="alt" data-en-alt="Batman: Arkham Origins page with the 100% impossible verdict, its price and its lowest price ever" data-es-alt="Página de Batman: Arkham Origins con el veredicto 100% imposible, el precio y el mínimo histórico" width="1440" height="900" loading="lazy"></div>
+        <figure class="a reveal"><div class="img"><img src="assets/proyectos/can-i-100-it/veredicto.webp" alt="Batman: Arkham Origins page with the 100% impossible verdict, its price and its lowest price ever" data-i18n-attr="alt" data-en-alt="Batman: Arkham Origins page with the 100% impossible verdict, its price and its lowest price ever" data-es-alt="Página de Batman: Arkham Origins con el veredicto 100% imposible, el precio y el mínimo histórico" width="1440" height="900" loading="lazy"></div>
           <figcaption><span class="mono">Fig. 1</span><span><span lang="en">Arkham Origins: 100% impossible with high confidence, 11 flagged achievements, 1 paid DLC, about 90 hours and its biggest discount.</span><span lang="es">Arkham Origins: 100% imposible con confianza alta, 11 logros marcados, 1 DLC pago, unas 90 horas y su mayor descuento.</span></span></figcaption></figure>
-        <figure class="b reveal"><div class="img"><img src="../assets/proyectos/can-i-100-it/biblioteca.webp" alt="Library page to check every game on a Steam profile" data-i18n-attr="alt" data-en-alt="Library page to check every game on a Steam profile" data-es-alt="Página Biblioteca para revisar todos los juegos de un perfil de Steam" width="1440" height="900" loading="lazy"></div>
+        <figure class="b reveal"><div class="img"><img src="assets/proyectos/can-i-100-it/biblioteca.webp" alt="Library page to check every game on a Steam profile" data-i18n-attr="alt" data-en-alt="Library page to check every game on a Steam profile" data-es-alt="Página Biblioteca para revisar todos los juegos de un perfil de Steam" width="1440" height="900" loading="lazy"></div>
           <figcaption><span class="mono">Fig. 2</span><span><span lang="en">Library: paste your Steam profile and it tells you which of your games can no longer be completed.</span><span lang="es">Biblioteca: pegás tu perfil de Steam y te dice cuáles de tus juegos ya no se pueden completar.</span></span></figcaption></figure>
-        <figure class="c reveal"><div class="img"><img src="../assets/proyectos/can-i-100-it/listas.webp" alt="Lists page with games grouped by what 100% takes" data-i18n-attr="alt" data-en-alt="Lists page with games grouped by what 100% takes" data-es-alt="Página Listas con juegos agrupados por lo que cuesta el 100%" width="1440" height="900" loading="lazy"></div>
+        <figure class="c reveal"><div class="img"><img src="assets/proyectos/can-i-100-it/listas.webp" alt="Lists page with games grouped by what 100% takes" data-i18n-attr="alt" data-en-alt="Lists page with games grouped by what 100% takes" data-es-alt="Página Listas con juegos agrupados por lo que cuesta el 100%" width="1440" height="900" loading="lazy"></div>
           <figcaption><span class="mono">Fig. 3</span><span><span lang="en">Lists that grow on their own with every verdict.</span><span lang="es">Listas que crecen solas con cada veredicto.</span></span></figcaption></figure>
       </div>
     </div>
@@ -337,7 +337,7 @@
 <footer class="next">
   <div class="wrap">
     <span class="mono"><span lang="en">Next project</span><span lang="es">Siguiente proyecto</span></span>
-    <a class="big" href="index.html#trabajos">Agent Village <span class="arr" aria-hidden="true">→</span></a>
+    <a class="big" href="estudio-bg.html">Estudio B+G <span class="arr" aria-hidden="true">→</span></a>
     <div class="foot mono"><a href="index.html#trabajos">← <span lang="en">Back to work</span><span lang="es">Volver a trabajos</span></a><span>© 2026 Facundo Biagioni</span></div>
   </div>
 </footer>
@@ -375,6 +375,6 @@
   addEventListener('langchange', fmtAll); fmtAll();
 })();
 </script>
-<script src="../assets/i18n.js"></script>
+<script src="assets/i18n.js"></script>
 </body>
 </html>
