@@ -5,7 +5,7 @@
   const here = document.currentScript.src;
   // shortcut: there is no English CV yet, so English falls back to the Spanish file; set `en` when it exists
   const CV = {
-    es: { href: new URL('cv/cv-facundo-biagioni-es.pdf', here).href, name: 'CV-Facundo-Biagioni-ES.pdf' },
+    es: { href: new URL('cv/cv-facundo-biagioni-es.pdf', here).href },
     en: null,
   };
   const root = document.documentElement;
@@ -26,7 +26,8 @@
     if (title && title.dataset[lang]) document.title = title.dataset[lang];
 
     const cv = CV[lang] || CV.es;
-    document.querySelectorAll('[data-cv]').forEach(a => { a.href = cv.href; a.setAttribute('download', cv.name); });
+    // the CV opens in a new tab (user's choice, 2026-11-16) instead of downloading
+    document.querySelectorAll('[data-cv]').forEach(a => { a.href = cv.href; });
 
     document.querySelectorAll('[data-lang-toggle]').forEach(b => {
       b.setAttribute('aria-label', lang === 'en' ? 'Ver el sitio en español' : 'View the site in English');
