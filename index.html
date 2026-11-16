@@ -138,6 +138,49 @@
     *, *::before, *::after { animation: none !important; transition: none !important; }
     h1 .line span, .reveal { transform: none; opacity: 1; }
   }
+
+  /* stack */
+  .stack { list-style: none; margin: 0; padding: 0; }
+  .stack li { display: grid; grid-template-columns: 56px minmax(0, 4fr) minmax(0, 7fr); gap: 16px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid var(--mist); }
+  .stack .n { color: var(--stone); }
+  .stack b { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(36px, 5vw, 68px); line-height: .85; color: var(--onyx); }
+  .stack b small { display: block; margin-top: 8px; font: 500 12px/1.3 var(--mono); color: var(--ember); }
+  .stack p { margin: 0; font-size: clamp(19px, 2vw, 24px); line-height: 1.25; letter-spacing: -0.02em; color: var(--onyx); }
+  .stack p i { font-style: normal; color: var(--mist); }
+  @media (max-width: 760px) { .stack li { grid-template-columns: 36px minmax(0, 1fr); } .stack p { grid-column: 2; } }
+
+  /* education and certificates */
+  .certs { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 12px; padding-top: 40px; }
+  .cert { position: relative; display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--mist); }
+  .cert .img { overflow: hidden; background: var(--onyx); border-bottom: 1px solid var(--mist); }
+  .cert img { display: block; width: 100%; height: auto; filter: grayscale(1) contrast(1.05); transition: filter .8s var(--in), transform 1s var(--out); }
+  .cert:hover img { filter: none; transform: scale(1.02); }
+  .cert .body { padding: 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .cert .mono { color: var(--stone); }
+  .cert h3 { margin: 0; font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(32px, 3.6vw, 52px); line-height: .88; color: var(--onyx); }
+  .cert p { margin: 0; color: var(--graphite); max-width: 52ch; }
+  .cert .links { display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto; padding-top: 8px; }
+  .cert .links a { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 7px 14px; border-radius: 9999px; border: 1px solid var(--graphite); font: 500 13px/1 var(--mono); text-transform: uppercase; transition: background-color .3s var(--in), color .3s var(--in); }
+  .cert .links a:hover { background: var(--onyx); color: var(--fog); }
+  .cert .links a.solid { background: var(--onyx); color: var(--fog); }
+  .cert .links a.solid:hover { background: var(--ember); border-color: var(--ember); }
+  .cert.en { background: var(--onyx); color: var(--fog); border-color: var(--onyx); }
+  .cert.en .mono { color: rgba(255,255,255,.6); }
+  .cert.en .lvl { font-family: var(--display); font-weight: 900; font-size: clamp(140px, 17vw, 250px); line-height: .78; background: linear-gradient(#f1f1f1 30%, #6e6c70); -webkit-background-clip: text; background-clip: text; color: transparent; margin: 8px 0 4px; }
+  .cert.en h3 { color: var(--fog); }
+  .cert.en dl { display: grid; grid-template-columns: 1fr 1fr; margin: 6px 0 0; border-top: 1px solid rgba(255,255,255,.14); }
+  .cert.en dl div { padding: 12px 0 0; }
+  .cert.en dl div + div { padding-left: 14px; border-left: 1px solid rgba(255,255,255,.14); }
+  .cert.en dt { font: 500 12px/1.3 var(--mono); text-transform: uppercase; color: rgba(255,255,255,.55); }
+  .cert.en dd { margin: 4px 0 0; font-size: 20px; color: var(--fog); }
+  .cert.en .links a { border-color: rgba(255,255,255,.3); }
+  .cert.en .links a:hover { background: var(--fog); color: var(--onyx); }
+  .more { list-style: none; margin: 12px 0 0; padding: 0; border-top: 1px solid var(--mist); }
+  .more a { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 4fr) auto; gap: 16px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--mist); transition: padding .5s var(--in); }
+  .more a:hover { padding-left: 10px; }
+  .more b { font-weight: 500; font-size: 19px; color: var(--onyx); }
+  .more a > span { color: var(--stone); }
+  @media (max-width: 800px) { .certs { grid-template-columns: 1fr; } .more a { grid-template-columns: 1fr auto; } .more a > span:nth-of-type(1) { grid-column: 1; grid-row: 2; } }
 </style>
 </head>
 <body>
@@ -214,11 +257,57 @@
           <p class="bio"><span lang="en">I'm obsessed with the details almost nobody notices but everyone feels. <em>The weight of a typeface, the rhythm of an animation, a page that loads fast on an old phone.</em> Today I pair them with AI agents that work on their own and never act without a person's approval.</span><span lang="es">Me obsesionan los detalles que casi nadie nota pero todos sienten. <em>El peso de una tipografía, el ritmo de una animación, una página que carga rápido en un celular viejo.</em> Hoy los combino con agentes de IA que trabajan solos y nunca actúan sin una persona que apruebe.</span></p>
           <div class="cols">
             <div><span class="mono"><span lang="en">I build</span><span lang="es">Hago</span></span><ul><li><span lang="en">Interfaces in React and Next.js</span><span lang="es">Interfaces en React y Next.js</span></li><li><span lang="en">Motion and micro-interactions</span><span lang="es">Motion y microinteracciones</span></li><li><span lang="en">Agent systems with Claude</span><span lang="es">Sistemas de agentes con Claude</span></li><li><span lang="en">Lightweight 3D scenes</span><span lang="es">Escenas 3D livianas</span></li></ul></div>
-            <div><span class="mono"><span lang="en">With</span><span lang="es">Con</span></span><ul><li>TypeScript · Tailwind</li><li>Framer Motion · Three.js</li><li>PostgreSQL · Drizzle</li><li>Vercel · Cloudflare</li></ul></div>
+            <div><span class="mono"><span lang="en">Languages</span><span lang="es">Idiomas</span></span><ul><li><span lang="en">Spanish · native</span><span lang="es">Español · nativo</span></li><li><span lang="en">English · B2 (EF SET)</span><span lang="es">Inglés · B2 (EF SET)</span></li><li><span lang="en">Italian · basic</span><span lang="es">Italiano · básico</span></li></ul></div>
           </div>
           <a class="cvbtn" href="assets/cv/cv-facundo-biagioni-es.pdf" download data-cv>↓ <span lang="en">Download CV</span><span lang="es">Descargar CV</span></a>
         </div>
       </div>
+    </div>
+  </section>
+  <section id="stack">
+    <div class="wrap">
+      <p class="ghost" aria-hidden="true">Stack</p>
+      <div class="head"><h2><span lang="en">What I build with</span><span lang="es">Con qué construyo</span></h2><span class="mono"><span lang="en">Index</span><span lang="es">Índice</span> 03</span></div>
+      <ul class="stack">
+        <li class="reveal"><span class="n mono">(A)</span><b>Frontend<small><span lang="en">Where I shine</span><span lang="es">Donde más destaco</span></small></b><p>TypeScript <i>/</i> JavaScript <i>/</i> React <i>/</i> Next.js <i>/</i> Tailwind CSS <i>/</i> <span style="white-space:nowrap">HTML <span lang="en">&amp;</span><span lang="es">y</span> CSS</span></p></li>
+        <li class="reveal"><span class="n mono">(B)</span><b>Backend<small><span lang="en">Data and APIs</span><span lang="es">Datos y APIs</span></small></b><p>Node.js <i>/</i> Express <i>/</i> PostgreSQL <i>/</i> Drizzle <i>/</i> Sequelize <i>/</i> Redis</p></li>
+        <li class="reveal"><span class="n mono">(C)</span><b><span lang="en">AI</span><span lang="es">IA</span><small><span lang="en">Agents and models</span><span lang="es">Agentes y modelos</span></small></b><p>Claude Agent SDK <i>/</i> Claude Code <i>/</i> Gemini <i>/</i> Ollama</p></li>
+        <li class="reveal"><span class="n mono">(D)</span><b><span lang="en">Tools</span><span lang="es">Herramientas</span><small><span lang="en">Shipping and teamwork</span><span lang="es">Publicar y trabajar en equipo</span></small></b><p>Git <i>/</i> GitHub <i>/</i> Vercel <i>/</i> Cloudflare <i>/</i> Figma <i>/</i> Jira <i>/</i> Scrum</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="formacion" style="padding-top:0">
+    <div class="wrap">
+      <p class="ghost" aria-hidden="true"><span lang="en">Certified</span><span lang="es">Formación</span></p>
+      <div class="head"><h2><span lang="en">Education</span><span lang="es">Educación</span></h2><span class="mono"><span lang="en">Index</span><span lang="es">Índice</span> 04</span></div>
+      <div class="certs">
+        <article class="cert reveal">
+          <div class="img"><img src="assets/certificados/henry.webp" alt="Henry certificate in Full Stack Web Development for Facundo Biagioni, March 2025" data-i18n-attr="alt" data-en-alt="Henry certificate in Full Stack Web Development for Facundo Biagioni, March 2025" data-es-alt="Certificado de Henry en Desarrollo Web Full Stack de Facundo Biagioni, marzo de 2025" width="1200" height="933" loading="lazy"></div>
+          <div class="body">
+            <span class="mono">Henry · 2024–2025</span>
+            <h3><span lang="en">Full Stack Web Development</span><span lang="es">Desarrollo Web Full Stack</span></h3>
+            <p><span lang="en">Bootcamp: JavaScript, React, Node.js, Express and PostgreSQL, closing with team projects run in Scrum.</span><span lang="es">Bootcamp: JavaScript, React, Node.js, Express y PostgreSQL, con cierre en proyectos en equipo usando Scrum.</span></p>
+            <div class="links"><a class="solid" href="https://view.pok.tech/c/00437384-85dc-4537-9ddd-708d445410a4" target="_blank" rel="noopener">↗ <span lang="en">Verify</span><span lang="es">Verificar</span></a><a href="assets/certificados/henry-full-stack.pdf" target="_blank" rel="noopener">PDF</a></div>
+          </div>
+        </article>
+        <article class="cert en reveal">
+          <div class="body">
+            <span class="mono"><span lang="en">English · EF SET · March 2025</span><span lang="es">Inglés · EF SET · marzo 2025</span></span>
+            <p class="lvl" aria-hidden="true">B2</p>
+            <h3><span lang="en">Upper intermediate</span><span lang="es">Intermedio alto</span></h3>
+            <dl>
+              <div><dt><span lang="en">Reading</span><span lang="es">Lectura</span></dt><dd>C1</dd></div>
+              <div><dt><span lang="en">Listening</span><span lang="es">Escucha</span></dt><dd>B1</dd></div>
+            </dl>
+            <div class="links"><a href="https://cert.efset.org/es/reaCtq" target="_blank" rel="noopener">↗ <span lang="en">Verify</span><span lang="es">Verificar</span></a><a href="assets/certificados/ef-set-english-b2.pdf" target="_blank" rel="noopener">PDF</a></div>
+          </div>
+        </article>
+      </div>
+      <ul class="more">
+        <li class="reveal"><a href="https://www.freecodecamp.org/espanol/certification/FacuBiagio/responsive-web-design" target="_blank" rel="noopener"><b>Responsive Web Design</b><span>freeCodeCamp · 2023</span><span class="mono">↗</span></a></li>
+        <li class="reveal"><a href="assets/certificados/open-bootcamp-conceptos-de-programacion.pdf" target="_blank" rel="noopener"><b><span lang="en">Programming concepts</span><span lang="es">Conceptos de la programación</span></b><span>Open Bootcamp · 2023</span><span class="mono">↗</span></a></li>
+      </ul>
     </div>
   </section>
 </main>
