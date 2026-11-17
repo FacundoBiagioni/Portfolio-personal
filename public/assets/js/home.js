@@ -44,11 +44,25 @@
       mini.className = 'mini'; mini.setAttribute('aria-hidden', 'true');
       mini.append(card.cloneNode(true)); a.append(mini);
     });
+    // the title effect follows the middle of the screen; the video opens once and stays
     const band = new IntersectionObserver(es => es.forEach(e => {
       e.target.classList.toggle('inview', e.isIntersecting);
-      const v = e.target.querySelector('.mini video');
-      if (v) e.isIntersecting && !reduce ? v.play().catch(() => {}) : v.pause();
+      if (e.isIntersecting && !e.target.classList.contains('open')) {
+        e.target.classList.add('open');
+        const v = e.target.querySelector('.mini video');
+        if (v && !reduce) v.play().catch(() => {});
+      }
     }), { rootMargin: '-42% 0px -42% 0px' });
-    document.querySelectorAll('.work a, .photo, .cert, .contact .big').forEach(el => band.observe(el));
+    document.querySelectorAll('.work a, .cert, .contact .big').forEach(el => band.observe(el));
+    // open videos play only while on screen
+    const vio = new IntersectionObserver(es => es.forEach(e => {
+      const v = e.target.querySelector('.mini video');
+      if (!v) return;
+      if (e.isIntersecting && !reduce && e.target.classList.contains('open')) v.play().catch(() => {}); else v.pause();
+    }));
+    document.querySelectorAll('.work a').forEach(a => vio.observe(a));
+    // the photo takes color only when it is fully on screen, like a hover right over it
+    new IntersectionObserver(([e]) => e.target.classList.toggle('inview', e.intersectionRatio >= 0.9), { threshold: [0, 0.9] })
+      .observe(document.querySelector('.photo'));
   }
 })();
