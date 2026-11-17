@@ -10,7 +10,19 @@
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: same-origin
 
-# Fonts, images, videos and documents: a week, so a replaced file shows up without renaming it.
-# (One rule only: Cloudflare joins repeated headers from overlapping rules instead of replacing them.)
-/assets/*
+# Fonts, images and videos: a week. Scripts (assets/js, assets/i18n.js) and the CV keep Cloudflare's default
+# (revalidate on every visit), so a change there shows up at once. Rules must not overlap: Cloudflare joins repeated headers.
+/assets/fonts/*
+  Cache-Control: public, max-age=604800
+/assets/proyectos/*
+  Cache-Control: public, max-age=604800
+/assets/og/*
+  Cache-Control: public, max-age=604800
+/assets/icons/*
+  Cache-Control: public, max-age=604800
+/assets/certificados/*
+  Cache-Control: public, max-age=604800
+/assets/foto.webp
+  Cache-Control: public, max-age=604800
+/assets/favicon.svg
   Cache-Control: public, max-age=604800

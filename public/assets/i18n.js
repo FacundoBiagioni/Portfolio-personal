@@ -4,8 +4,8 @@
   const KEY = 'fb-lang';
   const here = document.currentScript.src;
   const CV = {
-    es: { href: new URL('cv/cv-facundo-biagioni-es.pdf', here).href },
-    en: { href: new URL('cv/cv-facundo-biagioni-en.pdf', here).href },
+    es: { href: new URL('cv/cv-facundo-biagioni-es.pdf?v=2', here).href },
+    en: { href: new URL('cv/cv-facundo-biagioni-en.pdf?v=2', here).href },
   };
   const root = document.documentElement;
   const current = () => (root.lang === 'es' ? 'es' : 'en');
