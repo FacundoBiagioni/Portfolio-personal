@@ -24,7 +24,7 @@
   .mono { font: 500 12px/1.3 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace; text-transform: uppercase; }
   nav { display: flex; justify-content: space-between; gap: 12px; padding: 18px clamp(16px, 4vw, 48px); background: var(--onyx); }
   .pill { display: inline-flex; align-items: center; min-height: 36px; padding: 7px 14px; border-radius: 9999px; border: 1px solid rgba(255,255,255,.35); font: 500 13px/1 'IBM Plex Mono', ui-monospace, monospace; text-transform: uppercase; color: var(--fog); background: transparent; text-decoration: none; cursor: pointer; transition: background-color .3s var(--in), color .3s var(--in); }
-  .pill:hover { background: var(--white); color: var(--onyx); }
+  @media (hover: hover) { .pill:hover { background: var(--white); color: var(--onyx); } }
   header { background: var(--onyx); color: var(--fog); padding: 64px clamp(16px, 4vw, 48px) 32px; }
   h1 { margin: 0; font: 800 clamp(56px, 11vw, 150px)/.82 'Big Shoulders Display', Impact, sans-serif; text-transform: uppercase; background: linear-gradient(#000 0%, #6e6c70 22%, #b9b7bb 48%, #dcd6d6 72%, #f1f1f1 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
   header .mono { display: block; margin-top: 20px; color: rgba(255,255,255,.6); }
@@ -35,7 +35,17 @@
   ul { padding-left: 20px; }
   .legend { margin-top: 20px; padding: 16px; border-left: 3px solid var(--ember); background: var(--white); font-size: 15px; }
   footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 24px clamp(16px, 4vw, 48px); background: var(--onyx); color: rgba(255,255,255,.6); }
-  footer a { text-decoration: none; } footer a:hover { color: var(--fog); }
+  footer a { text-decoration: none; }
+  @media (hover: hover) { footer a:hover { color: var(--fog); } }
+
+  /* touch screens: no hover, so view effects follow scroll (.inview) and buttons answer the tap */
+  @media (hover: none) {
+    a, button { -webkit-tap-highlight-color: transparent; }
+    .pill, .pillnav, .cvbtn, .vbtn, .cert .links a { transition-property: background-color, color, border-color, transform; }
+    .pill:active, .pillnav:active, .cvbtn:active, .vbtn:active, .cert .links a:active { transform: scale(.96); }
+    .pill:active { background: var(--white); color: var(--onyx); }
+    footer a:active { color: var(--fog); }
+  }
 </style>
 </head>
 <body>

@@ -28,4 +28,10 @@
   document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
   const fmtAll = () => document.querySelectorAll('[data-count]').forEach(el => el.textContent = (el.dataset.prefix || '') + (+el.dataset.count).toLocaleString(es() ? 'es-AR' : 'en-US'));
   addEventListener('langchange', fmtAll); fmtAll();
+
+  // Touch: hover effects fire while an element crosses the middle of the screen
+  if (matchMedia('(hover: none)').matches) {
+    const band = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('inview', e.isIntersecting)), { rootMargin: '-42% 0px -42% 0px' });
+    document.querySelectorAll('.verd li, .gal figure, .next .big').forEach(el => band.observe(el));
+  }
 })();

@@ -58,7 +58,7 @@
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 18px clamp(16px, 4vw, 48px); mix-blend-mode: difference; color: var(--white); }
   nav .links { display: flex; gap: 6px; }
   .pill { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 7px 14px; border-radius: 9999px; border: 1px solid rgba(255,255,255,.35); font: 500 13px/1 var(--mono); text-transform: uppercase; white-space: nowrap; transition: background-color .3s var(--in), color .3s var(--in); }
-  .pill:hover { background: var(--white); color: var(--onyx); }
+  @media (hover: hover) { .pill:hover { background: var(--white); color: var(--onyx); } }
   button.pill { background: transparent; color: inherit; }
   @media (max-width: 640px) { nav .links .hide-sm { display: none; } }
 
@@ -81,7 +81,7 @@
   .hero-foot .acts { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
   .hero-foot .pill { border-color: rgba(255,255,255,.3); }
   .hero-foot .pill.solid { background: var(--fog); color: var(--onyx); }
-  .hero-foot .pill.solid:hover { background: var(--ember); color: var(--white); }
+  @media (hover: hover) { .hero-foot .pill.solid:hover { background: var(--ember); color: var(--white); } }
   @media (max-width: 760px) { .hero-foot { grid-template-columns: 1fr; } .hero-foot .acts { justify-content: flex-start; } }
 
   /* full-bleed screen */
@@ -92,7 +92,7 @@
   .screen video { width: 100%; aspect-ratio: 1280 / 672; object-fit: cover; }
   .screen figcaption { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 14px; color: rgba(255,255,255,.55); }
   .vbtn { appearance: none; border: 1px solid rgba(255,255,255,.3); background: transparent; color: var(--fog); border-radius: 9999px; padding: 6px 12px; cursor: pointer; font: 500 12px/1 var(--mono); text-transform: uppercase; }
-  .vbtn:hover { background: var(--fog); color: var(--onyx); }
+  @media (hover: hover) { .vbtn:hover { background: var(--fog); color: var(--onyx); } }
 
   /* spec table */
   .spec { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--mist); }
@@ -120,7 +120,7 @@
   .verd li { display: grid; grid-template-columns: 56px minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--mist); }
   .verd .n { color: var(--stone); }
   .verd b { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(36px, 5.6vw, 76px); line-height: .85; letter-spacing: -0.005em; transition: transform .6s var(--in); }
-  .verd li:hover b { transform: translateX(12px); }
+  @media (hover: hover) { .verd li:hover b { transform: translateX(12px); } }
   .verd b { color: var(--onyx); }
   .verd .ok b { color: var(--ok); } .verd .bad b { color: var(--bad); } .verd .warn b { color: var(--warn); } .verd .none b { color: var(--ash); }
   .verd p { margin: 0; color: var(--stone); max-width: 40ch; }
@@ -134,7 +134,7 @@
   @media (max-width: 760px) { .gal .b, .gal .c { grid-column: span 12; } }
   .gal .img { overflow: hidden; background: var(--onyx); }
   .gal img { width: 100%; height: auto; transition: transform 1s var(--out), filter .6s var(--in); filter: grayscale(.25); }
-  .gal figure:hover img { transform: scale(1.025); filter: none; }
+  @media (hover: hover) { .gal figure:hover img { transform: scale(1.025); filter: none; } }
   .gal figcaption { display: grid; grid-template-columns: auto 1fr; gap: 12px; padding-top: 10px; font-size: 15px; color: var(--stone); }
   .gal figcaption .mono { color: var(--onyx); padding-top: 3px; }
 
@@ -186,11 +186,12 @@
   .next { background: var(--onyx); color: var(--fog); padding: 40px 0 32px; border-top: 1px solid rgba(255,255,255,.1); }
   .next .mono { color: rgba(255,255,255,.55); }
   .next .big { display: block; margin-top: 18px; font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(52px, 11vw, 180px); line-height: .78; white-space: nowrap; transition: color .4s var(--in); }
-  .next .big:hover, .next .big:focus-visible { color: var(--ember); }
+  .next .big:focus-visible { color: var(--ember); }
+  @media (hover: hover) { .next .big:hover { color: var(--ember); } }
   .next .big .arr { display: inline-block; transition: transform .6s var(--in); }
-  .next .big:hover .arr { transform: translateX(.12em); }
+  @media (hover: hover) { .next .big:hover .arr { transform: translateX(.12em); } }
   .foot { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 72px; color: rgba(255,255,255,.6); }
-  .foot a:hover { color: var(--fog); }
+  @media (hover: hover) { .foot a:hover { color: var(--fog); } }
 
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity .75s var(--in), transform .75s var(--in); }
   .reveal.on { opacity: 1; transform: none; }
@@ -200,6 +201,21 @@
     *, *::before, *::after { animation: none !important; transition: none !important; }
     h1 .line span, .reveal { transform: none; opacity: 1; }
     .screen .frame { clip-path: none; }
+  }
+
+  /* touch screens: no hover, so view effects follow scroll (.inview) and buttons answer the tap */
+  @media (hover: none) {
+    a, button { -webkit-tap-highlight-color: transparent; }
+    .pill, .pillnav, .cvbtn, .vbtn, .cert .links a { transition-property: background-color, color, border-color, transform; }
+    .pill:active, .pillnav:active, .cvbtn:active, .vbtn:active, .cert .links a:active { transform: scale(.96); }
+    .pill:active { background: var(--white); color: var(--onyx); }
+    .hero-foot .pill.solid:active { background: var(--ember); color: var(--white); }
+    .vbtn:active { background: var(--fog); color: var(--onyx); }
+    .verd li.inview b { transform: translateX(12px); }
+    .gal figure.inview img { transform: scale(1.025); filter: none; }
+    .next .big.inview { color: var(--ember); }
+    .next .big.inview .arr { transform: translateX(.12em); }
+    .foot a:active { color: var(--fog); }
   }
 </style>
 </head>
@@ -357,7 +373,7 @@
   </div>
 </footer>
 
-<script src="assets/js/case.js"></script>
+<script src="assets/js/case.js?v=2"></script>
 <script src="assets/i18n.js?v=2"></script>
 </body>
 </html>

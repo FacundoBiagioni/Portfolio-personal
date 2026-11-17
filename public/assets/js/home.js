@@ -35,5 +35,20 @@
       a.addEventListener('pointerleave', () => pv.classList.remove('on'));
       a.addEventListener('pointermove', e => { tx = e.clientX + 200; ty = e.clientY; });
     });
+  } else {
+    // Touch: hover effects fire while an element crosses the middle of the screen; each project row gets its video inline
+    document.querySelectorAll('.work a').forEach(a => {
+      const card = pv.querySelector('.' + a.dataset.card);
+      if (!card) return;
+      const mini = document.createElement('div');
+      mini.className = 'mini'; mini.setAttribute('aria-hidden', 'true');
+      mini.append(card.cloneNode(true)); a.append(mini);
+    });
+    const band = new IntersectionObserver(es => es.forEach(e => {
+      e.target.classList.toggle('inview', e.isIntersecting);
+      const v = e.target.querySelector('.mini video');
+      if (v) e.isIntersecting && !reduce ? v.play().catch(() => {}) : v.pause();
+    }), { rootMargin: '-42% 0px -42% 0px' });
+    document.querySelectorAll('.work a, .photo, .cert, .contact .big').forEach(el => band.observe(el));
   }
 })();
