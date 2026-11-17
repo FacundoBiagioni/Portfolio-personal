@@ -27,7 +27,7 @@ El sitio arranca en inglés y tiene un botón EN/ES; la elección se guarda en e
 
 - Cada texto está dos veces: `<span lang="en">…</span><span lang="es">…</span>`. El CSS muestra solo el idioma activo.
 - Los atributos (alt, aria-label) usan `data-i18n-attr` con `data-en-*` y `data-es-*`.
-- El CV se abre en una pestaña nueva, según el idioma. Hoy solo existe `assets/cv/cv-facundo-biagioni-es.pdf`; cuando esté el inglés, guardarlo como `cv-facundo-biagioni-en.pdf` y completar `CV.en` en `assets/i18n.js`.
+- El CV se abre en una pestaña nueva, según el idioma: `assets/cv/cv-facundo-biagioni-en.pdf` o `cv-facundo-biagioni-es.pdf`.
 
 ## Seguridad
 

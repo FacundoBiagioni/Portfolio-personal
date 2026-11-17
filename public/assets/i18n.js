@@ -3,10 +3,9 @@
 (() => {
   const KEY = 'fb-lang';
   const here = document.currentScript.src;
-  // shortcut: there is no English CV yet, so English falls back to the Spanish file; set `en` when it exists
   const CV = {
     es: { href: new URL('cv/cv-facundo-biagioni-es.pdf', here).href },
-    en: null,
+    en: { href: new URL('cv/cv-facundo-biagioni-en.pdf', here).href },
   };
   const root = document.documentElement;
   const current = () => (root.lang === 'es' ? 'es' : 'en');
