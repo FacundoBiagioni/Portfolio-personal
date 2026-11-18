@@ -4,7 +4,7 @@ Portfolio personal. Público principal: desarrolladores y reclutadores. Sitio pu
 
 ## Estructura
 
-Todo lo que se publica está en `public/`. Lo demás (este README y `CLAUDE.md`) queda solo en el repositorio.
+Todo lo que se publica está en `public/`. Lo demás (este README) queda solo en el repositorio.
 
 | Archivo | Qué es |
 |---|---|
